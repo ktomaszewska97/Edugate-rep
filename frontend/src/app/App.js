@@ -21,6 +21,7 @@ import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
 import MainPage from '../main/mainpage';
 import EditCardDesc from '../forms/editcoursecarddesc';
+import EditDepartamentCard from '../forms/editdepartamentcard';
 
 
 class App extends Component {
@@ -83,7 +84,8 @@ class App extends Component {
             <Route exact path="/" component={Home}></Route>     
             <Route exact path="/mainpage" component={MainPage}></Route>    
             <Route exact path="/editcoursecard" component={EditCard}></Route> 
-            <Route exact path="/editcoursecarddesc" component={EditCardDesc}></Route>   
+            <Route exact path="/editcoursecarddesc" component={EditCardDesc}></Route> 
+            <Route exact path="/editdepartament" component={EditDepartamentCard}></Route>   
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
               component={Profile}></PrivateRoute>
             <Route path="/login"

@@ -4,6 +4,10 @@ import { Link, Redirect } from 'react-router-dom'
 import Alert from 'react-s-alert';
 
 class EditCard extends Component {
+    constructor(props) {
+        super(props);
+        console.log(props);
+    }
     render() {
         if(this.props.authenticated) {
             return <Redirect
@@ -17,6 +21,7 @@ class EditCard extends Component {
             <div className="signup-container">
                 <div className="signup-content">
                     <h1 className="signup-title">Informacje o kursie</h1>
+                    {/*<p>{this.props.currentUser.name}</p>*/}
                     <EditCardForm {...this.props} />
                 </div>
             </div>
@@ -72,22 +77,22 @@ class EditCardForm extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div className="form-item">
                     <input type="text" name="fieldOfStudy" 
-                        className="form-control" placeholder="Field of study"
+                        className="form-control" placeholder="Field of study" 
                         fieldOfStudy={this.state.fieldOfStudy} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
-                    <input type="text" name="" 
+                    <input type="number" name="" 
                         className="form-control" placeholder="Semester"
                         semester={this.state.semester} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
-                    <input type="text" name="Level" 
+                    <input type="number" name="Level" 
                         className="form-control" placeholder="Level"
                         level={this.state.level} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
                     <input type="text" name="Name" 
-                        className="form-control" placeholder="Name"
+                        className="form-control" placeholder="Name" maxLength="50"
                         name={this.state.name} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
@@ -98,5 +103,5 @@ class EditCardForm extends Component {
         );
     }
 }
-
+{/*Dopisać przesyłanie do bazy, wraz z kliknięciem DALEJ*/}
 export default EditCard;

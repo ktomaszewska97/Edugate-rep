@@ -103,7 +103,6 @@ class SignupForm extends Component {
                 <div className="form-item">
                     <button type="submit" className="btn btn-block btn-primary" >Sign Up</button>
                 </div>
-
             </form>                    
 
         );

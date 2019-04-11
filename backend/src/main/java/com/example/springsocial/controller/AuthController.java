@@ -2,11 +2,13 @@ package com.example.springsocial.controller;
 
 import com.example.springsocial.exception.BadRequestException;
 import com.example.springsocial.model.AuthProvider;
+import com.example.springsocial.model.School;
 import com.example.springsocial.model.User;
 import com.example.springsocial.payload.ApiResponse;
 import com.example.springsocial.payload.AuthResponse;
 import com.example.springsocial.payload.LoginRequest;
 import com.example.springsocial.payload.SignUpRequest;
+import com.example.springsocial.repository.SchoolRepository;
 import com.example.springsocial.repository.UserRepository;
 import com.example.springsocial.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ public class AuthController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private SchoolRepository schoolRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -66,11 +71,15 @@ public class AuthController {
         user.setEmail(signUpRequest.getEmail());
         user.setPassword(signUpRequest.getPassword());
         user.setProvider(AuthProvider.local);
-
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
         User result = userRepository.save(user);
-
+/*
+        School school = new School();
+        school.setAboute("about");
+        school.setDescription("description ");
+        school.setName("Nowa szkoła");
+        School register = schoolRepository.save(school);
+*/
         URI location = ServletUriComponentsBuilder
                 .fromCurrentContextPath().path("/user/me")
                 .buildAndExpand(result.getId()).toUri();
@@ -78,5 +87,7 @@ public class AuthController {
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "User registered successfully@"));
     }
+
+
 
 }

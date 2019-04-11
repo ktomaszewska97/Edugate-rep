@@ -48,4 +48,13 @@ export function signup(signupRequest) {
         method: 'POST',
         body: JSON.stringify(signupRequest)
     });
+
+}
+{/* Szkoła- zmienić stringify! oraz SignUpRequest */}
+export function newdepartament(newDepartamentRequest) {
+    return request({
+        url: API_BASE_URL + "/newdepartament",
+        method: 'POST',
+        body: JSON.stringify(newDepartamentRequest)
+    });
 }
