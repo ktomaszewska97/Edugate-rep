@@ -38,13 +38,26 @@ class EditDepartamentCardForm extends Component {
     }
 
     handleInputChange(event) {
-        const target = event.target;       
+
+        const target = event.target;  
+
+        const inputName = target.name; 
+        const inputValue = target.value;
+
+        const inputAbout = target.about;     
+        const inputValueAbout = target.valueabout;  
+        
+
+        
+
+        {/*
         const inputName = target.name;
         const inputAbout = target.about;
+        [inputName] : inputName,
+        [inputAbout] : inputAbout*/}
 
         this.setState({
-            [inputName] : inputName,
-            [inputAbout] : inputAbout
+            [inputName] : inputValue
         });     
 
     }
@@ -53,6 +66,8 @@ class EditDepartamentCardForm extends Component {
    
         event.preventDefault();   
         const newDepartamentRequest = Object.assign({}, this.state);
+
+        console.log(newDepartamentRequest)
         
         newdepartament(newDepartamentRequest)
         .then(response => {
@@ -70,12 +85,12 @@ class EditDepartamentCardForm extends Component {
                 <div className="form-item">
                     <input type="text" name="name" 
                         className="form-control" placeholder="Name" 
-                        name={this.state.fieldOfStudy} onChange={this.handleInputChange} required/>
+                        value={this.state.name} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
-                <textarea type="text" name="d" 
+                <input type="text" name="about" 
                         className="form-control" placeholder="About"
-                        about={this.state.description} onChange={this.handleInputChange} 
+                        valueabout={this.state.about} onChange={this.handleInputChange} 
                         maxLength="255" required/>
                 </div>
                 <div className="form-item">
