@@ -8,38 +8,38 @@ public class School {
 
     @Id
     @Column(name = "IDSchool")
-    private int IDSchool;
+    private int idSchool;
     @Column(name = "Name")
-    private String Name;
+    private String name;
     @Column(name = "Description")
-    private String Description;
-    @Column(name = "about")
-    private String About;
+    private String description;
+    @Column(name = "About")
+    private String about;
 
     public School(){
     }
 
-    public School(int IDSchool, String Name, String Description, String About){
+    public School(int idSchool, String name, String description, String about){
 
-        this.IDSchool = IDSchool;
-        this.Name = Name;
-        this.Description = Description;
-        this.About = About;
+        this.idSchool = idSchool;
+        this.name = name;
+        this.description = description;
+        this.about = about;
     }
 
     public int getIDSchool() {
-        return IDSchool;
+        return idSchool;
     }
 
     public String getName() {
-        return Name;
+        return name;
     }
 
     public String getAbout() {
-        return About;
+        return about;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 }

@@ -109,7 +109,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js")
                         .permitAll()
-                    .antMatchers("/auth/**", "/oauth2/**", "/school/**")
+                    .antMatchers("/auth/**", "/oauth2/**", "/school/**", "/departament**")
                         .permitAll()
                     .anyRequest()
                         .authenticated()
