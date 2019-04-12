@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import './Signup.css';
 import { Link, Redirect } from 'react-router-dom'
 import Alert from 'react-s-alert';
+import { newcourserealization } from '../util/APIUtils';
 
-class EditCardDesc extends Component {
+class EditCourseRealizationCard extends Component {
     render() {
         if(this.props.authenticated) {
             return <Redirect
@@ -16,49 +17,58 @@ class EditCardDesc extends Component {
         return (
             <div className="signup-container">
                 <div className="signup-content">
-                    <h1 className="signup-title">Uzupełnij szczegóły</h1>
-                    <EditCardDescForm {...this.props} />
+                    <h1 className="signup-title">Szczegóły kursu</h1>
+                    <EditDepartamentCardForm {...this.props} />
                 </div>
             </div>
         );
     }
 }
 
-class EditCardDescForm extends Component {
+class EditDepartamentCardForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            note: '',
-            description: ''
+            noteAboutCourse: '',
+            about: ''
         }
+
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleInputChange(event) {
-        const target = event.target;
-        const inputNote = target.note;        
-        const inputDescription = target.description;
+
+        const target = event.target;  
+
+        const inputNote = target.noteAboutCourse;
+        const inputNoteValue = target.value;
+
+        const inputAbout = target.about;     
+        const inputValueAbout = target.valueabout;  
 
         this.setState({
-            [inputNote] : inputNote,
-            [inputDescription] : inputDescription
-        });        
+            [inputNote] : inputNoteValue,
+            [inputAbout] : inputValueAbout
+        });     
+
     }
 
     handleSubmit(event) {
+   
         event.preventDefault();   
+        const newCourseRealization = Object.assign({}, this.state);
 
-        const signUpRequest = Object.assign({}, this.state);
-        {/*}
-        signup(signUpRequest)
+        console.log(newCourseRealization)
+        
+        newcourserealization(newCourseRealization)
         .then(response => {
-            Alert.success("You're successfully registered. Now you can use Edugate!");
-            this.props.history.push("/login");
+            Alert.success("Dodano realizacje kursu!");
+        {/*this.props.history.push("/login");*/}
         }).catch(error => {
             Alert.error((error && error.message) || 'Oops! Something went wrong. Please try again!');            
         });
-    */}
+
     }
 
     render() {
@@ -66,22 +76,22 @@ class EditCardDescForm extends Component {
             <form onSubmit={this.handleSubmit}>
                 <div className="form-item">
                     <input type="text" name="note" 
-                        className="form-control" placeholder="Note" maxLength="255"
-                        note={this.state.note} onChange={this.handleInputChange} required/>
+                        className="form-control" placeholder="Note" 
+                        value={this.state.note} onChange={this.handleInputChange} required/>
                 </div>
                 <div className="form-item">
-                    <textarea type="text" name="description" 
-                        className="form-control" placeholder="Description"
-                        description={this.state.description} onChange={this.handleInputChange} 
+                <textarea type="text" name="about" 
+                        className="form-control" placeholder="About"
+                        valueabout={this.state.about} onChange={this.handleInputChange} 
                         maxLength="255" required/>
                 </div>
                 <div className="form-item">
-                    <button type="submit" className="btn btn-block btn-primary" >Prześlij!</button>
+                    <button type="submit" className="btn btn-block btn-primary">Prześlij</button>
                 </div>
-            </form>               
+            </form>                    
 
         );
     }
 }
 
-export default EditCardDesc;
+export default EditCourseRealizationCard;

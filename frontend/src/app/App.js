@@ -22,7 +22,7 @@ import './App.css';
 import MainPage from '../main/mainpage';
 import EditCardDesc from '../forms/editcoursecarddesc';
 import EditDepartamentCard from '../forms/editdepartamentcard';
-
+import EditSchoolCard from '../forms/editschoolcard';
 
 class App extends Component {
   constructor(props) {
@@ -86,6 +86,7 @@ class App extends Component {
             <Route exact path="/editcoursecard" component={EditCard}></Route> 
             <Route exact path="/editcoursecarddesc" component={EditCardDesc}></Route> 
             <Route exact path="/editdepartament" component={EditDepartamentCard}></Route>   
+            <Route exact path="/editschool" component={EditSchoolCard}></Route>   
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
               component={Profile}></PrivateRoute>
             <Route path="/login"

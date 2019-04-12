@@ -21,7 +21,7 @@ public class DepartamentController {
     private DepartamentRepository departamentRepository;
 
     @PostMapping("/newdepartament")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody NewDepartamentRequest newDepartamentRequest) {
+    public ResponseEntity<?> registerDepartament(@Valid @RequestBody NewDepartamentRequest newDepartamentRequest) {
 
         Departament departament = new Departament();
         departament.setName(newDepartamentRequest.getName());

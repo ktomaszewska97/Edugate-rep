@@ -50,11 +50,35 @@ export function signup(signupRequest) {
     });
 
 }
-{/* Szkoła- zmienić stringify! oraz SignUpRequest */}
+
 export function newdepartament(newDepartamentRequest) {
     return request({
         url: API_BASE_URL + "/newdepartament",
         method: 'POST',
         body: JSON.stringify(newDepartamentRequest)
+    });
+}
+
+export function newcourse(newCourseRequest) {
+        return request({
+            url: API_BASE_URL + "/newcourse",
+            method: 'POST',
+            body: JSON.stringify(newCourseRequest)
+        });
+}
+
+export function newcourserealization(newCourseRealizationRequest) {
+    return request({
+        url: API_BASE_URL + "/newcourserealization",
+        method: 'POST',
+        body: JSON.stringify(newCourseRealizationRequest)
+    });
+}
+
+export function newschool(newSchoolRequest) {
+    return request({
+        url: API_BASE_URL + "/newschool",
+        method: 'POST',
+        body: JSON.stringify(newSchoolRequest)
     });
 }

@@ -1,55 +1,59 @@
 package com.example.springsocial.model;
 
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "school") //,uniqueConstraints = {
-        //@UniqueConstraint(columnNames = "email")
+@Table(name ="school")
 public class School {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(nullable = false)
-    Integer IDSchool;
-    @Column(nullable = false)
-    String name;
-    @Column(nullable = false)
-    String description;
-    @Column(nullable = false)
-    String about;
+    @Column(name = "IDSchool")
+    private int idSchool;
+    @Column(name = "Name")
+    private String name;
+    @Column(name = "Description")
+    private String description;
+    @Column(name = "About")
+    private String about;
 
-
-    public void setAboute(String aboute) {
-        this.about = aboute;
+    public School(){
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public School(int idSchool, String name, String description, String about){
 
-    public void setIDSchool(Integer IDSchool) {
-        this.IDSchool = IDSchool;
-    }
-
-    public void setName(String name) {
+        this.idSchool = idSchool;
         this.name = name;
+        this.description = description;
+        this.about = about;
+    }
+
+    public int getIDSchool() {
+        return idSchool;
     }
 
     public String getName() {
         return name;
     }
 
-    public Integer getIDSchool() {
-        return IDSchool;
-    }
-
-    public String getAboute() {
+    public String getAbout() {
         return about;
     }
 
     public String getDescription() {
         return description;
     }
-}
 
+    public void setName(String newName) {
+        name = newName;
+    }
+
+    public void setAbout(String newAbout) {
+        about = newAbout;
+    }
+
+    public void setDescription(String newDescription) {
+        description = newDescription;
+    }
+
+
+}

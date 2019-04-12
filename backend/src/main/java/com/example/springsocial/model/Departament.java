@@ -1,47 +1,56 @@
 package com.example.springsocial.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Entity(name = "departament")
+@Entity
+@Table(name ="departament")
 public class Departament {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer idDepartament;
-    @ManyToOne
-    School schoolId;
-    @Column
-    String name;
 
-    public Integer getIdDepartament() {
+    @Id
+    @Column(name = "IDDepartament")
+    private int idDepartament;
+    @Column(name = "SchoolID")
+    private int schoolID;
+    @Column(name = "Name")
+    private String name;
+    @Column(name = "Aboute")
+    private String about;
+
+    public Departament(){
+    }
+
+    public Departament(int idDepartament, int schoolID, String name, String about){
+
+        this.idDepartament= idDepartament;
+        this.schoolID = schoolID;
+        this.name = name;
+        this.about = about;
+    }
+
+    public int getIdDepartament() {
         return idDepartament;
     }
 
-    public School getSchoolId() {
-        return schoolId;
-    }
-
-    public void setSchoolId(School schoolId) {
-        this.schoolId = schoolId;
+    public int getSchoolID() {
+        return schoolID;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getAbout() {
         return about;
     }
 
-    public void setAbout(String about) {
-        this.about = about;
+    public void setName(String setName) {
+        name = setName;
     }
 
-    @Column
-    String about;
-
-
+    public void setAbout(String setAbout) {
+        about = setAbout;
+    }
 }
