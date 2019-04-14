@@ -23,6 +23,7 @@ import MainPage from '../main/mainpage';
 import EditCardDesc from '../forms/editcoursecarddesc';
 import EditDepartamentCard from '../forms/editdepartamentcard';
 import EditSchoolCard from '../forms/editschoolcard';
+import SchoolTable from '../formsview/schooltable';
 
 class App extends Component {
   constructor(props) {
@@ -75,6 +76,7 @@ class App extends Component {
     }
 
     return (
+      
       <div className="app">
         <div className="app-top-box">
           <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} />
@@ -87,6 +89,7 @@ class App extends Component {
             <Route exact path="/editcoursecarddesc" component={EditCardDesc}></Route> 
             <Route exact path="/editdepartament" component={EditDepartamentCard}></Route>   
             <Route exact path="/editschool" component={EditSchoolCard}></Route>   
+            <PrivateRoute path="/schools" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={SchoolTable} ></PrivateRoute> 
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
               component={Profile}></PrivateRoute>
             <Route path="/login"
@@ -97,10 +100,13 @@ class App extends Component {
             <Route component={NotFound}></Route>
           </Switch>
         </div>
+        
         <Alert stack={{limit: 3}} 
           timeout = {3000}
           position='top-right' effect='slide' offset={65} />
+          
       </div>
+      
     );
   }
 }

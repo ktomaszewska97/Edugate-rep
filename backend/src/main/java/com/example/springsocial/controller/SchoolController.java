@@ -1,18 +1,19 @@
 package com.example.springsocial.controller;
 
+import com.example.springsocial.model.Departament;
 import com.example.springsocial.model.School;
 import com.example.springsocial.payload.ApiResponse;
 import com.example.springsocial.payload.NewSchoolRequest;
 import com.example.springsocial.repository.SchoolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController
 public class SchoolController {
@@ -37,4 +38,15 @@ public class SchoolController {
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "School registered successfully@"));
     }
+
+    @GetMapping("/getschools")
+    public Iterable<School> contact() {
+        return schoolRepository.findAll();
+    }
+    /*
+    public String index(Model model) {
+        List<School> schools = (List<School>) schoolRepository.findAll();
+        model.addAttribute("schools", schools);
+        return "schools";
+    }*/
 }

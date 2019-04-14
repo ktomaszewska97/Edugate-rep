@@ -34,6 +34,14 @@ export function getCurrentUser() {
     });
 }
 
+export function getSchools() {
+
+    return request({
+        url: API_BASE_URL + "/getschools",
+        method: 'GET'
+    });
+}
+
 export function login(loginRequest) {
     return request({
         url: API_BASE_URL + "/auth/login",
@@ -80,5 +88,13 @@ export function newschool(newSchoolRequest) {
         url: API_BASE_URL + "/newschool",
         method: 'POST',
         body: JSON.stringify(newSchoolRequest)
+    });
+}
+
+export function getCourses() {
+
+    return request({
+        url: API_BASE_URL + "/getcourses",
+        method: 'GET'
     });
 }
