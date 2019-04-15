@@ -53,7 +53,7 @@ Dodatkowo w projekcie istnieje klasa SpringSocialApplication, zawierająca metod
 ![alt text](https://i.ibb.co/kJwGPK2/See-Profile.png)
 ### Przeglądanie uczelni
 ![alt text](https://i.ibb.co/dKmz1TQ/Przegladaj-Szkoly.png)
-### Zapisywanie się na kurs
+### Zapisywanie się na kurs/ wyświetlanie listy kursów
 ![alt text](https://i.ibb.co/YBsyKBN/Zapisz-Na-Kurs.png)
 ### Edycja kursu
 ![alt text](https://i.ibb.co/LPFHV9Q/Edit-Course-Info.png)
