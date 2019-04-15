@@ -5,9 +5,7 @@ import com.example.springsocial.payload.ApiResponse;
 import com.example.springsocial.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -30,5 +28,10 @@ public class CourseController {
 
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "Course registered successfully@"));
+    }
+
+    @GetMapping("/getcourse/{id}")
+    public Course getCourseById(@RequestParam int id){
+        return courseRepository.findById(id).get();
     }
 }
