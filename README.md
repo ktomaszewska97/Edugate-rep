@@ -1,5 +1,7 @@
 # Edugate_rep
 
+Edugate to platforma służąca do ułatwienia udostępniania materiałów oraz ewaluacji wiedzy Studentów.
+
 ## Install
 1. mkdir folder_name
 2. cd folder_name
@@ -43,13 +45,21 @@ Dodatkowo w projekcie istnieje klasa SpringSocialApplication, zawierająca metod
 
 ### Features
 
-### 
-![alt text](https://ibb.co/1qrXyrL)
-![alt text](https://ibb.co/8BCt1Pz)
-![alt text](https://ibb.co/8rFzY41)
-![alt text](https://ibb.co/RpybDDx)
-![alt text](https://ibb.co/mzNM1jH)
-![alt text](https://ibb.co/qCcD2BY)
-![alt text](https://ibb.co/CMd0b7r)
-![alt text](https://ibb.co/VY4QhYL)
+### Logowanie
+![alt text](https://i.ibb.co/JRQtssf/LogIn.png)
+### Rejestracja
+![alt text](https://i.ibb.co/5nDcr87/SignUp.png)
+### Profil użytkownika
+![alt text](https://i.ibb.co/kJwGPK2/See-Profile.png)
+### Przeglądanie uczelni
+![alt text](https://i.ibb.co/dKmz1TQ/Przegladaj-Szkoly.png)
+### Zapisywanie się na kurs
+![alt text](https://i.ibb.co/YBsyKBN/Zapisz-Na-Kurs.png)
+### Edycja kursu
+![alt text](https://i.ibb.co/LPFHV9Q/Edit-Course-Info.png)
+### Edycja szczegółów kursu
+![alt text](https://i.ibb.co/qsNgqNd/Edit-Course-Detail-Info.png)
+### Edycja informacji o wydziale
+![alt text](https://i.ibb.co/tqyZLPV/Edyzja-Info-OWydziale.png)
+
 
