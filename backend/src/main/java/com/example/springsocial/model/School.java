@@ -8,12 +8,13 @@ public class School {
 
     @Id
     @Column(name = "IDSchool")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idSchool;
     @Column(name = "Name")
     private String name;
     @Column(name = "Description")
     private String description;
-    @Column(name = "About")
+    @Column(name = "Aboute")
     private String about;
 
     public School(){

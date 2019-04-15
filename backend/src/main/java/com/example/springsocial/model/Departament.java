@@ -1,9 +1,6 @@
 package com.example.springsocial.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name ="departament")
@@ -11,6 +8,7 @@ public class Departament {
 
     @Id
     @Column(name = "IDDepartament")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDepartament;
     @Column(name = "SchoolID")
     private int schoolID;
