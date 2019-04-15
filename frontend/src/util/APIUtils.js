@@ -35,9 +35,16 @@ export function getCurrentUser() {
 }
 
 export function getSchools() {
-
     return request({
         url: API_BASE_URL + "/getschools",
+        method: 'GET'
+    });
+}
+
+export function getCourseRealizations() {
+
+    return request({
+        url: API_BASE_URL + "/getcourserealizations",
         method: 'GET'
     });
 }
@@ -91,10 +98,26 @@ export function newschool(newSchoolRequest) {
     });
 }
 
+export function signupforcourse(signupRequest) {
+    return request({
+        url: API_BASE_URL + "/addsignupforcourse",
+        method: 'POST',
+        body: JSON.stringify(signupRequest)
+    });
+
+}
+
 export function getCourses() {
 
     return request({
         url: API_BASE_URL + "/getcourses",
+        method: 'GET'
+    });
+}
+
+export function getCourseById() {
+    return request({
+        url: API_BASE_URL + "/getcourses/1",
         method: 'GET'
     });
 }

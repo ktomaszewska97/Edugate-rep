@@ -24,6 +24,8 @@ import EditCardDesc from '../forms/editcoursecarddesc';
 import EditDepartamentCard from '../forms/editdepartamentcard';
 import EditSchoolCard from '../forms/editschoolcard';
 import SchoolTable from '../formsview/schooltable';
+import CoursesTable from '../formsview/coursestable';
+import SignUpForACourse from '../forms/signupforacourse';
 
 class App extends Component {
   constructor(props) {
@@ -89,7 +91,9 @@ class App extends Component {
             <Route exact path="/editcoursecarddesc" component={EditCardDesc}></Route> 
             <Route exact path="/editdepartament" component={EditDepartamentCard}></Route>   
             <Route exact path="/editschool" component={EditSchoolCard}></Route>   
-            <PrivateRoute path="/schools" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={SchoolTable} ></PrivateRoute> 
+            <Route exact path="/courses" component={CoursesTable}></Route>  
+            <PrivateRoute path="/schools" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={SchoolTable} ></PrivateRoute>
+            <PrivateRoute path="/signupforacourse" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={SignUpForACourse} ></PrivateRoute> 
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
               component={Profile}></PrivateRoute>
             <Route path="/login"
