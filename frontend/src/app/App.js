@@ -14,10 +14,18 @@ import LoadingIndicator from '../common/LoadingIndicator';
 import { getCurrentUser } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 import PrivateRoute from '../common/PrivateRoute';
+import EditCard from '../forms/editcoursecard';
 import Alert from 'react-s-alert';
 import 'react-s-alert/dist/s-alert-default.css';
 import 'react-s-alert/dist/s-alert-css-effects/slide.css';
 import './App.css';
+import MainPage from '../main/mainpage';
+import EditCardDesc from '../forms/editcoursecarddesc';
+import EditDepartamentCard from '../forms/editdepartamentcard';
+import EditSchoolCard from '../forms/editschoolcard';
+import SchoolTable from '../formsview/schooltable';
+import CoursesTable from '../formsview/coursestable';
+import SignUpForACourse from '../forms/signupforacourse';
 
 class App extends Component {
   constructor(props) {
@@ -70,13 +78,22 @@ class App extends Component {
     }
 
     return (
+      
       <div className="app">
         <div className="app-top-box">
           <AppHeader authenticated={this.state.authenticated} onLogout={this.handleLogout} />
         </div>
         <div className="app-body">
           <Switch>
-            <Route exact path="/" component={Home}></Route>           
+            <Route exact path="/" component={Home}></Route>     
+            <Route exact path="/mainpage" component={MainPage}></Route>    
+            <Route exact path="/editcoursecard" component={EditCard}></Route> 
+            <Route exact path="/editcoursecarddesc" component={EditCardDesc}></Route> 
+            <Route exact path="/editdepartament" component={EditDepartamentCard}></Route>   
+            <Route exact path="/editschool" component={EditSchoolCard}></Route>   
+            <Route exact path="/courses" component={CoursesTable}></Route>  
+            <PrivateRoute path="/schools" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={SchoolTable} ></PrivateRoute>
+            <PrivateRoute path="/signupforacourse" authenticated={this.state.authenticated} currentUser={this.state.currentUser} component={SignUpForACourse} ></PrivateRoute> 
             <PrivateRoute path="/profile" authenticated={this.state.authenticated} currentUser={this.state.currentUser}
               component={Profile}></PrivateRoute>
             <Route path="/login"
@@ -87,10 +104,13 @@ class App extends Component {
             <Route component={NotFound}></Route>
           </Switch>
         </div>
+        
         <Alert stack={{limit: 3}} 
           timeout = {3000}
           position='top-right' effect='slide' offset={65} />
+          
       </div>
+      
     );
   }
 }

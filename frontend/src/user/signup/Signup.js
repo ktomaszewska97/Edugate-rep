@@ -59,6 +59,7 @@ class SignupForm extends Component {
     }
 
     handleInputChange(event) {
+
         const target = event.target;
         const inputName = target.name;        
         const inputValue = target.value;
@@ -72,6 +73,8 @@ class SignupForm extends Component {
         event.preventDefault();   
 
         const signUpRequest = Object.assign({}, this.state);
+
+        console.log(signUpRequest)
 
         signup(signUpRequest)
         .then(response => {
@@ -103,7 +106,6 @@ class SignupForm extends Component {
                 <div className="form-item">
                     <button type="submit" className="btn btn-block btn-primary" >Sign Up</button>
                 </div>
-
             </form>                    
 
         );
