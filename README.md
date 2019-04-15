@@ -8,8 +8,6 @@
 5. npm run
 6. load http://localhost:3000/
 
----
-
 ## Backend
 
 Aplikacja od strony backendu używa technologii Spring MVC. Projekt Edugate zawiera 8 paczek plików: config, controller, exception, model, payload, repository, security oraz util. 
@@ -42,4 +40,16 @@ Util zawiera klasę CookieUtils służącą do obsługi plików Cookie związany
 Dodatkowo w projekcie istnieje klasa SpringSocialApplication, zawierająca metodę main służącą do uruchomienia aplikacji. Wywołanie tej metody uruchamia silnik Spring i następuje sprawdzenie zgodności zależności (dependencies) mavena oraz przy użyciu framework’u Hibernate zgodności zadeklarowanych w modelu klas odpowiadających encjom. Poprawne uruchomienie aplikacji pozwala na interakcję z aplikacjami zewnętrznymi (m.in. frontend). 
 
 ## Frontend
+
+### Features
+
+### 
+![alt text](https://ibb.co/1qrXyrL)
+![alt text](https://ibb.co/8BCt1Pz)
+![alt text](https://ibb.co/8rFzY41)
+![alt text](https://ibb.co/RpybDDx)
+![alt text](https://ibb.co/mzNM1jH)
+![alt text](https://ibb.co/qCcD2BY)
+![alt text](https://ibb.co/CMd0b7r)
+![alt text](https://ibb.co/VY4QhYL)
 
