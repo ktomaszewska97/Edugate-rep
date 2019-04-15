@@ -1,8 +1,10 @@
 package com.example.springsocial.controller;
 
 import com.example.springsocial.model.CourseRealization;
+import com.example.springsocial.model.UserCourseRealization;
 import com.example.springsocial.payload.ApiResponse;
 import com.example.springsocial.repository.CourseRealizationRepository;
+import com.example.springsocial.repository.UserCourseRealizationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,22 +16,21 @@ import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
-public class CourseRealizationController {
+public class UserCourseRealizationController {
 
     @Autowired
-    private CourseRealizationRepository courseRealizationRepository;
+    private UserCourseRealizationRepository userCourseRealizationRepository;
 
-    @PostMapping("/addcourserealization")
-    public ResponseEntity<?> addFCourseRealization(@Valid @RequestBody CourseRealization courseRealization){
+    @PostMapping("/addusercourserealization")
+    public ResponseEntity<?> addUserCourseRealization(@Valid @RequestBody UserCourseRealization userCourseRealization){
 
-        CourseRealization result = courseRealizationRepository.save(courseRealization);
+        UserCourseRealization result = userCourseRealizationRepository.save(userCourseRealization);
 
         URI location = ServletUriComponentsBuilder
-                .fromCurrentContextPath().path("/addcourserealization")
-                .buildAndExpand(result.getIdCourseRealization()).toUri();
+                .fromCurrentContextPath().path("/addusercourserealization")
+                .buildAndExpand(result.getIdUserCourseRealization()).toUri();
 
         return ResponseEntity.created(location)
                 .body(new ApiResponse(true, "Course realization registered successfully@"));
     }
 }
-
