@@ -11,7 +11,7 @@ import java.util.List;
 @RequestMapping("/school")
 public class SchoolController {
 
-    @Autowired
+//    @Autowired
     private SchoolRepository schoolRepository;
 
     @PostMapping(produces = "application/json")
@@ -34,5 +34,11 @@ public class SchoolController {
     public List<School> getSchools(){
 
         return schoolRepository.findAll();
+    }
+
+    @GetMapping("/dupa")
+    public void dupa(){
+
+        System.out.println(schoolRepository.findById(1).get());
     }
 }
