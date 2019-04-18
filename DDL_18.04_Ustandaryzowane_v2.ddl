@@ -79,7 +79,7 @@ CREATE TABLE `File` (
   Title    varchar(50), 
   Link     varchar(255), 
   PRIMARY KEY (IDFIle));
-CREATE TABLE CourseIDD (
+CREATE TABLE Course (
   IDCourse       int(5) NOT NULL AUTO_INCREMENT, 
   IDFieldOfStudy int(11) NOT NULL, 
   Semester       int(1), 
@@ -89,7 +89,7 @@ CREATE TABLE CourseIDD (
   PRIMARY KEY (IDCourse));
 CREATE TABLE FieldOfStudy (
   IDFieldOfStudy int(11) NOT NULL AUTO_INCREMENT, 
-  IDDepartament  int(3) NOT NULL, 
+  IDDepartment   int(3) NOT NULL, 
   Name           varchar(50), 
   About          varchar(255), 
   PRIMARY KEY (IDFieldOfStudy));
@@ -107,7 +107,7 @@ CREATE TABLE AssignDepartment (
   IDAssignDepartment int(11) NOT NULL AUTO_INCREMENT, 
   IDPrivilege        int(5) NOT NULL, 
   IDUser             int(5) NOT NULL, 
-  IDDepartament      int(3) NOT NULL, 
+  IDDepartment      int(3) NOT NULL, 
   PRIMARY KEY (IDAssignDepartment));
 CREATE TABLE AssignFieldOfStudy (
   IDAssignFieldOfStudy int(11) NOT NULL AUTO_INCREMENT, 
@@ -167,16 +167,16 @@ ALTER TABLE Favourite ADD CONSTRAINT FKFavourite563452 FOREIGN KEY (IDUser) REFE
 ALTER TABLE Department ADD CONSTRAINT FKDepartment29458 FOREIGN KEY (IDSchool) REFERENCES School (IDSchool);
 ALTER TABLE `File` ADD CONSTRAINT FKFile995379 FOREIGN KEY (IDUser) REFERENCES Users (IDUser);
 ALTER TABLE CourseEvaluation ADD CONSTRAINT FKCourseEval431289 FOREIGN KEY (IDUser) REFERENCES Users (IDUser);
-ALTER TABLE FieldOfStudy ADD CONSTRAINT FKFieldOfStu916997 FOREIGN KEY (IDDepartament) REFERENCES Department (IDDepartment);
-ALTER TABLE CourseIDD ADD CONSTRAINT FKCourseIDD712885 FOREIGN KEY (IDFieldOfStudy) REFERENCES FieldOfStudy (IDFieldOfStudy);
-ALTER TABLE CourseRealization ADD CONSTRAINT FKCourseReal268332 FOREIGN KEY (IDCourse) REFERENCES CourseIDD (IDCourse);
+ALTER TABLE FieldOfStudy ADD CONSTRAINT FKFieldOfStu33079 FOREIGN KEY (IDDepartment) REFERENCES Department (IDDepartment);
+ALTER TABLE Course ADD CONSTRAINT FKCourse195101 FOREIGN KEY (IDFieldOfStudy) REFERENCES FieldOfStudy (IDFieldOfStudy);
+ALTER TABLE CourseRealization ADD CONSTRAINT FKCourseReal750547 FOREIGN KEY (IDCourse) REFERENCES Course (IDCourse);
 ALTER TABLE Administrator ADD CONSTRAINT FKAdministra537493 FOREIGN KEY (IDUser) REFERENCES Users (IDUser);
 ALTER TABLE Users ADD CONSTRAINT FKUsers316323 FOREIGN KEY (IDSchool) REFERENCES School (IDSchool);
 ALTER TABLE AsssignSchool ADD CONSTRAINT FKAsssignSch410230 FOREIGN KEY (IDUser) REFERENCES Users (IDUser);
 ALTER TABLE AsssignSchool ADD CONSTRAINT FKAsssignSch925602 FOREIGN KEY (IDSchool) REFERENCES School (IDSchool);
 ALTER TABLE AsssignSchool ADD CONSTRAINT FKAsssignSch403381 FOREIGN KEY (IDPrivilege) REFERENCES Privilege (IDPrivilege);
 ALTER TABLE AssignDepartment ADD CONSTRAINT FKAssignDepa478410 FOREIGN KEY (IDUser) REFERENCES Users (IDUser);
-ALTER TABLE AssignDepartment ADD CONSTRAINT FKAssignDepa573159 FOREIGN KEY (IDDepartament) REFERENCES Department (IDDepartment);
+ALTER TABLE AssignDepartment ADD CONSTRAINT FKAssignDepa573159 FOREIGN KEY (IDDepartment) REFERENCES Department (IDDepartment);
 ALTER TABLE AssignDepartment ADD CONSTRAINT FKAssignDepa471561 FOREIGN KEY (IDPrivilege) REFERENCES Privilege (IDPrivilege);
 ALTER TABLE AssignFieldOfStudy ADD CONSTRAINT FKAssignFiel330663 FOREIGN KEY (IDFieldOfStudy) REFERENCES FieldOfStudy (IDFieldOfStudy);
 ALTER TABLE AssignFieldOfStudy ADD CONSTRAINT FKAssignFiel212804 FOREIGN KEY (IDPrivilege) REFERENCES Privilege (IDPrivilege);
