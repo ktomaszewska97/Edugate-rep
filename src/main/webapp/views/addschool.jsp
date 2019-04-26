@@ -1,12 +1,14 @@
-<link rel="stylesheet" type="text/css" href="Signup.css">
-<%@ page language="java" contentType="text/html"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <%@ page import="edugate.demo.model.School" %>
 <html>
 <head>
-<title>Date JSP</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/Signup.css" rel="stylesheet">
 </head>
 <body>
+
+<%@include file="header.jsp" %>
 
 <%
 School newSchool = (School)request.getAttribute("newSchool"); 
@@ -26,18 +28,18 @@ if(newSchool != null){ %>
                 <div class="signup-content">
                     <h1 class="signup-title">Dodaj szkole wyzsza</h1>
            <form action="addSchool" method="post">
-                <div class="form-item">
+                <div class="form-group">
                     <input type="text" name="name" 
                         class="form-control" placeholder="Name" 
                         value="" onChange="" required/>
                 </div>
-                <div class="form-item">
+                <div class="form-group">
                 <input type="text" name="about" 
                         class="form-control" placeholder="About"
                         valueabout="" onChange=""
                         maxLength="255" required/>
                 </div>
-                <div class="form-item">
+                <div class="form-group">
                 <input type="text" name="description" 
                         class="form-control" placeholder="Description"
                         valuedescription="" onChange=""

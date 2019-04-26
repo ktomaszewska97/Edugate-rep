@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity(name = "course")
 public class Course {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer IDCourse;
     @Column(name = "IDFieldofstudy")
     Integer IDFieldOfStudy;
@@ -16,6 +17,18 @@ public class Course {
     String name;
     @Column
     String about;
+    
+    public Course() {
+    }
+    
+    public Course(/*int IDFieldOFStudy,*/ String name, int semester, int level, String about) {
+    	
+    	this.IDFieldOfStudy = 1;
+    	this.name = name;
+    	this.semester = semester;
+    	this.level = level;
+    	this.about = about;
+    }
 
     public Integer getIDCourse() {
         return IDCourse;

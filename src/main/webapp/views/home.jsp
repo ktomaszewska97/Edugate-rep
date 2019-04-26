@@ -1,11 +1,12 @@
-<link rel="stylesheet" type="text/css" href="Home.css">
-<%@ page language="java" contentType="text/html"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <html>
 <head>
-<title>Date JSP</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/Home.css" rel="stylesheet">
 </head>
 <body>
+<%@include file="header.jsp" %>
             <div className="home-container">
                 <div className="container">
                 	<div>

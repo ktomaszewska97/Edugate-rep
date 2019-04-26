@@ -1,9 +1,9 @@
-<link rel="stylesheet" type="text/css" href="Login.css">
-<%@ page language="java" contentType="text/html"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <html>
 <head>
-<title>Date JSP</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/Login.css" rel="stylesheet">
 </head>
 <body>
          <div class="login-container">

@@ -7,14 +7,10 @@ import javax.persistence.Id;
 @Entity(name = "Courserealization")
 public class CourseRealization {
     @Id
-    Integer idcourserealization;
+    long idcourserealization;
 
     @Column
-    Integer iduser;
-    @Column
-    Integer idcourse;
-    @Column
-    Integer groupfunction;
+    long idcourse;
     @Column
     Integer year;
     @Column
@@ -24,32 +20,16 @@ public class CourseRealization {
     @Column
     Integer coursestatus;
 
-    public Integer getIdcourserealization() {
+    public long getIdcourserealization() {
         return idcourserealization;
     }
 
-    public Integer getIduser() {
-        return iduser;
-    }
-
-    public void setIduser(Integer iduser) {
-        this.iduser = iduser;
-    }
-
-    public Integer getIdcourse() {
+    public long getIdcourse() {
         return idcourse;
     }
 
     public void setIdcourse(Integer idcourse) {
         this.idcourse = idcourse;
-    }
-
-    public Integer getGroupfunction() {
-        return groupfunction;
-    }
-
-    public void setGroupfunction(Integer groupfunction) {
-        this.groupfunction = groupfunction;
     }
 
     public Integer getYear() {

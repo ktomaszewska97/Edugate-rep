@@ -1,39 +1,34 @@
-<link rel="stylesheet" type="text/css" href="Signup.css">
-<%@ page language="java" contentType="text/html"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <html>
 <head>
-<title>Date JSP</title>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<link href="/css/Signup.css" rel="stylesheet">
 </head>
 <body>
-
+<%@include file="header.jsp" %>
  <div class="signup-container">
                 <div class="signup-content">
                     <h1 class="signup-title">Dodaj kurs</h1>
-                <form onSubmit="">
-                <div class="form-item">
+                <form action="addCourse" method="post">
+                <div class="form-group">
                     <input type="text" name="name" 
                         class="form-control" placeholder="Name" 
-                        value="" onChange="" required/>
+                        required/>
                 </div>
-                <div class="form-item">
+                <div class="form-group">
                 <input type="number" name="semester" 
                         class="form-control" placeholder="Semester"
                         valuesemester=""  onChange=""
                         maxLength="2" required/>
                 </div>
-                <div class="form-item">
+                <div class="form-group">
                 <input type="number" name="level" 
                         class="form-control" placeholder="Level"
                         valuelevel=""  onChange="" 
                         maxLength="2" required/>
                 </div>
-                 <div class="form-item">
-                    <input type="text" name="note" 
-                        class="form-control" placeholder="Note" 
-                        value="" onChange="" required/>
-                </div>
-                <div class="form-item">
+                <div class="form-group">
                 <input type="text" name="about" 
                         class="form-control" placeholder="About"
                         valueabout="" onChange=""
