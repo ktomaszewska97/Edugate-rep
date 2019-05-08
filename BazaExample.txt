@@ -1,0 +1,16 @@
+INSERT INTO `school`(`Name`, `Description`, `About`) VALUES ("Politechnika Wroc³awska","Super uczelnia!","Z bogat¹ tradycj¹");
+INSERT INTO `school`(`Name`, `Description`, `About`) VALUES ("Politechnika Czêstochowska","Super uczelnia!","Z bogat¹ tradycj¹");
+INSERT INTO `department`(`IDSchool`, `Name`, `About`) VALUES (1,"Wydzia³ Informatyki i Zarz¹dzania","Najlepszy wydzia³ w mieœcie!");
+INSERT INTO `department`(`IDSchool`, `Name`, `About`) VALUES (1,"Wydzia³ Podstawowych Problemów Techniki","Najlepszy wydzia³ w mieœcie!");
+INSERT INTO `fieldofstudy`(`IDDepartment`, `Name`, `About`) VALUES (1,"Informatyka","Trudny kierunek :(");
+INSERT INTO `fieldofstudy`(`IDDepartment`, `Name`, `About`) VALUES (1,"In¿ynieria Systemów","Pewnie ³atwy!");
+INSERT INTO `fieldofstudy`(`IDDepartment`, `Name`, `About`) VALUES (2,"Informatyka","Sama matematyka!");
+INSERT INTO `course`(`IDFieldOfStudy`, `Semester`, `Level`, `Name`, `About`) VALUES (1,2,1,"Analiza Matematyczna","Same ca³ki!");
+INSERT INTO `course`(`IDFieldOfStudy`, `Semester`, `Level`, `Name`, `About`) VALUES (1,3,1,"Algebra","£atwy kurs!");
+INSERT INTO `courserealization`(`IDCourse`,`Year`, `Note`, `About`, `CourseStatus`) VALUES (1,2019,"Kurs prowadzony przez Pani¹ Agnieszkê Kamiñsk¹","Ca³ki, pochodne.",1);
+INSERT INTO `courserealization`(`IDCourse`,`Year`, `Note`, `About`, `CourseStatus`) VALUES (1,2019,"Kurs prowadzony przez Pana Profesora Krupskiego","Ca³ki, pochodne.",1);
+INSERT INTO `courserealization`(`IDCourse`,`Year`, `Note`, `About`, `CourseStatus`) VALUES (2,2019,"Wa¿ny kurs.","Ca³ki, pochodne.",1);
+
+INSERT INTO `comment`(`IDUser`, `IDCourseRealization`, `Message`) VALUES (1,1,"To jest komentarz");
+
+INSERT INTO `comment`(`IDUser`, `IDCourseRealization`, `Message`) VALUES (1,1,"To jest komentarz");
