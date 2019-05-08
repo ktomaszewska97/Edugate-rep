@@ -1,15 +1,18 @@
 package edugate.demo.model;
 
 
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
+
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Table(name = "users")
-        //@UniqueConstraint(columnNames = "IDUser")
+        //@UniqueConstraint(columnNames = "iduser")
 public class Users {
     @Id
-    Integer IDUser;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer iduser;
 
     @Column
     Integer IDSchool;
@@ -19,6 +22,9 @@ public class Users {
 
     @Column(nullable = false)
     String password;
+
+    @Transient
+    private String passwordConfirm;
 
     @Column(nullable = false)
     String email;
@@ -59,6 +65,14 @@ public class Users {
         this.email = email;
     }
 
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
+    }
+
     public Date getdateregistered() {
         return dateregistered;
     }
@@ -91,8 +105,8 @@ public class Users {
         this.overallrating = overallrating;
     }
 
-    public Integer getIDUser() {
-        return IDUser;
+    public Integer getiduser() {
+        return iduser;
     }
 
     public Integer getIDSchool() {
@@ -103,8 +117,8 @@ public class Users {
         IDSchool = IDSchool;
     }
 
-    public void setIDUser(Integer IDUser) {
-        this.IDUser = IDUser;
+    public void setiduser(Integer iduser) {
+        this.iduser = iduser;
     }
 
 

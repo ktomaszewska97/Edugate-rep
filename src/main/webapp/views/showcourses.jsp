@@ -24,17 +24,28 @@
                 <%
                 List<Course> coursesList = (List<Course>)request.getAttribute("coursesList");   
 				
+				int idCourse = 0;
+				
                 if(coursesList != null){
                     for (Course course : coursesList)
                     { 
+                    
+                    idCourse = course.getIDCourse();
+                    
                     %>
 
+					
                      <tr>
-                        <th scope="row"><%= course.getIDCourse() %></th>
+                        <th scope="row"><%= idCourse  %></th>
                         <td><%= course.getName() %></td>
                         <td><%= course.getSemester() %></td>
                         <td><%= course.getAbout() %></td>
+                        <td><form method="post" action="courseView">
+                        	<input name="IDCourseRealization" type="number" value="<%= idCourse  %>" hidden>
+                        	<input type="submit" class="btn btn-primary btn-outline" value="Select">
+                        	</form> </td>
                     </tr>
+                    
 
                 <% }} %>
         </tbody>

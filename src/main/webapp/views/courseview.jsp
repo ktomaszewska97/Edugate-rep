@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <%@ page import="edugate.demo.model.Course" %>
+<%@ page import="edugate.demo.model.Comment" %>
+<%@ page import="edugate.demo.model.File" %>
+<%@ page import="edugate.demo.model.UserProfile" %>
 <html>
 
 <head>
@@ -31,7 +34,7 @@
                     <br> bla
                 </p>
                 <br>
-
+ 
                 <p>Aktualności
                     <br> bla
                     <br> blaaaa
@@ -70,14 +73,15 @@
 
                         <%
                         List<Comment> commentList = (List<Comment>)request.getAttribute("commentList");
-                        List<UserProfile> userProfilList = (List<Comment>)request.getAttribute("commentList");
+                        List<UserProfile> userProfileList = (List<UserProfile>)request.getAttribute("userProfileList");
+                        int currentCourseRealization = (int)request.getAttribute("currentCourseRealization");
                         String name="";
         
                         if(commentList != null){
                           for (Comment comment : commentList)
                           {
-                              if(comment.getIdcourserealization==currentCourseRealization){ 
-                                  for(UserProfile user: userProfilList){
+                              if(comment.getIdCourseRealization==currentCourseRealization){ 
+                                  for(UserProfile user: userProfileList){
                                       if(comment.getIduser==user.getIDUser){
                                           name=user.getFirstName+" "+user.getLastName;
                                       }
