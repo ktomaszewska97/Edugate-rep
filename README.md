@@ -158,18 +158,18 @@ ___
 ### Logowanie/wylogowywanie
 ### Rejestracja
 ### Przeglądanie kursów
-![alt text](https://i.ibb.co/bs17PGn/Przegladaj-Kursy.png" alt="Przegladaj-Kursy)
+![alt text](https://i.ibb.co/bs17PGn/Przegladaj-Kursy.png)
 ### Dodawanie kursów
-![alt text](https://i.ibb.co/6D4JQXv/Dodaj-Kurs.png" alt="Dodaj-Kurs)
+![alt text](https://i.ibb.co/6D4JQXv/Dodaj-Kurs.png)
 ### Przeglądanie Uczelni
 ### Przeglądanie wydziałów
 ### Dodawanie uczelni
-![alt text](https://i.ibb.co/6tK8VMH/Dodaj-Szkole.png" alt="Dodaj-Szkole)
+![alt text](https://i.ibb.co/6tK8VMH/Dodaj-Szkole.png)
 ### Dodawanie wydziałów
-![alt text](https://i.ibb.co/DRQ9BLC/Dodaj-Wydzial.png" alt="Dodaj-Wydzial)
+![alt text](https://i.ibb.co/DRQ9BLC/Dodaj-Wydzial.png)
 ### Dodawanie prowadzącego do kursu
 ### Dodawanie studenta do kursu
-![alt text](https://i.ibb.co/HX5zfKR/Zaprz-Na-Kurs.png" alt="Zaprz-Na-Kurs)
+![alt text](https://i.ibb.co/HX5zfKR/Zaprz-Na-Kurs.png)
 ### Wizytówka kursu
 
 
