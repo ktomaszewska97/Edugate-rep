@@ -1,4 +1,4 @@
-### Edugate_rep
+# Edugate_rep
 
 Aplikacja mająca służyć do wymiany opinii na temat kursów oraz prowadzących, oraz do dzielenia się wiedzą/materiałami.
 ___
@@ -13,31 +13,31 @@ ___
 
 Aplikacja od strony backendu używa technologii Spring MVC. Projekt Edugate zawiera 8 paczek plików: config, controller, exception, model, payload, repository, security oraz util.
 
-# Config
+### Config
 Config zawiera klasy odpowiedzialne za zapewnienie właściwej konfiguracji systemu w celu właściwej współpracy z bazą danych i frontenedem oraz ustawienia autoryzacji logowania użytkownika.
 
-# Controller
+### Controller
 Controller zawiera klasy odpowiedzialne za obsługę zapytań z frontendu. Stanowi API do łączenia się z bazą danych; przy użyciu metod CRUD komunikuje się z bazą. Każde żądanie z frontendu charakteryzuje konkretny ciąg URL, który informuje o akcji jaka ma zostać wykonana. Jest on przechwytywany przy pomocy adnotacji @RequestMapping lub adnotacji dla konkretnych metod HTTP (@GetMappping, @PostMapping, itd.) i kierowany do odpowiedniej klasy-kontrolera, gdzie wykonywana jest właściwa metoda.
 
-# Model
+### Model
 Model zawiera klasy będące zmapowanymi odpowiednikami encji w bazie danych. Umożliwiają konwersję danych z bazy (rekordów) na konkretne, odpowiadające im, obiekty w javie.
 
-# Repository
+### Repository
 Repository zawiera interfejsy używane przez Spring do obsługi operacji CRUD w bazie danych. Definiowane za pomocą adnotacji @Repository oraz rozszerzające interfejs JpaRepository domyślnie pozwalają na realizacje podstawowych i szablonowych operacji CRUD, można jednak definiować nagłówki własnych metod w celu wykonywania skonkretyzowanych operacji czytania, zapisu, usuwania i edycji w bazie.
 
-# Security
+### Security
 Security zawiera klasy obsługujące poprawną autoryzację użytkownika.
 
 ## Controllers
 
-# CommentController
+### CommentController
 ```
 public ModelAndView commentslistLink() {
 }
 ```
 Zwraca listę wszystkich komentarzy.
 
-# CourseController
+### CourseController
 ```
 public ModelAndView courseslistLink() {
 }
@@ -73,7 +73,7 @@ public ModelAndView showCourseView(int IDCourseRealization) {
 
 Zwraca listę komentarzy, profili użytkowników, pliki oraz nazwę dla wybranej realizacji kursu.
 
-# CourseRealizationController
+### CourseRealizationController
 
 ```
 public ModelAndView signUpForACourse(int IDUser, int IDCourseRealization) {
@@ -82,7 +82,7 @@ public ModelAndView signUpForACourse(int IDUser, int IDCourseRealization) {
 
 Umożliwa zapisanie się na kurs.
 
-# FileController
+### FileController
 
 ```
 public ModelAndView fileslistLink() {
@@ -91,7 +91,7 @@ public ModelAndView fileslistLink() {
 
 Zwraca listę kursów.
 
-# GlobalController
+### GlobalController
 
 ```
 public Users getLoginUsers() {
@@ -100,7 +100,7 @@ public Users getLoginUsers() {
 
 Zwraca zalogowanego użytkownika.
 
-# LoginController
+### LoginController
 
 ```
 public String registrationLink() {
@@ -108,7 +108,7 @@ public String registrationLink() {
 ```
 Przekierowuje na stronę "Home" po zalogowaniu.
 
-# SchoolController
+### SchoolController
 
 ```
 public ModelAndView addSchool(String name, String about, String description) {
@@ -117,7 +117,7 @@ public ModelAndView addSchool(String name, String about, String description) {
 
 Umożliwia dodanie szkoły do bazy danych.
 
-# SignupController
+### SignupController
 
 ```
 public class SignUpController {
@@ -126,7 +126,7 @@ public class SignUpController {
 
 Przekierowuje na stronę "Index" po rejestracji.
 
-# UserController
+### UserController
 
 ```
 public String registration(Model model) {
@@ -153,19 +153,18 @@ ___
 
 ## Frontend
 
-# Features:
+### Features:
 
-# Logowanie/wylogowywanie
-# Rejestracja
-# Przeglądanie kursów
-# Przeglądanie Uczelni
-# Przeglądanie wydziałów
-# Dodawanie uczelni
-# Dodawanie wydziałów
-# Dodawanie kursów
-# Dodawanie prowadzącego do kursu
-# Dodawanie studenta do kursu
-# Wizytówka kursu
+### Logowanie/wylogowywanie
+### Rejestracja
+### Przeglądanie kursów
+### Przeglądanie Uczelni
+### Przeglądanie wydziałów
+### Dodawanie uczelni
+### Dodawanie wydziałów
+### Dodawanie prowadzącego do kursu
+### Dodawanie studenta do kursu
+### Wizytówka kursu
 
 
 
