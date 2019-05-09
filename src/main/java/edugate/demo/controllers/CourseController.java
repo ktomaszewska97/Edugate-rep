@@ -65,20 +65,21 @@ public class CourseController {
 	
 	@PostMapping(value="/courseView")
 	public ModelAndView showCourseView(int IDCourseRealization) {
-		
-		System.out.println("dupa");
-	
+
 		List<UserProfile> listOfUserProfiles = userProfileRepository.findAll();
 		List<Comment> listOfComments = commentRepository.findAll();
 		List<File> listOfFiles = fileRepository.findAll();
 		
 		CourseRealization currentCourseRealization = courseRealizationRepository.findById((long)IDCourseRealization).get();
+		Course currentCourseRealizationCourse = courseRepository.findById((int)currentCourseRealization.getIdcourse()).get();
+		String currentCourseName = currentCourseRealizationCourse.getName();
 		
 		ModelAndView mv = new ModelAndView("courseview");
 		mv.addObject("commentList", listOfComments);
 		mv.addObject("userProfileList", listOfUserProfiles);
 		mv.addObject("fileList", listOfFiles);
 		mv.addObject("currentCourseRealization", currentCourseRealization);
+		mv.addObject("currentCourseName", currentCourseName);
 	
 		return mv;
 	}
