@@ -49,6 +49,17 @@ public class CourseController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/coursesStudentsListLink")
+	public ModelAndView coursesStudentsListLink() {
+	
+		List<Course> listOfCourses = courseRepository.findAll();
+	
+		ModelAndView mv = new ModelAndView("showcoursesstudents");
+		mv.addObject("coursesStudentsList", listOfCourses);
+	
+		return mv;
+	}
+	
     @PostMapping(value="/addCourse")
 	public ModelAndView addSchool(String name, int semester, int level, String note, String about) {
 		

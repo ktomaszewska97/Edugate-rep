@@ -1,15 +1,20 @@
 package edugate.demo.controllers;
 
-
 import edugate.demo.model.Users;
+import edugate.demo.repositories.CourseRealizationRepository;
+import edugate.demo.repositories.CourseRepository;
+import edugate.demo.repositories.UsersRepository;
 import edugate.demo.security.SecurityService;
 import edugate.demo.services.UserService;
 import edugate.demo.services.UserValidator;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 
 @Controller
 public class UserController {
@@ -21,7 +26,16 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
+    
+    @Autowired
+    private UsersRepository usersRepository;
+    
+	@Autowired
+	CourseRealizationRepository courseRealizationRepository;
 
+	@Autowired
+	CourseRepository courseRepository;
+	
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new Users());
@@ -60,4 +74,5 @@ public class UserController {
     public String welcome(Model model) {
         return "home";
     }
+    
 }

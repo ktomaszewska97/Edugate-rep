@@ -18,7 +18,7 @@ public class CommentController {
 	CommentRepository commentRepository;
 	
 	@RequestMapping(value="/commentlistLink")
-	public ModelAndView courseslistLink() {
+	public ModelAndView commentslistLink() {
 	
 		List<Comment> listOfComments = commentRepository.findAll();
 	

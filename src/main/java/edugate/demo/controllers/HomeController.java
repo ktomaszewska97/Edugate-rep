@@ -41,4 +41,11 @@ public class HomeController {
 		System.out.println("courseLink");
 		return "addcourse";
 	}
+	
+	@RequestMapping(value="/addlecturerview")
+	public String addLecturerLink() {
+	
+		System.out.println("courseLink");
+		return "addlecturer";
+	}
 }
