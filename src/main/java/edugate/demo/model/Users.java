@@ -105,7 +105,7 @@ public class Users {
         this.overallrating = overallrating;
     }
 
-    public Integer getIduser() {
+    public Integer getiduser() {
         return iduser;
     }
 
