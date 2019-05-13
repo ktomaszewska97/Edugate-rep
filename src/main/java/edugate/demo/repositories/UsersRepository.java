@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import edugate.demo.model.Users;
 
-public interface UsersRepository extends JpaRepository<Users,Long> {
+public interface UsersRepository extends JpaRepository<Users,Integer> {
+    public Users findByLogin(String login);
 
+    public Users findByEmail(String email);
 }

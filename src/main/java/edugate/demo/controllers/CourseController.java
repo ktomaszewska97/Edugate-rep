@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import edugate.demo.model.Course;
-import edugate.demo.model.School;
+import edugate.demo.repositories.CourseRealizationRepository;
 import edugate.demo.repositories.CourseRepository;
 
 @Controller
@@ -17,6 +17,9 @@ public class CourseController {
 	
 	@Autowired
 	CourseRepository courseRepository;
+	
+	@Autowired
+	CourseRealizationRepository courseRealizationRepository;
 	
 	@RequestMapping(value="/courseslistLink")
 	public ModelAndView courseslistLink() {
@@ -42,11 +45,4 @@ public class CourseController {
 		
 		return mv;
 	}
-    
-//	@RequestMapping(value="/courseLink")
-//	public String addCourseLink() {
-//	
-//		System.out.println("addcourse");
-//		return "addcourse";
-//	}
 }

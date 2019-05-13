@@ -41,43 +41,4 @@ public class HomeController {
 		System.out.println("courseLink");
 		return "addcourse";
 	}
-	
-	
-	
-//    @Autowired
-//    private SchoolRepository schoolRepository;
-//	
-//	@RequestMapping(value="/home")
-//	public String home(String name) {
-//
-//		System.out.println("hi " +name);
-//		
-//		School school = new School("g", "h", "i");
-//		
-//		schoolRepository.save(school);
-//		
-//		return "home";
-//	}
-//	@RequestMapping(value="/dupa")
-//	public String dupa() {
-//		
-//		System.out.println("hey");
-//		return "dupa";
-//	}
-//	@PostMapping(value="/kutas")
-//	public ModelAndView kutas(String name) {
-//		
-//		View view; 
-//		ModelAndView mav = new ModelAndView();
-//		System.out.println("halo");
-//		mav.addObject("fullName", name);
-//		mav.setViewName("response");
-//		return mav;
-//	}
-//	@RequestMapping(value="/departament")
-//	public String departament() {
-//		
-//		System.out.println("depo");
-//		return "adddepartament";
-//	}
 }

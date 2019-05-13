@@ -8,9 +8,8 @@ public class UserProfile {
     @Id
     @Column(name = "IDuserprofile")
     Integer IDUserProfile;
-
     @Column
-    Integer IDUser;
+    Integer iduser;
     @Column(name = "firstname")
     String firstName;
     @Column(name="lastname")
@@ -31,12 +30,12 @@ public class UserProfile {
         return firstName;
     }
 
-    public Integer getIDUser() {
-        return IDUser;
+    public Integer getIduser() {
+        return iduser;
     }
 
-    public void setIDUser(Integer IDUser) {
-        IDUser = IDUser;
+    public void setIduser(Integer idUser) {
+        iduser = idUser;
     }
 
     public void setFirstName(String firstName) {

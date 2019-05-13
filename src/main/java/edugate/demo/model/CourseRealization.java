@@ -7,10 +7,10 @@ import javax.persistence.Id;
 @Entity(name = "Courserealization")
 public class CourseRealization {
     @Id
-    long idcourserealization;
+    Integer idcourserealization;
 
     @Column
-    long idcourse;
+    Integer idcourse;
     @Column
     Integer year;
     @Column
@@ -20,11 +20,11 @@ public class CourseRealization {
     @Column
     Integer coursestatus;
 
-    public long getIdcourserealization() {
+    public int getIdcourserealization() {
         return idcourserealization;
     }
 
-    public long getIdcourse() {
+    public int getIdcourse() {
         return idcourse;
     }
 

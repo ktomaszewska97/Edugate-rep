@@ -11,7 +11,7 @@ public class AssignFileToCourseRealization {
     @Column
     Integer idfile;
     @Column
-    Integer idcourse;
+    Integer idcourserealization;
     @Column
     Integer ispublic;
 
@@ -27,12 +27,12 @@ public class AssignFileToCourseRealization {
         this.idfile = idfile;
     }
 
-    public Integer getIdcourse() {
-        return idcourse;
+    public Integer getIdcourserealization() {
+        return idcourserealization;
     }
 
-    public void setIdcourse(Integer idcourse) {
-        this.idcourse = idcourse;
+    public void setIdcourse(Integer idcourserealization) {
+        this.idcourserealization = idcourserealization;
     }
 
     public Integer getIspublic() {

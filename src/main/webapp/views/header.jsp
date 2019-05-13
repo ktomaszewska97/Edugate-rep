@@ -45,7 +45,7 @@
           <a class="dropdown-item" href="departmentLink">Dodaj</a>
         </div>
       </li>
-            <li class="nav-item dropdown">
+        <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Kursy
         </a>
@@ -53,6 +53,15 @@
           <a class="dropdown-item" href="courseslistLink">Przeglądaj</a>
           <a class="dropdown-item" href="courseLink">Dodaj</a>
           <a class="dropdown-item" href="signupforacourseLink">Zapisz</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Obsługa studentów
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="coursesStudentsListLink">Przeglądaj studentów w kursach</a>
+          <a class="dropdown-item" href=#>Dodaj nowego studenta</a>
         </div>
       </li>
     </ul>

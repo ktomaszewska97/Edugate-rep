@@ -17,6 +17,7 @@
                       <th scope="col">Name</th>
                       <th scope="col">Semester</th>
                       <th scope="col">About</th>
+                      <th scope="col">Wybór</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -24,18 +25,28 @@
                 <%
                 List<Course> coursesList = (List<Course>)request.getAttribute("coursesList");   
 				
+				int idCourse = 0;
+				
                 if(coursesList != null){
                     for (Course course : coursesList)
                     { 
+                    
+                    idCourse = course.getIDCourse();
+                    
                     %>
 
+					
                      <tr>
-                        <th scope="row"><%= course.getIDCourse() %></th>
+                        <td><%= idCourse  %></td>
                         <td><%= course.getName() %></td>
                         <td><%= course.getSemester() %></td>
                         <td><%= course.getAbout() %></td>
-                    </tr>
-
+                        <td><form method="post" action="courseView">
+                        	<input name="IDCourseRealization" type="number" value="<%= idCourse  %>" hidden>
+                        	<input type="submit" class="btn btn-primary btn-outline" value="Select">
+                        	</form> </td>
+                     </tr>
+            
                 <% }} %>
         </tbody>
     </table>
