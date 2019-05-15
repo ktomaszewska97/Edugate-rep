@@ -1,24 +1,14 @@
 package edugate.demo.controllers;
 
-import java.util.List;
-
+import edugate.demo.model.*;
+import edugate.demo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import edugate.demo.model.Comment;
-import edugate.demo.model.Course;
-import edugate.demo.model.CourseRealization;
-import edugate.demo.model.File;
-import edugate.demo.model.School;
-import edugate.demo.model.UserProfile;
-import edugate.demo.repositories.CommentRepository;
-import edugate.demo.repositories.CourseRealizationRepository;
-import edugate.demo.repositories.CourseRepository;
-import edugate.demo.repositories.FileRepository;
-import edugate.demo.repositories.UserProfileRepository;
+import java.util.List;
 
 @Controller
 public class CourseController {
@@ -81,7 +71,7 @@ public class CourseController {
 		List<Comment> listOfComments = commentRepository.findAll();
 		List<File> listOfFiles = fileRepository.findAll();
 		
-		CourseRealization currentCourseRealization = courseRealizationRepository.findById((long)IDCourseRealization).get();
+		CourseRealization currentCourseRealization = courseRealizationRepository.findById((int)IDCourseRealization).get();
 		Course currentCourseRealizationCourse = courseRepository.findById((int)currentCourseRealization.getIdcourse()).get();
 		String currentCourseName = currentCourseRealizationCourse.getName();
 		

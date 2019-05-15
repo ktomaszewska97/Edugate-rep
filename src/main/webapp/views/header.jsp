@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page import="edugate.demo.security.SecurityServiceImpl" %>
 <html lang="pl-PL">
 <head>
   <meta charset="utf-8">
@@ -25,7 +26,10 @@
         <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="profileLink">Profil</a>
+          <form method="post" action="profileLink">
+              <input name="idUser" type="number" value=<%= findLoggedInUserId()%> hidden>
+              <input type="submit" class="btn" value="Profil" >
+          </form>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

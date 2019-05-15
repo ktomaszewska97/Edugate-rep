@@ -1,36 +1,18 @@
 package edugate.demo.controllers;
 
+import edugate.demo.model.*;
+import edugate.demo.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import edugate.demo.model.AssignFileToCourseRealization;
-import edugate.demo.model.Comment;
-import edugate.demo.model.Course;
-import edugate.demo.model.CourseRealization;
-import edugate.demo.model.File;
-import edugate.demo.model.UserCourse;
-import edugate.demo.model.UserProfile;
-import edugate.demo.model.Users;
-import edugate.demo.repositories.AssignFileToCourseRealizationRepository;
-import edugate.demo.repositories.CommentRepository;
-import edugate.demo.repositories.CourseRealizationRepository;
-import edugate.demo.repositories.CourseRepository;
-import edugate.demo.repositories.FileRepository;
-import edugate.demo.repositories.UserCourseRepository;
-import edugate.demo.repositories.UserProfileRepository;
-import edugate.demo.repositories.UsersRepository;
 
 @Controller
 public class CourseRealizationController {
@@ -86,7 +68,7 @@ public class CourseRealizationController {
     	return mv;
 	}
     
-	@PostMapping(value="/courseView")
+	@PostMapping(value="/courseRealizationView")//zmienione, bo była powielona nazwa
 	public ModelAndView showCourseView(int IDCourseRealization) {	
 		
 		List<Comment> listOfComments = commentRepository.findByIdcourserealization(IDCourseRealization);
