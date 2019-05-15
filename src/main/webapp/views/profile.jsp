@@ -15,7 +15,7 @@
     <div class="profile-container">
         <div class="container">
             <div class="profile-info">
-
+<% Users user = (Users)request.getAttribute("currentUserId");%>
                 
 
                 <h2>Marek Kowalski</h2>
@@ -25,7 +25,7 @@
                    <div class="col">
                     <h5>Szczegóły użytkownika</h5>
                     <b>Uczelnia</b>
-                    <p>x</p>
+                    <p><%= user.getiduser()%></p>
                     <b>Wydział</b>
                     <p>x</p>
                     <b>Kierunek</b>

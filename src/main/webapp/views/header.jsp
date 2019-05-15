@@ -27,7 +27,7 @@
       </li>
       <li class="nav-item">
           <form method="post" action="profileLink">
-              <input name="idUser" type="number" value=<%= findLoggedInUserId()%> hidden>
+              <input name="idUser" type="number" value="" hidden>
               <input type="submit" class="btn" value="Profil" >
           </form>
       </li>
