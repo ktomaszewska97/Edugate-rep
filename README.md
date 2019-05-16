@@ -149,6 +149,13 @@ public String login(Model model, String error, String logout) {
 
 Zwraca infromację o błędnym/pomyślnym zalogowaniu.
 
+```
+ @RequestMapping(value="/addLecturerLink")
+	public ModelAndView addLecturer(HttpServletRequest request, Principal principal) {
+	}
+```
+Dodaje prowadzącego.
+
 ___
 
 ## Frontend
