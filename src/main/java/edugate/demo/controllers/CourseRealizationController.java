@@ -55,10 +55,7 @@ public class CourseRealizationController {
 	@RequestMapping(value="/signupforacourseLink")
 	public ModelAndView homeLink(HttpServletRequest request) {
 
-		System.out.println("signupforacourseLink");
-
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("signupforacourse");
+		ModelAndView mv = new ModelAndView("signupforacourse");
 		
 		List<CourseRealization> listOfCourseRealizations = courseRealizationRepository.findAll();
 		
@@ -86,20 +83,35 @@ public class CourseRealizationController {
     	return mv;
 	}
     
-	@PostMapping(value="/courseView")
-	public ModelAndView showCourseView(int IDCourseRealization) {	
+	@RequestMapping(value="/courseView")
+	public ModelAndView showCourseView(Integer IDCourseRealization, HttpServletRequest request) {
 		
-		List<Comment> listOfComments = commentRepository.findByIdcourserealization(IDCourseRealization);
+		int currentCourseId;
+		
+		if(IDCourseRealization == null) {
+			
+			currentCourseId = Integer.parseInt(request.getParameter("currentCourseRealization"));
+		}
+		else {
+			
+			currentCourseId = IDCourseRealization;
+		}
+		
+//		COMMENTS
+		List<Comment> listOfComments = commentRepository.findByIdcourserealization(currentCourseId);
 		
 		Map<Comment, UserProfile> commentsAndUsers = new HashMap<>();
 		
 		for(Comment comment : listOfComments) {
-			
+			System.out.println(comment.getMessage());
+			System.out.println(comment.getIduser());
+			System.out.println(userProfileRepository.findByIduser(comment.getIduser()));
 			commentsAndUsers.put(comment, userProfileRepository.findByIduser(comment.getIduser()).get(0));
 		}
-		
+	
+//		FILES
 //		List<AssignFileToCourseRealization> filesAssigned = 
-//				assignFileToCourseRealizationfileRepository.findByIdcourserealization(IDCourseRealization);
+//				assignFileToCourseRealizationfileRepository.findByIdcourserealization(currentCourseId);
 //		
 //		List<File> listOfFiles = new ArrayList<>();
 //		
@@ -108,9 +120,24 @@ public class CourseRealizationController {
 //			listOfFiles.add(fileRepository.findById(fileAssigned.getIdfile()).get());
 //		}
 		
-		CourseRealization currentCourseRealization = courseRealizationRepository.findById(IDCourseRealization).get();
+//		COURSEREALIZATION ID
+		CourseRealization currentCourseRealization = courseRealizationRepository.findById(currentCourseId).get();
 		
+//		ASSIGNED STUDENTS
+		List<UserCourse> assignedUserCourseList = userCourseRepository.findByIdcourserealization(currentCourseId);
+	
+		Map<Users, UserProfile> usersAndProfiles = new HashMap<>();
+		
+		for(UserCourse userCourse : assignedUserCourseList) {
+			
+			Users user = usersRepository.findById(userCourse.getIduser()).get();
+			usersAndProfiles.put(user, userProfileRepository.findByIduser(user.getIduser()).get(0));
+		}
+		
+//		MODELANDVIEW
 		ModelAndView mv = new ModelAndView("courseview");
+		mv.addObject("lecturer", userProfileRepository.findByIduser(currentCourseRealization.getIdlecturer()).get(0));
+		mv.addObject("users", usersAndProfiles);
 		mv.addObject("comments", commentsAndUsers);
 //		mv.addObject("fileList", listOfFiles);
 		mv.addObject("currentCourseRealization", currentCourseRealization);
@@ -120,22 +147,24 @@ public class CourseRealizationController {
 	}
 	
     @GetMapping(value="/addlecturerview")
-	public ModelAndView addLecturerView() {
+	public ModelAndView addLecturerView(HttpServletRequest request) {
     	
+//    	List<Users> lecturersList = usersRepository.findByAccounttype(1);
     	List<Users> lecturersList = usersRepository.findAll();
-		
+    	
 		Map<Users, UserProfile> usersAndProfiles = new HashMap<>();
 		
-//		for(Users lecturer : lecturersList) {
-//			
-//			usersAndProfiles.put(lecturer, userProfileRepository.findByIduser(lecturer.getIduser()).get(0));
-//		}
+		for(Users lecturer : lecturersList) {
+			
+			usersAndProfiles.put(lecturer, userProfileRepository.findByIduser(lecturer.getIduser()).get(0));
+		}
     	
 		ModelAndView mv = new ModelAndView("addlecturer");
-//		mv.addObject("lecturers", usersAndProfiles);
-		mv.addObject("lecturers", lecturersList);
+		mv.addObject("lecturers", usersAndProfiles);
 		
-		
+		mv.addObject("confirmation", request.getParameter("confirmation"));
+	
+//		
 //	Do usunięcia (zmiany)	
 		List<CourseRealization> listOfCourseRealizations = courseRealizationRepository.findAll();
 		
@@ -147,19 +176,24 @@ public class CourseRealizationController {
 		}
 		
 		mv.addObject("courseRealizations", courseRealizations);
-//	
+//
+//		
+		
 		return mv;
 	}
     
 	@RequestMapping(value="/addlecturer")
-	public ModelAndView addLecturer(int IDUser) {
-	
-		List<Course> listOfCourses = courseRepository.findAll();
-					
-		ModelAndView mv = new ModelAndView("showcourses");
-		mv.addObject("coursesList", listOfCourses);
+	public ModelAndView addLecturer(int idLecturer, int idCourseRealization) {	
+		
+		CourseRealization currentCourseRealization = courseRealizationRepository.findById(idCourseRealization).get();
+		
+		currentCourseRealization.setIdlecturer(idLecturer);
+		
+		courseRealizationRepository.save(currentCourseRealization);
+    	
+    	ModelAndView mv = new ModelAndView("redirect:/addlecturerview");
+    	mv.addObject("confirmation", "Przypisano prowadzącego!");
 	
 		return mv;
 	}
-    
 }

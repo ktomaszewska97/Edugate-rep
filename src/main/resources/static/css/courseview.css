@@ -37,10 +37,55 @@
   border: 1px solid grey;
 }
 
-.comment {
+.commentLeft {
   color: grey;
-  border-radius: 4px;
+  border-radius: 10px;
   border: 1px solid grey;
-  width: 50%;
+  height: 120px;
+  width: 400px;
   padding: 7px;
+  float: left;
+  margin-left: 5%;
+  background-color: rgb(192, 192, 192);
 }
+
+.commentRight {
+  color: grey;
+  border-radius: 10px;
+  border: 1px solid grey;
+  height: 120px;
+  width: 400px;
+  padding: 7px;
+  float: right;
+  margin-right: 5%;
+  background-color: rgb(224, 224, 224);
+  text-align: right;
+}
+
+.outer-form-comment {
+    
+    width: 100%;
+
+    /* Firefox */
+    display: -moz-box;
+    -moz-box-pack: center;
+    -moz-box-align: center;
+
+    /* Safari and Chrome */
+    display: -webkit-box;
+    -webkit-box-pack: center;
+    -webkit-box-align: center;
+
+    /* W3C */
+    display: box;
+    box-pack: center;
+    box-align: center;
+}
+
+.form-comment {
+  height: 300px;
+  width: 600px;
+  width: 50%;
+  
+}
+

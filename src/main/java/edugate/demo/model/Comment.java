@@ -2,11 +2,14 @@ package edugate.demo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name ="comment")
 public class Comment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idcomment;
     @Column
     Integer iduser;
@@ -16,6 +19,14 @@ public class Comment {
     String message;
     @Column
     Integer isvisible;
+    
+    public Comment(int iduser, int idcourserealization, String message) {
+    	this.iduser = iduser;
+    	this.idcourserealization = idcourserealization;
+    	this.message = message;
+    }
+    
+    public Comment() {}
 
     public Integer getIdcomment() {
         return idcomment;

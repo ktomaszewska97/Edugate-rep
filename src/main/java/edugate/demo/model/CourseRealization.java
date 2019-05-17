@@ -19,6 +19,8 @@ public class CourseRealization {
     String about;
     @Column
     Integer coursestatus;
+    @Column
+    Integer idlecturer;
 
     public int getIdcourserealization() {
         return idcourserealization;
@@ -62,5 +64,15 @@ public class CourseRealization {
 
     public void setCoursestatus(Integer coursestatus) {
         this.coursestatus = coursestatus;
+    }
+    
+    public Integer getIdlecturer() {
+    	
+    	return idlecturer;
+    }
+    
+    public void setIdlecturer(Integer idLecturer) {
+    	
+    	this.idlecturer = idLecturer;
     }
 }

@@ -14,13 +14,6 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/profileLink")
-	public String profileLink() {
-	
-		System.out.println("profileLink");
-		return "profile";
-	}
-	
 	@RequestMapping(value="/departmentLink")
 	public String addDepartmentLink() {
 	
@@ -40,12 +33,5 @@ public class HomeController {
 	
 		System.out.println("courseLink");
 		return "addcourse";
-	}
-	
-	@RequestMapping(value="/addlecturerview")
-	public String addLecturerLink() {
-	
-		System.out.println("courseLink");
-		return "addlecturer";
 	}
 }
