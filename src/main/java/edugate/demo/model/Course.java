@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Course {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer IDCourse;
+    Integer iDCourse;
     @Column(name = "IDFieldofstudy")
     Integer IDFieldOfStudy;
     @Column
@@ -31,7 +31,7 @@ public class Course {
     }
 
     public Integer getIDCourse() {
-        return IDCourse;
+        return iDCourse;
     }
 
     public Integer getIDFieldOfStudy() {

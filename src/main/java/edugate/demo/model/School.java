@@ -11,7 +11,7 @@ public class School {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false)
-    Integer IDSchool;
+    Integer iDSchool;
     @Column(nullable = false)
     String name;
     @Column(nullable = false)
@@ -39,7 +39,7 @@ public class School {
     }
 
     public void setIDSchool(Integer IDSchool) {
-        this.IDSchool = IDSchool;
+        this.iDSchool = IDSchool;
     }
 
     public void setName(String name) {
@@ -51,7 +51,7 @@ public class School {
     }
 
     public Integer getIDSchool() {
-        return IDSchool;
+        return iDSchool;
     }
 
     public String getAboute() {

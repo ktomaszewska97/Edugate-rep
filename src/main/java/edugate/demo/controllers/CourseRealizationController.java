@@ -68,7 +68,7 @@ public class CourseRealizationController {
     	return mv;
 	}
     
-	@PostMapping(value="/courseRealizationView")//zmienione, bo była powielona nazwa
+	@PostMapping(value="/courseRealizationView")
 	public ModelAndView showCourseView(int IDCourseRealization) {	
 		
 		List<Comment> listOfComments = commentRepository.findByIdcourserealization(IDCourseRealization);
@@ -77,7 +77,7 @@ public class CourseRealizationController {
 		
 		for(Comment comment : listOfComments) {
 			
-			commentsAndUsers.put(comment, userProfileRepository.findByIduser(comment.getIduser()).get(0));
+			commentsAndUsers.put(comment, userProfileRepository.findAllByIduser(comment.getIduser()).get(0));
 		}
 		
 //		List<AssignFileToCourseRealization> filesAssigned = 
@@ -110,7 +110,7 @@ public class CourseRealizationController {
 		
 //		for(Users lecturer : lecturersList) {
 //			
-//			usersAndProfiles.put(lecturer, userProfileRepository.findByIduser(lecturer.getIduser()).get(0));
+//			usersAndProfiles.put(lecturer, userProfileRepository.findAllByIduser(lecturer.getIduser()).get(0));
 //		}
     	
 		ModelAndView mv = new ModelAndView("addlecturer");

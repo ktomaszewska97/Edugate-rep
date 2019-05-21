@@ -12,47 +12,60 @@
 
 <body>
     <%@include file="header.jsp" %>
+    <% String userLogin=(String)request.getAttribute("currentUserLogin");%>
+    <% int userId=(int)request.getAttribute("currentUserId");%>
+    <% String userEmail=(String)request.getAttribute("currentUserEmail");%>
+    <% String username=(String)request.getAttribute("currentUserName");%>
+    <% String userLastname=(String)request.getAttribute("currentUserLastname");%>
+    <% String userSchool=(String)request.getAttribute("currentUserSchool");%>
+    <% List<String> userCourses=(List<String> )request.getAttribute("currentUserCourses");%>
+
+    <% if(username==null) username="brak";%>
+    <% if(userLastname==null) userLastname="brak";%>
+    <% if(userEmail==null) userEmail="brak";%>
+
+
+
+
     <div class="profile-container">
         <div class="container">
             <div class="profile-info">
-<% Users user = (Users)request.getAttribute("currentUserId");%>
+
                 
 
-                <h2>Marek Kowalski</h2>
+                <h2>Użytkownik <%=userId%></h2>
                 <br>
 
                 <div class="row">
                    <div class="col">
                     <h5>Szczegóły użytkownika</h5>
-                    <b>Uczelnia</b>
-                    <p><%= user.getiduser()%></p>
-                    <b>Wydział</b>
-                    <p>x</p>
-                    <b>Kierunek</b>
-                    <p>x</p>
+                    <b>Imię</b>
+                    <p><%=username%></p>
+                    <b>Nazwisko</b>
+                    <p><%=userLastname%></p>
+                    <b>Login</b>
+                    <p><%=userLogin%></p>
                     <b>E-mail</b>
-                    <p>x</p>
-                    <b>Rok akademicki</b>
-                    <p>x</p>
-                    <b>E-mail</b>
-                    <p>x</p>
+                    <p><%=userEmail%></p>
+                       <b>Uczelnia</b>
+                       <p><%=userSchool%></p>
+                    <b></b>
+
                     <br>
-                    <button>
-                        Modyfikuj dane
-                    </button>
+
                 </div>
                        <div class="col">
                            <h5>Realizowane kursy</h5>
-                           <p>kurs</p>
-                           <p>kurs</p>
-                           <p>kurs</p>
-                           <p>kurs</p>
-                           <p>kurs</p>
+                           <% if(!userCourses.isEmpty()){
+                               for (String ucr: userCourses) {
 
-                           <p>kurs</p>
-                           <p>kurs</p>
+                           %>
+                                   <p><%=ucr%></p>
+                           <%
+                               }
 
-                           <p>kurs</p>
+                               }%>
+
                        </div> 
                 </div>
                         

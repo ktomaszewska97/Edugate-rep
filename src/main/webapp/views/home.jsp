@@ -7,10 +7,13 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
+<%@include file="selectionbar.jsp" %>
+
+
             <div className="home-container">
                 <div className="container">
                 	<div>
-          				<h2>Welcome to Edugate!</h2>
+          				<h2></h2>
 	            				<a href="courseLink"> Dodaj kurs </a>
 	            				<a href="schoolLink">Dodaj szkołę</a>
 	            				<a href="departmentLink">Dodaj wydział</a>

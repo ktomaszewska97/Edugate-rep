@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import edugate.demo.model.FieldOfStudy;
 
 public interface FieldOfStudyRepository extends JpaRepository<FieldOfStudy,Long> {
+
+    FieldOfStudy findByIDFieldOfStudy(int fieldofstudyid);
 }

@@ -8,5 +8,8 @@ import edugate.demo.model.School;
 @Service
 public interface SchoolRepository extends JpaRepository<School,Long> {
 
+    public School findByIDSchool(int IDSchool);
+
+
 
 }

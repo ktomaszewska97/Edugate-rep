@@ -6,4 +6,5 @@ import edugate.demo.model.CourseRealization;
 
 public interface CourseRealizationRepository extends JpaRepository<CourseRealization,Integer>
 {
+    CourseRealization findByIdcourserealization(int idcourserealization);
 }
