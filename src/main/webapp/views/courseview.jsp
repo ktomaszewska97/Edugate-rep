@@ -21,6 +21,7 @@
     <div class="padding">
 
         <div class="signup-container">
+        
         <%
         CourseRealization currentCourseRealization = (CourseRealization)request.getAttribute("currentCourseRealization");
        	Course currentCourse = (Course)request.getAttribute("currentCourse");
@@ -52,29 +53,88 @@
         					<button class="btn btn-outline-primary btn-md" type="submit">Dodaj</button>
         					</form>
         
-        </div>
+        
         
         <div class="container">
         	<div class="paragraph">
-        		
-        				<p>Oceń kurs</p>
-                        <form action="addCourseEvaluation" method="post">
+        	
+        				<p>Średnia ocena tej realizacji kursu aktualnie wynosi: </p>
+						<br>
+						
+        				<p>Chcesz coś zmienić? Oceń kurs!</p>
+                        <form name="evaluationform" action="addCourseEvaluation" method="post">
                         
                             <div class="form-group">
-                                <input class="formsize" type="number" name="courseevaluation" class="form-control" placeholder="2-5"
-                                    required min="2" max="5">
+                                <input class="formsize" type="number" name="courseevaluation" id= "courseevaluation" class="form-control" value="" hidden>
                             </div>
                             <div>
 								<input type="text" name="idcourserealization" value="<%=currentCourseRealization.getIdcourserealization()%>" hidden>
 							</div>
-                            <div>
-                                <button type="submit" class="btn btn-outline-primary btn-md">Oceń</button>
-                            </div>
                         </form>
-                        <p>Srednia ocena kursu:</p>
         
             </div>   
+            	
+            	
+				<div class="rating">
+				
+				<span id="5" class="star" onclick="setgoldFive()">☆</span>
+				<span id="4" class="star" onclick="setgoldFour()">☆</span>
+				<span id="3" class="star" onclick="setgoldThree()">☆</span>
+				<span id="2" class="star" onclick="setgoldTwo()">☆</span>
+				<span id="1" class="star" onclick="setgoldOne()">☆</span>
+					
+				</div>
+
+			<script>
+				function setgoldOne() {
+					document.getElementById(1).style.color = "gold";
+					document.getElementById('courseevaluation').value=1;
+					var x = document.getElementsByName('evaluationform');
+					x[0].submit();
+					}
+					
+				function setgoldTwo() {
+					document.getElementById(1).style.color = "gold";
+					document.getElementById(2).style.color = "gold";
+					document.getElementById('courseevaluation').value=2;
+					var x = document.getElementsByName('evaluationform');
+					x[0].submit();
+					}
+					
+				function setgoldThree() {
+					document.getElementById(1).style.color = "gold";
+					document.getElementById(2).style.color = "gold";
+					document.getElementById(3).style.color = "gold";
+					document.getElementById('courseevaluation').value=3;
+					var x = document.getElementsByName('evaluationform');
+					x[0].submit();
+					}
+					
+				function setgoldFour() {
+					document.getElementById(1).style.color = "gold";
+					document.getElementById(2).style.color = "gold";
+					document.getElementById(3).style.color = "gold";
+					document.getElementById(4).style.color = "gold";
+					document.getElementById('courseevaluation').value=4;
+					var x = document.getElementsByName('evaluationform');
+					x[0].submit();
+					}
+					
+				function setgoldFive() {
+					document.getElementById(1).style.color = "gold";
+					document.getElementById(2).style.color = "gold";
+					document.getElementById(3).style.color = "gold";
+					document.getElementById(4).style.color = "gold";
+					document.getElementById(5).style.color = "gold";
+					document.getElementById('courseevaluation').value=5;
+					var x = document.getElementsByName('evaluationform');
+					x[0].submit(); 
+					}
+			</script>
+
         </div>  
+
+    </div> <!--Signup Container-->
 
     <div class="wrapper">
 		<div class="divider div-transparent"></div>
@@ -157,21 +217,22 @@
                           {                       	
                                   if(counter % 2 == 0) { 
                                   %>
-                                <br>
+
                                 <br>
                                 <p class="commentLeft">
                         		<%=comment.getMessage()%>
                        		 	</p>
+                       		 	<br>
 
                                   <%
                                   }
                                   else {
                                   %>
                                 <br>
-                                <br>
                                 <p class="commentRight">
                         		<%=comment.getMessage()%>
                        		 	</p>
+                       		 	<br>
 
                                  <%
                                   }
