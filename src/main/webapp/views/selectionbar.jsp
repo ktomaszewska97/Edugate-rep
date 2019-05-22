@@ -18,8 +18,17 @@
     b.p15{
         margin-left: 39px;
     }
-    a.p50{
-        margin-left: 20px;
+    a.p0{
+        margin-left: 18px;
+    }
+    a.p5{
+        margin-left: 30px;
+    }
+    a.p10{
+        margin-left: 43px;
+    }
+    a.p15{
+        margin-left: 56px;
     }
 
 </style>
@@ -36,7 +45,7 @@
     %>
 <details>
     <summary><b>Uczelnia: </b><%=school.getName()%></summary>
-    <a  class="p50" onclick="fetch(<%=school.getIDSchool()%>)">Przejdź</a>
+    <a  class="p0" onclick="fetch(<%=school.getIDSchool()%>)">Przejdź</a>
 
    <%if(departmentList!=null){
     for(Department department:departmentList)
@@ -45,7 +54,7 @@
         %>
     <details>
         <summary><b class="p5">Wydział: </b><%=department.getName()%></summary>
-        <a class="p50"  onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>)">Przejdź</a>
+        <a class="p5"  onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>)">Przejdź</a>
         <% if(fieldOfStudyList!=null){
             for (FieldOfStudy fieldOfStudy : fieldOfStudyList)
             {
@@ -53,7 +62,7 @@
                 %>
         <details>
             <summary><b class="p10">Kierunek: </b><%=fieldOfStudy.getName()%></summary>
-            <a class="p50"  onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>)">Przejdź</a>
+            <a class="p10"  onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>)">Przejdź</a>
             <% if(courseList != null){
                 for (Course course : courseList)
                 {
@@ -61,7 +70,7 @@
                     %>
             <details>
                 <summary><b class="p15">Kurs: </b><%=course.getName()%></summary>
-                <a class="p50" onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>,<%=course.getIDCourse()%>)">Przejdź</a>
+                <a class="p15" onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>,<%=course.getIDCourse()%>)">Przejdź</a>
             </details>
             <%}}}%>
         </details>
