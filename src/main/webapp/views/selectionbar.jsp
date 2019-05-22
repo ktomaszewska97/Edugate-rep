@@ -20,61 +20,42 @@
     List<CourseRealization> courseRealizationList = (List<CourseRealization>)request.getAttribute("currentUserCourseRealizations");
     %>
 <details>
-    <summary><%=school.getName()%></summary>
+    <summary><b>Uczelnia: </b><%=school.getName()%></summary>
+    <a  href="">Przejdź</a>
 
    <%if(departmentList!=null){
     for(Department department:departmentList)
     {
+        if(department.getIDSchool().equals(school.getIDSchool())){
         %>
     <details>
-        <summary><%=department.getName()%></summary>
+        <summary><b>Wydział: </b><%=department.getName()%></summary>
+        <a  href="">Przejdź</a>
         <% if(fieldOfStudyList!=null){
             for (FieldOfStudy fieldOfStudy : fieldOfStudyList)
-            {%>
+            {
+        if(fieldOfStudy.getIDDepartment().equals(department.getIdDepartament())){
+                %>
         <details>
-            <summary> <%=fieldOfStudy.getName()%></summary>
+            <summary><b>Kierunek: </b><%=fieldOfStudy.getName()%></summary>
+            <a  href="">Przejdź</a>
             <% if(courseList != null){
                 for (Course course : courseList)
-                {%>
+                {
+                    if(course.getIDFieldOfStudy().equals(fieldOfStudy.getIDFieldOfStudy())){
+                    %>
             <details>
-                <summary><%=course.getName()%></summary>
+                <summary><b>Kurs: </b><%=course.getName()%></summary>
+                <a  href="">Przejdź</a>
             </details>
+            <%}}}%>
         </details>
+        <%}}}%>
     </details>
-    <% }}}}}}else{ %>
+    <% }}}else{ %>
     <p>lista wydziałów jest pusta</p>
     <%}%>
 </details>
-<br><br><br>
-<details>
-    <summary>szkola</summary>
-
-    <%
-        for(int i=0;i<3;i++)
-        {
-    %>
-    <details>
-        <summary>wydz</summary>
-        <%
-            for(int j=0;j<3;j++)
-            {%>
-        <details>
-            <summary>kierunek</summary>
-            <% for(int k=0;k<3;k++)
-                {%>
-            <details>
-                <summary>kurs</summary>
-            </details>
-        </details>
-    </details>
-    <% }}}%>
-</details>
-
-
-
-
-
-
 
 
 

@@ -61,9 +61,13 @@ public class HomeController {
 				FieldOfStudy fos=fieldOfStudyRepository.findByIDFieldOfStudy(c.getIDFieldOfStudy());
 				Department d = departmentRepository.findByIDDepartament(fos.getIDDepartment());
 
+				if(!course.contains(c))
 				course.add(c);
+				if(!courseRealizations.contains(cr))
 				courseRealizations.add(cr);
+				if(!fieldOfStudy.contains((fos)))
 				fieldOfStudy.add(fos);
+				if(!departments.contains(d))
 				departments.add(d);
 			}
 		}

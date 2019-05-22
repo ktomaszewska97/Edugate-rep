@@ -2,6 +2,7 @@
 <%@ page import="java.text.*,java.util.*" %>
 <%@ page import="edugate.demo.model.Users" %>
 <%@ page import="edugate.demo.model.UserProfile" %>
+<%@ page import="edugate.demo.model.Department" %>
 <html>
 
 <head>
@@ -19,6 +20,7 @@
     <% String userLastname=(String)request.getAttribute("currentUserLastname");%>
     <% String userSchool=(String)request.getAttribute("currentUserSchool");%>
     <% List<String> userCourses=(List<String> )request.getAttribute("currentUserCourses");%>
+    <% List<Department> departments=(List<Department> )request.getAttribute("currentUserDepartment");%>
 
     <% if(username==null) username="brak";%>
     <% if(userLastname==null) userLastname="brak";%>
@@ -49,6 +51,19 @@
                     <p><%=userEmail%></p>
                        <b>Uczelnia</b>
                        <p><%=userSchool%></p>
+                       <b>Wydział</b>
+
+                       <% if(!userCourses.isEmpty()){
+                           for (Department dep: departments) {
+
+                       %>
+                       <p><%=dep.getName()%></p>
+                       <%
+                               }
+
+                           }%>
+
+
                     <b></b>
 
                     <br>

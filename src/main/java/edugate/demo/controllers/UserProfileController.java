@@ -30,6 +30,10 @@ public class UserProfileController {
 	CourseRealizationRepository courseRealizationRepository;
 	@Autowired
 	SecurityService securityService;
+	@Autowired
+	DepartmentRepository departmentRepository;
+	@Autowired
+	FieldOfStudyRepository fieldOfStudyRepository;
 	
 	@RequestMapping(value="/userprofileListLink")
 	public ModelAndView userProfileListLink() {
@@ -64,6 +68,7 @@ public class UserProfileController {
 
 
 
+		List<Department> departments = new ArrayList<Department>();
 
 		List<UserCourseRealization> userCourseRealization= userCourseRealizationRepository.findAllByIduser(idUser);
 		List<String> courseRealizationsName = new ArrayList<String>();
@@ -75,10 +80,15 @@ public class UserProfileController {
 				Course c=courseRepository.findByIDCourse(cr.getIdcourse());
 				String courseName=c.getName();
 				courseRealizationsName.add(courseName);
+
+				Department d = departmentRepository.findByIDDepartament(fieldOfStudyRepository.findByIDFieldOfStudy(courseRepository.findByIDCourse(courseRealizationRepository.findByIdcourserealization(ucr.getIdcourse()).getIdcourse()).getIDFieldOfStudy()).getIDDepartment());
+				if(!departments.contains(d))
+					departments.add(d);
 			}
 		}
 
 		mv.addObject("currentUserCourses", courseRealizationsName);
+		mv.addObject("currentUserDepartment", departments);
 
 
 		return mv;
