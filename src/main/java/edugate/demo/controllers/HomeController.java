@@ -97,18 +97,18 @@ public class HomeController {
 				}
 		else{
 			if (departament == null) {
-				return new ResponseEntity<Object>(schoolRepository.findByIDSchool(school),HttpStatus.OK);
+				return new ResponseEntity<Object>(schoolRepository.findByIDSchool(school).getAboute(),HttpStatus.OK);
 			}
 			else
 				if(field == null){
-					return new ResponseEntity<Object>(departmentRepository.findByIDDepartament(departament),HttpStatus.OK);
+					return new ResponseEntity<Object>(departmentRepository.findByIDDepartament(departament).getAbout(),HttpStatus.OK);
 					}
 				else
 					if (course == null){
-						return  new ResponseEntity<Object>(fieldOfStudyRepository.findByIDFieldOfStudy(field),HttpStatus.OK);
+						return  new ResponseEntity<Object>(fieldOfStudyRepository.findByIDFieldOfStudy(field).getAbout(),HttpStatus.OK);
 					}
 					else
-						return new ResponseEntity<Object>(courseRepository.findByIDCourse(course), HttpStatus.OK);
+						return new ResponseEntity<Object>(courseRepository.findByIDCourse(course).getAbout(), HttpStatus.OK);
 		}
 
 	}

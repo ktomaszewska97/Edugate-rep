@@ -2,6 +2,45 @@
 <%@ page import="java.text.*,java.util.*" %>
 <html>
 <head>
+	<script>
+		function fetch(...restArgs){
+
+			var request = new XMLHttpRequest();
+
+			request.onreadystatechange = function(){
+				if(this.readyState == 4 && this.status == 200){
+					var response = this.responseText;
+					//var fields = JSON.parse(response);
+					//var nazwisko = fields["nazwisko"];
+					//console.log(fields);
+					document.getElementById("opis").value=response;
+				}
+			};
+			//document.getElementById("login").value="abc2";
+
+			if(restArgs.length === 1){
+				request.open("GET","/home/"+restArgs[0]);
+				request.send()
+			}
+			if(restArgs.length === 2){
+				request.open("GET","/home/"+restArgs[0]+"/"+restArgs[1]);
+				request.send()
+			}
+			if(restArgs.length === 3){
+				request.open("GET","/home/"+restArgs[0]+"/"+restArgs[1]+"/"+restArgs[2]);
+				request.send()
+			}
+			if(restArgs.length === 4){
+				request.open("GET","/home/"+restArgs[0]+"/"+restArgs[1]+"/"+restArgs[2]+"/"+restArgs[3]);
+				request.send()
+			}
+
+		}
+
+
+
+	</script>
+
 <link href="/css/bootstrap.min.css" rel="stylesheet">
 <link href="/css/Home.css" rel="stylesheet">
 
@@ -49,6 +88,7 @@
 </div>
 </div>
 </div>
+<p id="opis"> OPIS</p>
 </body>
 </html>
 
