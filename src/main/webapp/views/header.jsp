@@ -67,8 +67,9 @@
           <a class="dropdown-item" href="coursesStudentsListLink">Przeglądaj studentów w kursach</a>
           <a class="dropdown-item" href=#>Dodaj nowego studenta</a>
         </div>
-      </li>
+        </li>
     </ul>
+    <button onclick="window.location='/login?logout';"> Wyloguj</button>
   </div>
 </nav>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
