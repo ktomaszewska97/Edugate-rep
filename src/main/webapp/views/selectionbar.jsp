@@ -21,7 +21,7 @@
     %>
 <details>
     <summary><b>Uczelnia: </b><%=school.getName()%></summary>
-    <a  href="">Przejdź</a>
+    <a  onclick="fetch(<%=school.getIDSchool()%>)">Przejdź</a>
 
    <%if(departmentList!=null){
     for(Department department:departmentList)
@@ -30,7 +30,7 @@
         %>
     <details>
         <summary><b>Wydział: </b><%=department.getName()%></summary>
-        <a  href="">Przejdź</a>
+        <a  onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>)">Przejdź</a>
         <% if(fieldOfStudyList!=null){
             for (FieldOfStudy fieldOfStudy : fieldOfStudyList)
             {
@@ -38,7 +38,7 @@
                 %>
         <details>
             <summary><b>Kierunek: </b><%=fieldOfStudy.getName()%></summary>
-            <a  href="">Przejdź</a>
+            <a  onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>)">Przejdź</a>
             <% if(courseList != null){
                 for (Course course : courseList)
                 {
@@ -46,7 +46,7 @@
                     %>
             <details>
                 <summary><b>Kurs: </b><%=course.getName()%></summary>
-                <a  href="">Przejdź</a>
+                <a onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>,<%=course.getIDCourse()%>)">Przejdź</a>
             </details>
             <%}}}%>
         </details>

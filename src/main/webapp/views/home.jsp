@@ -13,7 +13,7 @@
 					//var fields = JSON.parse(response);
 					//var nazwisko = fields["nazwisko"];
 					//console.log(fields);
-					document.getElementById("opis").value=response;
+					document.getElementById("opis").innerText=response;
 				}
 			};
 			//document.getElementById("login").value="abc2";
