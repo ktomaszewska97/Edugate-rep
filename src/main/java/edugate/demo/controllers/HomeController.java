@@ -87,24 +87,24 @@ public class HomeController {
 	}
 
 
-	@RequestMapping(value = {"/home/{school}","/home/{school}/{departament}","/home/{school}/{departament}/{field}","/home/{school}/{departament}/{field}/{course}"}, method = RequestMethod.GET)
+	@RequestMapping(value = "/home/{school}/{departament}/{field}/{course}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Object> getHarm(@PathVariable("school") Integer school, @PathVariable("departament") Integer departament, @PathVariable("field") Integer field, @PathVariable("course") Integer course ) {
 		System.out.println("listExistingHarm is called in controller");
 
-		if (school == null) {
+		if (school == -1) {
 			return new ResponseEntity<Object>(null, HttpStatus.BAD_REQUEST);
 				}
 		else{
-			if (departament == null) {
+			if (departament == -1) {
 				return new ResponseEntity<Object>(schoolRepository.findByIDSchool(school).getAboute(),HttpStatus.OK);
 			}
 			else
-				if(field == null){
+				if(field == -1){
 					return new ResponseEntity<Object>(departmentRepository.findByIDDepartament(departament).getAbout(),HttpStatus.OK);
 					}
 				else
-					if (course == null){
+					if (course == -1){
 						return  new ResponseEntity<Object>(fieldOfStudyRepository.findByIDFieldOfStudy(field).getAbout(),HttpStatus.OK);
 					}
 					else

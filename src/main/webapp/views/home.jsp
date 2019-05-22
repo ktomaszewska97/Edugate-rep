@@ -19,15 +19,15 @@
 			//document.getElementById("login").value="abc2";
 
 			if(restArgs.length === 1){
-				request.open("GET","/home/"+restArgs[0]);
+				request.open("GET","/home/"+restArgs[0]+"/-1/-1/-1");
 				request.send()
 			}
 			if(restArgs.length === 2){
-				request.open("GET","/home/"+restArgs[0]+"/"+restArgs[1]);
+				request.open("GET","/home/"+restArgs[0]+"/"+restArgs[1]+"/-1/-1");
 				request.send()
 			}
 			if(restArgs.length === 3){
-				request.open("GET","/home/"+restArgs[0]+"/"+restArgs[1]+"/"+restArgs[2]);
+				request.open("GET","/home/"+restArgs[0]+"/"+restArgs[1]+"/"+restArgs[2]+"/-1");
 				request.send()
 			}
 			if(restArgs.length === 4){
