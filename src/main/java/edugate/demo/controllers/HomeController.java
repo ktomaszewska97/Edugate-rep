@@ -90,7 +90,7 @@ public class HomeController {
 	@RequestMapping(value = "/home/{school}/{departament}/{field}/{course}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<Object> getHarm(@PathVariable("school") Integer school, @PathVariable("departament") Integer departament, @PathVariable("field") Integer field, @PathVariable("course") Integer course ) {
-		
+
 
 		if (school == -1) {
 			return new ResponseEntity<Object>(null, HttpStatus.BAD_REQUEST);
