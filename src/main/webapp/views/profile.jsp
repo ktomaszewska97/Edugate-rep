@@ -36,11 +36,18 @@
                 <div class="row">
                    <div class="col">
                     <h5>Szczegóły użytkownika</h5>
-
+                    <b>Uczelnia</b>
+                    <p>x</p>
+                    <b>Wydział</b>
+                    <p>x</p>
+                    <b>Kierunek</b>
+                    <p>x</p>
                     <b>E-mail</b>
-                    <p><%=currentUser.getEmail()%></p>
-					<b>Data rejestracji</b>
-                    <p><%=currentUser.getdateregistered()%></p>
+                    <p>x</p>
+                    <b>Rok akademicki</b>
+                    <p>x</p>
+                    <b>E-mail</b>
+                    <p>x</p>
                     <br>
                     <button>
                         Modyfikuj dane
@@ -48,7 +55,16 @@
                 </div>
                        <div class="col">
                            <h5>Realizowane kursy</h5>
+                           <p>kurs</p>
+                           <p>kurs</p>
+                           <p>kurs</p>
+                           <p>kurs</p>
+                           <p>kurs</p>
 
+                           <p>kurs</p>
+                           <p>kurs</p>
+
+                           <p>kurs</p>
                        </div> 
                 </div>
                         

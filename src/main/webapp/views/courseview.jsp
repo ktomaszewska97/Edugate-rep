@@ -207,28 +207,42 @@
                         if(commentsAndUsers != null){
                         	
                         List<Comment> comments = new ArrayList<>(commentsAndUsers.keySet());
-                        
+                        Collections.sort(comments);
+                        Collections.reverse(comments);
                         
                         int listSize = comments.size();	
                         int counter = 0;
                         //comment.getIdcomment
+                        UserProfile actualUser = null;
+                        String userName = "";
+                        String dateString = "";
                         
-                          for (Comment comment : comments)
-                          {                       	
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                     
+                          for (Comment comment : comments){    
+                        	  
+                        	  actualUser = commentsAndUsers.get(comment);
+                        	  userName = actualUser.getFirstName() + actualUser.getLastName();
+                        	  dateString = dateFormat.format(comment.getCreatedon());
+                        	 
                                   if(counter % 2 == 0) { 
                                   %>
 
                                 <br>
                                 <p class="commentLeft">
+                                <%=dateString%><br>
+                                Użytkownik <b><%=userName%></b> napisał:<br>
                         		<%=comment.getMessage()%>
                        		 	</p>
                        		 	<br>
-
+                       		 	
                                   <%
                                   }
                                   else {
                                   %>
                                 <br>
+                                <%=dateString%><br>
+                                Użytkownik <b><%=userName%></b> napisał:<br>
                                 <p class="commentRight">
                         		<%=comment.getMessage()%>
                        		 	</p>
@@ -273,7 +287,6 @@
     		<p>Pliki</p>
                 <%
                 List<File> fileList = (List<File>)request.getAttribute("fileList");
-
                 if(fileList != null){
                   for (File file : fileList)
                   {

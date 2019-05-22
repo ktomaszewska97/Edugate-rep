@@ -16,8 +16,7 @@ import edugate.demo.repositories.CourseRepository;
 public class CourseController {
 	
 	@Autowired
-	CourseRepository courseRepository;
-	
+	CourseRepository courseRepository;	
 	@Autowired
 	CourseRealizationRepository courseRealizationRepository;
 	
@@ -26,7 +25,7 @@ public class CourseController {
 	
 		List<Course> listOfCourses = courseRepository.findAll();
 	
-		ModelAndView mv = new ModelAndView("showcourses");
+		ModelAndView mv = new ModelAndView("showallcourses");
 		mv.addObject("coursesList", listOfCourses);
 	
 		return mv;

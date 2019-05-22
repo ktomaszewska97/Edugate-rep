@@ -36,10 +36,10 @@ public class CommentController {
 	@PostMapping(value="/addcomment")
 	public ModelAndView addComment(int idCourseRealization, String message, Principal principal) {
 		
-    	Comment comment = new Comment(usersRepository.findByLogin(principal.getName()).getIduser(), idCourseRealization, message);
+    	Comment comment = new Comment(usersRepository.findByLogin(principal.getName()).getIduser(), idCourseRealization, message, new java.util.Date());
     	
 		commentRepository.save(comment);
-		
+		System.out.println(comment.getCreatedon());
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("currentCourseRealization", idCourseRealization);

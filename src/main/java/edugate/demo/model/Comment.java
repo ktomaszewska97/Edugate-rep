@@ -1,5 +1,7 @@
 package edugate.demo.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity(name ="comment")
-public class Comment {
+public class Comment implements Comparable<Comment> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idcomment;
@@ -19,11 +21,14 @@ public class Comment {
     String message;
     @Column
     Integer isvisible;
+    @Column
+    Date createdon;
     
-    public Comment(int iduser, int idcourserealization, String message) {
+    public Comment(int iduser, int idcourserealization, String message, Date createdon) {
     	this.iduser = iduser;
     	this.idcourserealization = idcourserealization;
     	this.message = message;
+    	this.createdon = createdon;
     }
     
     public Comment() {}
@@ -62,5 +67,23 @@ public class Comment {
 
     public void setIsvisible(Integer isvisible) {
         this.isvisible = isvisible;
+    }
+    
+    public Date getCreatedon() {
+    	
+    	return createdon;
+    }
+    
+    public void setCreatedon(Date createdon) {
+    	
+    	this.createdon = createdon;
+    }
+    
+    @Override
+    public int compareTo(Comment comment) {
+      if (comment.getCreatedon() == null || comment.getCreatedon() == null) {
+        return 0;
+      }
+      return getCreatedon().compareTo(comment.getCreatedon());
     }
 }

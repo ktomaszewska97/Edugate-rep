@@ -34,6 +34,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Przeglądaj</a>
           <a class="dropdown-item" href="schoolLink">Dodaj</a>
+          <a class="dropdown-item" href="#">Moja uczelnia</a>
         </div>
       </li>
             <li class="nav-item dropdown">
@@ -43,6 +44,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Przeglądaj</a>
           <a class="dropdown-item" href="departmentLink">Dodaj</a>
+          <a class="dropdown-item" href="#">Mój wydział</a>
         </div>
       </li>
         <li class="nav-item dropdown">
@@ -52,7 +54,8 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="courseslistLink">Przeglądaj</a>
           <a class="dropdown-item" href="courseLink">Dodaj</a>
-          <a class="dropdown-item" href="signupforacourseLink">Zapisz</a>
+          <a class="dropdown-item" href="signupforacourseLink">Zapisz się na kurs</a>
+          <a class="dropdown-item" href="#">Moje kursy</a>
         </div>
       </li>
       <li class="nav-item dropdown">

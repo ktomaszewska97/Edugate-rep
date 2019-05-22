@@ -120,6 +120,4 @@ public class Users {
     public void setiduser(Integer iduser) {
         this.iduser = iduser;
     }
-
-
 }

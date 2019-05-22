@@ -103,9 +103,7 @@ public class CourseRealizationController {
 		Map<Comment, UserProfile> commentsAndUsers = new HashMap<>();
 		
 		for(Comment comment : listOfComments) {
-			System.out.println(comment.getMessage());
-			System.out.println(comment.getIduser());
-			System.out.println(userProfileRepository.findByIduser(comment.getIduser()));
+			
 			commentsAndUsers.put(comment, userProfileRepository.findByIduser(comment.getIduser()).get(0));
 		}
 	
@@ -123,6 +121,11 @@ public class CourseRealizationController {
 //		COURSEREALIZATION ID
 		CourseRealization currentCourseRealization = courseRealizationRepository.findById(currentCourseId).get();
 		
+//		LECTURER PROFILE
+		UserProfile lecturer = null;
+		
+		
+
 //		ASSIGNED STUDENTS
 		List<UserCourse> assignedUserCourseList = userCourseRepository.findByIdcourserealization(currentCourseId);
 	
@@ -175,9 +178,7 @@ public class CourseRealizationController {
 			courseRealizations.put(courseRealization, courseRepository.findById((int)courseRealization.getIdcourse()).get().getName());
 		}
 		
-		mv.addObject("courseRealizations", courseRealizations);
-//
-//		
+		mv.addObject("courseRealizations", courseRealizations);	
 		
 		return mv;
 	}
