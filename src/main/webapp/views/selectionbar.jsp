@@ -8,6 +8,21 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/Profile.css" rel="stylesheet">
 </head>
+<style>
+    b.p5{
+        margin-left: 13px;
+    }
+    b.p10{
+        margin-left: 26px;
+    }
+    b.p15{
+        margin-left: 39px;
+    }
+    a.p50{
+        margin-left: 20px;
+    }
+
+</style>
 
 
 <body>
@@ -21,7 +36,7 @@
     %>
 <details>
     <summary><b>Uczelnia: </b><%=school.getName()%></summary>
-    <a  onclick="fetch(<%=school.getIDSchool()%>)">Przejdź</a>
+    <a  class="p50" onclick="fetch(<%=school.getIDSchool()%>)">Przejdź</a>
 
    <%if(departmentList!=null){
     for(Department department:departmentList)
@@ -29,24 +44,24 @@
         if(department.getIDSchool().equals(school.getIDSchool())){
         %>
     <details>
-        <summary><b>Wydział: </b><%=department.getName()%></summary>
-        <a  onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>)">Przejdź</a>
+        <summary><b class="p5">Wydział: </b><%=department.getName()%></summary>
+        <a class="p50"  onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>)">Przejdź</a>
         <% if(fieldOfStudyList!=null){
             for (FieldOfStudy fieldOfStudy : fieldOfStudyList)
             {
         if(fieldOfStudy.getIDDepartment().equals(department.getIdDepartament())){
                 %>
         <details>
-            <summary><b>Kierunek: </b><%=fieldOfStudy.getName()%></summary>
-            <a  onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>)">Przejdź</a>
+            <summary><b class="p10">Kierunek: </b><%=fieldOfStudy.getName()%></summary>
+            <a class="p50"  onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>)">Przejdź</a>
             <% if(courseList != null){
                 for (Course course : courseList)
                 {
                     if(course.getIDFieldOfStudy().equals(fieldOfStudy.getIDFieldOfStudy())){
                     %>
             <details>
-                <summary><b>Kurs: </b><%=course.getName()%></summary>
-                <a onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>,<%=course.getIDCourse()%>)">Przejdź</a>
+                <summary><b class="p15">Kurs: </b><%=course.getName()%></summary>
+                <a class="p50" onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>,<%=course.getIDCourse()%>)">Przejdź</a>
             </details>
             <%}}}%>
         </details>
