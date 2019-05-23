@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <%@ page import="java.text.*,java.util.*" %>
 <%@ page import="edugate.demo.model.Course" %>
+<%@ page import="edugate.demo.model.CourseRealization" %>
 <html>
 <head>
 <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -8,74 +9,50 @@
 <link href="/css/showallcourses.css" rel="stylesheet">
 </head>
 <body>
+
 <%@include file="header.jsp" %>
 
-                <h1 class="signup-title">Lista kursów</h1>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col">#</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Semester</th>
-                      <th scope="col">About</th>
-                      <th scope="col">Wybór</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-
-                <%
-                List<Course> coursesList = (List<Course>)request.getAttribute("coursesList");   
-				
-				        int idCourse = 0;
-				
-                if(coursesList != null){
-                    for (Course course : coursesList)
-                    { 
-                    
-                    idCourse = course.getIDCourse();
-                    
-                    %>
-
-					
-                     <tr>
-                        <td><%= idCourse  %></td>
-                        <td><%= course.getName() %></td>
-                        <td><%= course.getSemester() %></td>
-                        <td><%= course.getAbout() %></td>
-                        <td><form method="post" action="courseView">
-                        	<input name="IDCourseRealization" type="number" value="<%= idCourse  %>" hidden>
-                        	<input type="submit" class="btn btn-primary btn-outline" value="Select">
-                        	</form> </td>
-                     </tr>
-            
-                <% }} %>
-        </tbody>
-    </table>
+<h1 class="signup-title">Lista kursów</h1>
 
 <%
-                List<Course> coursesList2 = (List<Course>)request.getAttribute("coursesList");   
+List<Course> coursesList = (List<Course>)request.getAttribute("coursesList");   
+List<CourseRealization> courseRealizationsList = (List<CourseRealization>)request.getAttribute("courseRealizationsList");
         
-                int idCourse2 = 0;
+  int idCourse = 0;
         
-                if(coursesList2 != null){
-                    for (Course course : coursesList2)
-                    { 
+  if(coursesList != null){
+    for (Course course : coursesList)
+      { 
                     
-                    idCourse2 = course.getIDCourse();
+  idCourse = course.getiDCourse();
                     
-                    %>
+%>
+
 <div>                   
 <button class="collapsible"><%= course.getName() %></button>
 <div class="content">
-  <p>Kurs odbywa się na semestrze: </p>
-  <%= course.getSemester() %>
+  <p>Kurs odbywa się na semestrze: <%= course.getSemester() %></p>
   <br>
   <p>Opis kursu: </p>
-  <br>
   <%= course.getAbout() %>
-</div>
 
+  <%
+   for (CourseRealization courseRealization : courseRealizationsList)
+      { 
+        if(courseRealization.getIdcourse()==idCourse) {
+      %>
+      <p><%=courseRealization.getIdcourserealization()%> <%= course.getName() %>
+      <form method="post" action="courseView">
+      <input name="IDCourseRealization" type="number" value="<%= idCourse  %>" hidden>
+      <input type="submit" class="btn btn-primary btn-outline" value="Select">
+      </form>
+      </p>
+     <% }} %>
+
+</div>
 <% }} %>
+
+
 </div>
 
 <script>

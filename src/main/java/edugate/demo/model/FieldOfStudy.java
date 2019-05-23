@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class FieldOfStudy {
     @Id
     @Column(name = "IDFieldofstudy")
-    Integer IDFieldOfStudy;
+    Integer iDFieldOfStudy;
     @Column(name = "IDDepartment")
     Integer IDDepartment;
     @Column(nullable = false)
@@ -16,8 +16,8 @@ public class FieldOfStudy {
 
 
 
-    public Integer getIDFieldOfStudy() {
-        return IDFieldOfStudy;
+    public Integer getiDFieldOfStudy() {
+        return iDFieldOfStudy;
     }
 
     public Integer getIDDepartment() {

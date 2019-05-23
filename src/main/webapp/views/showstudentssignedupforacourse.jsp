@@ -22,7 +22,7 @@
                   <tbody>
 
                 <%
-                List<UserProfile> userProfiles = (List<UserProfile>)request.getAttribute("userProfilesList");   
+                List<UserProfile> userProfilesList = (List<UserProfile>)request.getAttribute("userProfilesList");
 				
 				int idUserProfile = 0;
 				

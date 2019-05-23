@@ -13,7 +13,7 @@ public class Location {
     @Id
     @Column(name = "IDLocation")
     Integer iDLocation;
-    @Column(name = "IDSchool")
+    @Column(name = "iDSchool")
     Integer IDSchool;
 
     @Column

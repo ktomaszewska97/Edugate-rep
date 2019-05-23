@@ -45,32 +45,32 @@
     %>
 <details>
     <summary><b>Uczelnia: </b><%=school.getName()%></summary>
-    <a  class="p0" href="#" onclick="fetch(<%=school.getIDSchool()%>)">Przejdź</a>
+    <a  class="p0" href="#" onclick="fetch(<%=school.getiDSchool()%>)">Przejdź</a>
 
    <%if(departmentList!=null){
     for(Department department:departmentList)
     {
-        if(department.getIDSchool().equals(school.getIDSchool())){
+        if(department.getIDSchool().equals(school.getiDSchool())){
         %>
     <details>
         <summary><b class="p5">Wydział: </b><%=department.getName()%></summary>
-        <a class="p5" href="#" onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>)">Przejdź</a>
+        <a class="p5" href="#" onclick="fetch(<%=school.getiDSchool()%>,<%=department.getiDDepartament()%>)">Przejdź</a>
         <% if(fieldOfStudyList!=null){
             for (FieldOfStudy fieldOfStudy : fieldOfStudyList)
             {
-        if(fieldOfStudy.getIDDepartment().equals(department.getIdDepartament())){
+        if(fieldOfStudy.getIDDepartment().equals(department.getiDDepartament())){
                 %>
         <details>
             <summary><b class="p10">Kierunek: </b><%=fieldOfStudy.getName()%></summary>
-            <a class="p10" href="#" onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>)">Przejdź</a>
+            <a class="p10" href="#" onclick="fetch(<%=school.getiDSchool()%>,<%=department.getiDDepartament()%>,<%=fieldOfStudy.getiDFieldOfStudy()%>)">Przejdź</a>
             <% if(courseList != null){
                 for (Course course : courseList)
                 {
-                    if(course.getIDFieldOfStudy().equals(fieldOfStudy.getIDFieldOfStudy())){
+                    if(course.getIDFieldOfStudy().equals(fieldOfStudy.getiDFieldOfStudy())){
                     %>
             <details>
                 <summary><b class="p15">Kurs: </b><%=course.getName()%></summary>
-                <a class="p15" href="#" onclick="fetch(<%=school.getIDSchool()%>,<%=department.getIdDepartament()%>,<%=fieldOfStudy.getIDFieldOfStudy()%>,<%=course.getIDCourse()%>)">Przejdź</a>
+                <a class="p15" href="#" onclick="fetch(<%=school.getiDSchool()%>,<%=department.getiDDepartament()%>,<%=fieldOfStudy.getiDFieldOfStudy()%>,<%=course.getiDCourse()%>)">Przejdź</a>
             </details>
             <%}}}%>
         </details>

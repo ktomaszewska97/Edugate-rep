@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import edugate.demo.model.Course;
+import edugate.demo.model.CourseRealization;
 import edugate.demo.repositories.CourseRealizationRepository;
 import edugate.demo.repositories.CourseRepository;
 
@@ -24,9 +25,11 @@ public class CourseController {
 	public ModelAndView courseslistLink() {
 	
 		List<Course> listOfCourses = courseRepository.findAll();
+		List<CourseRealization> listOfCourseRealizations = courseRealizationRepository.findAll();
 	
 		ModelAndView mv = new ModelAndView("showallcourses");
 		mv.addObject("coursesList", listOfCourses);
+		mv.addObject("courseRealizationsList", listOfCourseRealizations);
 	
 		return mv;
 	}

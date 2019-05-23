@@ -31,7 +31,7 @@
                     for (Course course : coursesList)
                     { 
                     
-                    idCourse = course.getIDCourse();
+                    idCourse = course.getiDCourse();
                     
                     %>
 
