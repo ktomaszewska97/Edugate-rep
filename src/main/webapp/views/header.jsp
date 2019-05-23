@@ -19,14 +19,12 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+  <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="profileLink">Profil</a>
-      </li>
+      
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Uczelnie
@@ -34,7 +32,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Przeglądaj</a>
           <a class="dropdown-item" href="schoolLink">Dodaj</a>
-          <a class="dropdown-item" href="#">Moja uczelnia</a>
         </div>
       </li>
             <li class="nav-item dropdown">
@@ -44,7 +41,6 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="#">Przeglądaj</a>
           <a class="dropdown-item" href="departmentLink">Dodaj</a>
-          <a class="dropdown-item" href="#">Mój wydział</a>
         </div>
       </li>
         <li class="nav-item dropdown">
@@ -54,8 +50,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" href="courseslistLink">Przeglądaj</a>
           <a class="dropdown-item" href="courseLink">Dodaj</a>
-          <a class="dropdown-item" href="signupforacourseLink">Zapisz się na kurs</a>
-          <a class="dropdown-item" href="#">Moje kursy</a>
+          <a class="dropdown-item" href="signupforacourseLink">Zapisz</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -67,7 +62,16 @@
           <a class="dropdown-item" href=#>Dodaj nowego studenta</a>
         </div>
       </li>
-    </ul>
+ 	</ul>
+ 		<ul class="navbar-nav ml-auto">
+ 			<li class="nav-item">
+        	<a class="nav-link" href="profileLink">Profil</a>
+      		</li>
+ 			<li class="nav-item">
+            <a class="nav-link" href="/login?logout">Logout</a>
+            </li>
+		</ul>
+ 
   </div>
 </nav>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

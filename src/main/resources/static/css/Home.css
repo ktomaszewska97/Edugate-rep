@@ -268,3 +268,37 @@
         opacity: 0
     }
 }
+
+.imgDiploma {
+  height: 200px;
+  width: 200px;
+}
+
+.paragraph
+{ 
+	text-align: center 
+}
+
+.div-transparent:before
+{
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 5%;
+	right: 5%;
+	width: 90%;
+	height: 1px;
+	background-image: linear-gradient(to right, transparent, rgb(160,160,160), transparent);
+}
+
+.wrapper
+{
+	padding-bottom: 90px;
+}
+
+.divider
+{
+	position: relative;
+	margin-top: 90px;
+	height: 1px;
+}

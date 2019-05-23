@@ -222,7 +222,7 @@
                           for (Comment comment : comments){    
                         	  
                         	  actualUser = commentsAndUsers.get(comment);
-                        	  userName = actualUser.getFirstName() + actualUser.getLastName();
+                        	  userName = actualUser.getFirstName() +" "+actualUser.getLastName();
                         	  dateString = dateFormat.format(comment.getCreatedon());
                         	 
                                   if(counter % 2 == 0) { 
@@ -230,8 +230,10 @@
 
                                 <br>
                                 <p class="commentLeft">
-                                <%=dateString%><br>
-                                Użytkownik <b><%=userName%></b> napisał:<br>
+  								<%=dateString%>
+                                <b><%=userName%></b> 
+                                <br>
+                            	
                         		<%=comment.getMessage()%>
                        		 	</p>
                        		 	<br>
@@ -241,9 +243,11 @@
                                   else {
                                   %>
                                 <br>
-                                <%=dateString%><br>
-                                Użytkownik <b><%=userName%></b> napisał:<br>
                                 <p class="commentRight">
+                                <%=dateString%>
+                                <b><%=userName%></b> 
+                                <br>
+                            	
                         		<%=comment.getMessage()%>
                        		 	</p>
                        		 	<br>

@@ -7,15 +7,23 @@
 </head>
 <body>
 <%@include file="header.jsp" %>
-            <div className="home-container">
-                <div className="container">
-                	<div>
+
+            <div class="home-container">
+                <div class="container">
+                
+                	<div class="paragraph">
           				<h2>Welcome to Edugate!</h2>
-	            				<a href="courseLink"> Dodaj kurs </a>
-	            				<a href="schoolLink">Dodaj szkołę</a>
-	            				<a href="departmentLink">Dodaj wydział</a>
-	            				<a href="profileLink">Profil</a>
+	            		<img class="imgDiploma" src="https://iv.pl/images/07500790447772791585.png"/>
         			</div>
+        			
+        			<div class="wrapper">
+						<div class="divider div-transparent"></div>
+					</div>
+					
+					<div class="paragraph">
+					<p>We will make your college experience easier!</p>
+					</div>
+	
                 </div>
             </div>
 </body>

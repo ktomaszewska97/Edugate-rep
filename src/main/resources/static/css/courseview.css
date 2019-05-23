@@ -57,7 +57,11 @@
   float: right;
   margin-right: 5%;
   background-color: rgb(224, 224, 224);
-  text-align: right;
+
+}
+
+.commentDetails {
+  font-size: 10px;
 }
 
 .outer-form-comment {
@@ -81,7 +85,7 @@
 }
 
 .form-comment {
-  height: 300px;
+  height: 400px;
   width: 600px;
   width: 50%;
   
@@ -108,3 +112,5 @@ color: gold;
 .star {
 font-size: 35px;
 }
+
+
