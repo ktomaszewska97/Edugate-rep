@@ -32,7 +32,7 @@
                     for (Course course : coursesList)
                     { 
                     
-                    idCourse = course.getIDCourse();
+                    idCourse = course.getiDCourse();
                     
                     %>
 
@@ -61,7 +61,7 @@
                     for (Course course : coursesList2)
                     { 
                     
-                    idCourse2 = course.getIDCourse();
+                    idCourse2 = course.getiDCourse();
                     
                     %>
 <div>                   
