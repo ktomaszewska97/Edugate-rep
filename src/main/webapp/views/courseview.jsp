@@ -4,6 +4,7 @@
 <%@ page import="edugate.demo.model.Comment" %>
 <%@ page import="edugate.demo.model.CourseRealization" %>
 <%@ page import="edugate.demo.model.File" %>
+<%@ page import="edugate.demo.model.Users" %>
 <%@ page import="edugate.demo.model.UserProfile" %>
 <html>
 
@@ -20,45 +21,128 @@
     <div class="padding">
 
         <div class="signup-container">
+        
         <%
         CourseRealization currentCourseRealization = (CourseRealization)request.getAttribute("currentCourseRealization");
-       	String name= (String)request.getAttribute("currentCourseName");
+       	Course currentCourse = (Course)request.getAttribute("currentCourse");
+       	UserProfile lecturer = (UserProfile)request.getAttribute("lecturer");
+       	
         %>
-            <h3><%=name%></h3>
+            <h3><%=currentCourse.getName()%></h3>
                             <h5>O kursie</h5>
                             
 							<div>
 							<%= currentCourseRealization.getAbout() %>
 							</div>
+							
+							<p>Prowadzący kursu:</p>
+							
+							<% if(lecturer == null) {
+							%>
+							<p>Brak przypisanego prowadzącego</p>
+							<%
+							}
+							else {
+							%>
+							<p><%= lecturer.getFirstName() + " " + lecturer.getLastName()%></p>
+							<%
+							}
+							%>
+							
+        					<form action="addlecturerview">
+        					<button class="btn btn-outline-primary btn-md" type="submit">Dodaj</button>
+        					</form>
         
-        </div>
         
-        			<div class="container">
-        				<div class="paragraph">
-        				
-        				<p>Oceń kurs</p>
-                        <form action="addCourseEvaluation">
+        
+        <div class="container">
+        	<div class="paragraph">
+        	
+        				<p>Średnia ocena tej realizacji kursu aktualnie wynosi: </p>
+						<br>
+						
+        				<p>Chcesz coś zmienić? Oceń kurs!</p>
+                        <form name="evaluationform" action="addCourseEvaluation" method="post">
                         
                             <div class="form-group">
-                                <input class="formsize" type="number" name="courseevaluation" class="form-control" placeholder="2-5"
-                                    required min="2" max="5">
+                                <input class="formsize" type="number" name="courseevaluation" id= "courseevaluation" class="form-control" value="" hidden>
                             </div>
-
                             <div>
-                                <button type="submit" class="btn btn-outline-primary btn-md">Oceń</button>
-                            </div>
+								<input type="text" name="idcourserealization" value="<%=currentCourseRealization.getIdcourserealization()%>" hidden>
+							</div>
                         </form>
-                        <p>Srednia ocena kursu:x</p>
-                    </div>   
-        		</div>  
+        
+            </div>   
+            	
+            	
+				<div class="rating">
+				
+				<span id="5" class="star" onclick="setgoldFive()">☆</span>
+				<span id="4" class="star" onclick="setgoldFour()">☆</span>
+				<span id="3" class="star" onclick="setgoldThree()">☆</span>
+				<span id="2" class="star" onclick="setgoldTwo()">☆</span>
+				<span id="1" class="star" onclick="setgoldOne()">☆</span>
+					
+				</div>
+
+			<script>
+				function setgoldOne() {
+					document.getElementById(1).style.color = "gold";
+					document.getElementById('courseevaluation').value=1;
+					var x = document.getElementsByName('evaluationform');
+					x[0].submit();
+					}
+					
+				function setgoldTwo() {
+					document.getElementById(1).style.color = "gold";
+					document.getElementById(2).style.color = "gold";
+					document.getElementById('courseevaluation').value=2;
+					var x = document.getElementsByName('evaluationform');
+					x[0].submit();
+					}
+					
+				function setgoldThree() {
+					document.getElementById(1).style.color = "gold";
+					document.getElementById(2).style.color = "gold";
+					document.getElementById(3).style.color = "gold";
+					document.getElementById('courseevaluation').value=3;
+					var x = document.getElementsByName('evaluationform');
+					x[0].submit();
+					}
+					
+				function setgoldFour() {
+					document.getElementById(1).style.color = "gold";
+					document.getElementById(2).style.color = "gold";
+					document.getElementById(3).style.color = "gold";
+					document.getElementById(4).style.color = "gold";
+					document.getElementById('courseevaluation').value=4;
+					var x = document.getElementsByName('evaluationform');
+					x[0].submit();
+					}
+					
+				function setgoldFive() {
+					document.getElementById(1).style.color = "gold";
+					document.getElementById(2).style.color = "gold";
+					document.getElementById(3).style.color = "gold";
+					document.getElementById(4).style.color = "gold";
+					document.getElementById(5).style.color = "gold";
+					document.getElementById('courseevaluation').value=5;
+					var x = document.getElementsByName('evaluationform');
+					x[0].submit(); 
+					}
+			</script>
+
+        </div>  
+
+    </div> <!--Signup Container-->
 
     <div class="wrapper">
 		<div class="divider div-transparent"></div>
 	</div>
         
-        <div class="row">
+    <div class="row">
         
-           <div class="col-9">
+        <div class="col-9">
  
                 <p>Aktualności
                     <div>
@@ -66,14 +150,147 @@
                     </div>
                 </p>
 
-			</div>
+		</div>
 			
-			<div class="col-3">
-			<p>Pliki</p>
+		<div class="col-3">
 
+  			<h1 class="signup-title">Lista studentów zapisanych na kurs</h1>
+                <table class="table">
+
+                	<thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">First name</th>
+                      <th scope="col">Last name</th>
+                    </tr>
+                	</thead>
+
+	                <tbody>
+
+	                <%
+	                Map<Users, UserProfile> usersAndProfiles = (Map<Users, UserProfile>)request.getAttribute("users");  
+					
+	                if(usersAndProfiles != null){
+	                	
+	                	List<Users> students = new ArrayList<>(usersAndProfiles.keySet());
+	                	UserProfile studentProfile= null;
+	                	
+	                    for (Users student : students){ 
+              				
+	                    	studentProfile = usersAndProfiles.get(student);
+	                    %>
+
+	                     <tr>
+	                        <td><%= student.getIduser()  %></td>
+	                        <td><%= studentProfile.getFirstName() %></td>
+	                        <td><%= studentProfile.getLastName() %></td>
+	                     </tr>
+	            
+	                <% }} %>
+	        		</tbody>
+    			</table>
+    	</div> <!--DIV Col3-->
+	</div> <!--DIV ROW-->
+
+<div class="wrapper">
+		<div class="divider div-transparent"></div>
+</div>
+
+<div class="row">
+	<div class="col-9">
+                
+                    <div>
+
+                        <%
+                        Map<Comment, UserProfile> commentsAndUsers = (Map<Comment, UserProfile>)request.getAttribute("comments");
+        
+                        if(commentsAndUsers != null){
+                        	
+                        List<Comment> comments = new ArrayList<>(commentsAndUsers.keySet());
+                        Collections.sort(comments);
+                        Collections.reverse(comments);
+                        
+                        int listSize = comments.size();	
+                        int counter = 0;
+                        //comment.getIdcomment
+                        UserProfile actualUser = null;
+                        String userName = "";
+                        String dateString = "";
+                        
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                     
+                          for (Comment comment : comments){    
+                        	  
+                        	  actualUser = commentsAndUsers.get(comment);
+                        	  userName = actualUser.getFirstName() +" "+actualUser.getLastName();
+                        	  dateString = dateFormat.format(comment.getCreatedon());
+                        	 
+                                  if(counter % 2 == 0) { 
+                                  %>
+
+                                <br>
+                                <p class="commentLeft">
+  								<%=dateString%>
+                                <b><%=userName%></b> 
+                                <br>
+                            	
+                        		<%=comment.getMessage()%>
+                       		 	</p>
+                       		 	<br>
+                       		 	
+                                  <%
+                                  }
+                                  else {
+                                  %>
+                                <br>
+                                <p class="commentRight">
+                                <%=dateString%>
+                                <b><%=userName%></b> 
+                                <br>
+                            	
+                        		<%=comment.getMessage()%>
+                       		 	</p>
+                       		 	<br>
+
+                                 <%
+                                  }
+                                  
+                                  %>
+
+                        <% 
+                        
+                        counter++;
+                              }
+                                 } %>
+
+                    </div> <!--DIV Comments-->
+                    <div class="outer-form-comment">
+                    <div class="form-comment">
+
+					<form method="post" action="addcomment">
+					
+						<div>
+							<input type="text" name="idCourseRealization" value="<%=currentCourseRealization.getIdcourserealization()%>" hidden>
+						</div>
+						
+						<div class="form-item">
+						<div>
+							<textarea rows="10" class="form-control" name="message" placeholder="Comment" value=""></textarea>
+						</div>
+						</div>
+						
+						<input type="submit" class="btn btn-primary btn-outline" value="Dodaj">
+
+                    </form>
+
+                    </div>
+                    </div>
+    </div> <!--DIV Col9-->
+                                       
+ 	<div class="col-3">   
+    		<p>Pliki</p>
                 <%
                 List<File> fileList = (List<File>)request.getAttribute("fileList");
-
                 if(fileList != null){
                   for (File file : fileList)
                   {
@@ -82,50 +299,25 @@
                         </button>
 
                         <% }} %>
-                        
-                </div>
-          </div>
+            <a href=#>Plik 1</a>
+            <br>
+            <a href=#>Plik 2</a>
+            <br>
+            <a href=#>Plik 3</a>
 
-				<div>
-                <p>Komentarze:</p>
+ 	</div> <!--DIV Col3-->
+
+</div> <!--DIV ROW-->
+
+</div>  <!--DIV PADDING-->     
                 
-                    <div class="list-group">
-
-                        <%
-                        List<Comment> commentList = (List<Comment>)request.getAttribute("commentList");
-                        List<UserProfile> userProfileList = (List<UserProfile>)request.getAttribute("userProfileList");
-                        String userName="";
-        
-                        if(commentList != null){
-                          for (Comment comment : commentList)
-                          {
-                              if(comment.getIdcourserealization()==currentCourseRealization.getIdcourserealization()){ 
-                                  for(UserProfile user: userProfileList){
-                                      if(comment.getIduser()==user.getIDUserProfile()){
-                                      
-                                          userName=user.getFirstName()+" "+user.getLastName();
-                                      }
-                                  }%>
-
-                        <p class="comment"><%=userName+" "+comment.getMessage()%>
-                        </p>
-
-                        <%
-                              }
-                                 }} %>
-
-                    </div>
-                    
-                </div> 
-                    
-    </div>
-
 
     <script>
         function goBack() {
             window.history.back();
         }
     </script>
+
 
 
 </body>

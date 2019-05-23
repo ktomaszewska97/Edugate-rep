@@ -7,7 +7,7 @@ public class Department {
     @Id
     @Column(name = "IDDepartment")
     Integer iDDepartament;
-    @Column(name="IDSchool")
+    @Column(name="iDSchool")
     Integer IDSchool;
     @Column
     String name;
@@ -15,7 +15,7 @@ public class Department {
     @Column
     String about;
 
-    public Integer getIdDepartament() {
+    public Integer getiDDepartament() {
         return iDDepartament;
     }
 

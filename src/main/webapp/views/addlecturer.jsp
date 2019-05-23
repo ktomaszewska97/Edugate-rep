@@ -2,6 +2,7 @@
 <%@ page import="java.text.*,java.util.*" %>
 <%@ page import="edugate.demo.model.CourseRealization" %>
 <%@ page import="edugate.demo.model.Users" %>
+<%@ page import="edugate.demo.model.UserProfile" %>
 
 <html>
 <head>
@@ -38,13 +39,14 @@ if(confirmation != null){ %>
 
                 <%
                 Map<CourseRealization, String> mapOfCourseRealizations = (Map<CourseRealization, String>)request.getAttribute("courseRealizations");        
-				
-				***NIE MA TEJ METODY- TRZEBA PODŁACZYC***
-				List<Users> lecturersList = (List<Users>)request.getAttribute("lecturerList");
+			
+				Map<Users, UserProfile> usersAndProfiles = (Map<Users, UserProfile>)request.getAttribute("lecturers");        
 				
                 if(mapOfCourseRealizations != null){
                 	
-                	Set<CourseRealization> courseRealizations = mapOfCourseRealizations.keySet(); 
+                	Set<CourseRealization> courseRealizations = mapOfCourseRealizations.keySet();
+//                	Set<Users> lecturers = usersAndProfiles.keySet();
+					List<Users> lecturers = new ArrayList<>(usersAndProfiles.keySet());
                 	
                     for (CourseRealization courseRealization : courseRealizations)
                     { 
@@ -57,16 +59,19 @@ if(confirmation != null){ %>
                         <td><%= courseRealization.getNote() %></td>
                         <td><%= courseRealization.getAbout() %></td>
                         <td> 
-                        		<form method="post" action="AKCJA NA DODAWANIE WYKŁADOWCY">
-          
-                                   <datalist id="lecturerList">
+                        		<form method="post" action="addlecturer">
+          							
+          						   <input list="lecturers" name="idLecturer">
+                                   <datalist id="lecturers">
                                    <%
-                                   for (Users user: usersList)
-				                    { 
+                                   for (Users lecturer : lecturers){ 
+                                	   
+                                	   UserProfile userProfile = usersAndProfiles.get(lecturer);
 				                    %>
-    							   <option value="<%= user.getId() %>" label="<%=userProfile.getFirstName() +" "+ userProfile.getLastName()%>">
+    							   <option value="<%= lecturer.getIduser() %>" label="<%=userProfile.getFirstName() +" "+ userProfile.getLastName()%>">
     							   <% } %>
   								   </datalist>
+  								   <input name="idCourseRealization" type="number" value="<%= courseRealization.getIdcourserealization() %>" hidden>
                                    <input type="submit" class="btn btn-primary btn-outline" value="Select">
                                    
                                 </form> </td>

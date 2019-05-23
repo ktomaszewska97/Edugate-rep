@@ -41,8 +41,8 @@
 
 	</script>
 
-<link href="/css/bootstrap.min.css" rel="stylesheet">
-<link href="/css/Home.css" rel="stylesheet">
+	<link href="/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/css/Home.css" rel="stylesheet">
 
 	<style>
 
@@ -67,25 +67,25 @@
 
 
 	<div class="row">
-	<div class="w30">
+		<div class="w30">
 			<%@include file="selectionbar.jsp" %>
-	</div>
-	<div class="w70">
-				<div class="container">
-					<div className="home-container">
-						<div className="container">
-							<div>
-								<h2></h2>
-								<a href="courseLink"> Dodaj kurs </a>
-								<a href="schoolLink">Dodaj szkołę</a>
-								<a href="departmentLink">Dodaj wydział</a>
-								<a href="profileLink">Profil</a>
-							</div>
+		</div>
+		<div class="w70">
+			<div class="container">
+				<div className="home-container">
+					<div className="container">
+						<div>
+							<h2></h2>
+							<a href="courseLink"> Dodaj kurs </a>
+							<a href="schoolLink">Dodaj szkołę</a>
+							<a href="departmentLink">Dodaj wydział</a>
+							<a href="profileLink">Profil</a>
+						</div>
 					</div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 </div>
 <p id="opis"> OPIS</p>

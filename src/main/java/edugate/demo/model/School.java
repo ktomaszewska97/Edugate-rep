@@ -38,8 +38,8 @@ public class School {
         this.description = description;
     }
 
-    public void setIDSchool(Integer IDSchool) {
-        this.iDSchool = IDSchool;
+    public void setiDSchool(Integer iDSchool) {
+        this.iDSchool = iDSchool;
     }
 
     public void setName(String name) {
@@ -50,7 +50,7 @@ public class School {
         return name;
     }
 
-    public Integer getIDSchool() {
+    public Integer getiDSchool() {
         return iDSchool;
     }
 

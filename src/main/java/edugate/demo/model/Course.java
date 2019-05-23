@@ -30,7 +30,7 @@ public class Course {
     	this.about = about;
     }
 
-    public Integer getIDCourse() {
+    public Integer getiDCourse() {
         return iDCourse;
     }
 

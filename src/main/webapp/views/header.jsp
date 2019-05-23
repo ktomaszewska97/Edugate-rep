@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
-<%@ page import="edugate.demo.security.SecurityServiceImpl" %>
 <html lang="pl-PL">
 <head>
   <meta charset="utf-8">
@@ -26,10 +25,7 @@
         <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-          <form method="post" action="profileLink">
-              <input name="idUser" type="number" value="" hidden>
-              <input type="submit" class="btn" value="Profil" >
-          </form>
+        <a class="nav-link" href="profileLink">Profil</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,10 +63,10 @@
           <a class="dropdown-item" href="coursesStudentsListLink">Przeglądaj studentów w kursach</a>
           <a class="dropdown-item" href=#>Dodaj nowego studenta</a>
         </div>
-        </li>
+      </li>
     </ul>
-    <button onclick="window.location='/login?logout';"> Wyloguj</button>
   </div>
+  <button onclick="window.location='/login?logout'" >Wyloguj</button>
 </nav>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="/js/bootstrap.min.js"></script>

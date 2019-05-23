@@ -1,21 +1,16 @@
 package edugate.demo.controllers;
 
+
 import edugate.demo.model.Users;
-import edugate.demo.repositories.CourseRealizationRepository;
-import edugate.demo.repositories.CourseRepository;
-import edugate.demo.repositories.UsersRepository;
 import edugate.demo.security.SecurityService;
 import edugate.demo.services.UserService;
 import edugate.demo.services.UserValidator;
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpServerErrorException;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -31,16 +26,7 @@ public class UserController {
 
     @Autowired
     private UserValidator userValidator;
-    
-    @Autowired
-    private UsersRepository usersRepository;
-    
-	@Autowired
-	CourseRealizationRepository courseRealizationRepository;
 
-	@Autowired
-	CourseRepository courseRepository;
-	
     @GetMapping("/registration")
     public String registration(Model model) {
         model.addAttribute("userForm", new Users());
@@ -64,7 +50,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String login(HttpServletRequest request,Model model, String error, String logout) {
+    public String login(HttpServletRequest request, Model model, String error, String logout) {
 
         if (error != null)
             model.addAttribute("error", "Your username and password is invalid.");
@@ -81,12 +67,12 @@ public class UserController {
                 cookie.setMaxAge(0);
             }
         }
+
         return "login";
     }
-/*
-    @GetMapping({"/", "/home"})
-    public String welcome(Model model) {
-        return "home";
-    }
-    */
+
+//    @GetMapping({"/", "/home"})
+//    public String welcome(Model model) {
+//        return "home";
+//    }
 }

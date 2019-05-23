@@ -7,11 +7,9 @@
 <link href="/css/Signup.css" rel="stylesheet">
 </head>
 <body>
-
 <%@include file="header.jsp" %>
 
                 <h1 class="signup-title">Lista kursów</h1>
-                
                 <table class="table">
                   <thead>
                     <tr>
@@ -22,9 +20,10 @@
                       <th scope="col">Wybór</th>
                     </tr>
                   </thead>
-                <tbody>
+                  <tbody>
+
                 <%
-                List<Course> coursesList = (List<Course>)request.getAttribute("coursesStudentsList");   
+                List<Course> coursesList = (List<Course>)request.getAttribute("coursesList");   
 				
 				int idCourse = 0;
 				
@@ -32,7 +31,7 @@
                     for (Course course : coursesList)
                     { 
                     
-                    idCourse = course.getiDCourse();
+                    idCourse = course.getIDCourse();
                     
                     %>
 
@@ -42,12 +41,10 @@
                         <td><%= course.getName() %></td>
                         <td><%= course.getSemester() %></td>
                         <td><%= course.getAbout() %></td>
-                        <td>
-                        	<form method="post" action="studentsView">
+                        <td><form method="post" action="courseView">
                         	<input name="IDCourseRealization" type="number" value="<%= idCourse  %>" hidden>
-                        	<input type="submit" class="btn btn-primary btn-outline" value="Przeglądaj studentów">
-                        	</form> 
-                        </td>
+                        	<input type="submit" class="btn btn-primary btn-outline" value="Select">
+                        	</form> </td>
                      </tr>
             
                 <% }} %>

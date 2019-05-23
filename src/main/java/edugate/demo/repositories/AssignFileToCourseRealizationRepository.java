@@ -9,5 +9,5 @@ import edugate.demo.model.Comment;
 
 public interface AssignFileToCourseRealizationRepository extends JpaRepository<AssignFileToCourseRealization,Integer> {
 	
-	List<AssignFileToCourseRealization> findByIdcourserealization(int idCourseRealization);
+	public List<AssignFileToCourseRealization> findByIdcourserealization(int idCourseRealization);
 }

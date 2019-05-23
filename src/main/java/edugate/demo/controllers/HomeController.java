@@ -40,12 +40,12 @@ public class HomeController {
 	@Autowired
 	SecurityService securityService;
 
-	@RequestMapping(value="/home")//nie wiem co tu bedzie*******************************************************
+	@RequestMapping(value="/home")
 	public ModelAndView selectionBar (Principal principal) {
 
 		ModelAndView mv;
 		mv = new ModelAndView("home");
-		int idUser = usersRepository.findByLogin(principal.getName()).getiduser();
+		int idUser = usersRepository.findByLogin(principal.getName()).getIduser();
 
 		Integer idSchool =usersRepository.findByLogin(principal.getName()).getIDSchool();
 		if(idSchool==null)
@@ -67,13 +67,13 @@ public class HomeController {
 				Department d = departmentRepository.findByIDDepartament(fos.getIDDepartment());
 
 				if(!course.contains(c))
-				course.add(c);
+					course.add(c);
 				if(!courseRealizations.contains(cr))
-				courseRealizations.add(cr);
+					courseRealizations.add(cr);
 				if(!fieldOfStudy.contains((fos)))
-				fieldOfStudy.add(fos);
+					fieldOfStudy.add(fos);
 				if(!departments.contains(d))
-				departments.add(d);
+					departments.add(d);
 			}
 		}
 		mv.addObject("currentUserCourseRealizations", courseRealizations);
@@ -94,29 +94,27 @@ public class HomeController {
 
 		if (school == -1) {
 			return new ResponseEntity<Object>(null, HttpStatus.BAD_REQUEST);
-				}
+		}
 		else{
 			if (departament == -1) {
 				return new ResponseEntity<Object>(schoolRepository.findByIDSchool(school).getAboute(),HttpStatus.OK);
 			}
 			else
-				if(field == -1){
-					return new ResponseEntity<Object>(departmentRepository.findByIDDepartament(departament).getAbout(),HttpStatus.OK);
-					}
-				else
-					if (course == -1){
-						return  new ResponseEntity<Object>(fieldOfStudyRepository.findByIDFieldOfStudy(field).getAbout(),HttpStatus.OK);
-					}
-					else
-						return new ResponseEntity<Object>(courseRepository.findByIDCourse(course).getAbout(), HttpStatus.OK);
+			if(field == -1){
+				return new ResponseEntity<Object>(departmentRepository.findByIDDepartament(departament).getAbout(),HttpStatus.OK);
+			}
+			else
+			if (course == -1){
+				return  new ResponseEntity<Object>(fieldOfStudyRepository.findByIDFieldOfStudy(field).getAbout(),HttpStatus.OK);
+			}
+			else
+				return new ResponseEntity<Object>(courseRepository.findByIDCourse(course).getAbout(), HttpStatus.OK);
 		}
 
 	}
 
 
-	
 
-	
 	@RequestMapping(value="/departmentLink")
 	public String addDepartmentLink() {
 	
@@ -136,12 +134,5 @@ public class HomeController {
 	
 		System.out.println("courseLink");
 		return "addcourse";
-	}
-	
-	@RequestMapping(value="/addlecturerview")
-	public String addLecturerLink() {
-	
-		System.out.println("courseLink");
-		return "addlecturer";
 	}
 }

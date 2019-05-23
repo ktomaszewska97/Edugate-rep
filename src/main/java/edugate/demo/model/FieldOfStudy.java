@@ -16,7 +16,7 @@ public class FieldOfStudy {
 
 
 
-    public Integer getIDFieldOfStudy() {
+    public Integer getiDFieldOfStudy() {
         return iDFieldOfStudy;
     }
 

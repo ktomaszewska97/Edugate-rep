@@ -105,7 +105,7 @@ public class Users {
         this.overallrating = overallrating;
     }
 
-    public Integer getiduser() {
+    public Integer getIduser() {
         return iduser;
     }
 
@@ -120,6 +120,4 @@ public class Users {
     public void setiduser(Integer iduser) {
         this.iduser = iduser;
     }
-
-
 }

@@ -1,21 +1,20 @@
 package edugate.demo.controllers;
 
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+
 import edugate.demo.model.*;
 import edugate.demo.repositories.*;
 import edugate.demo.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
-import java.util.*;
-
 @Controller
 public class UserProfileController {
-	
+
 	@Autowired
 	UserProfileRepository userProfileRepository;
 	@Autowired
@@ -40,6 +39,7 @@ public class UserProfileController {
 	
 		ModelAndView mv = new ModelAndView("showUserProfiles");
 		mv.addObject("userProfilesList", userProfileRepository.findAll());
+	
 		return mv;
 	}
 
@@ -48,7 +48,7 @@ public class UserProfileController {
 	public ModelAndView userProfileView (Principal principal) {
 
 		ModelAndView mv = new ModelAndView("profile");
-		int idUser = usersRepository.findByLogin(principal.getName()).getiduser();
+		int idUser = usersRepository.findByLogin(principal.getName()).getIduser();
 		mv.addObject("currentUserLogin",  principal.getName());
 		mv.addObject("currentUserId", idUser);
 		mv.addObject("currentUserEmail", usersRepository.findByLogin(principal.getName()).getEmail());
@@ -64,7 +64,7 @@ public class UserProfileController {
 		else
 //		School s = schoolRepository.findByIDSchool(idSchool);
 //		String schoolName= s.getName();
-		mv.addObject("currentUserSchool", schoolRepository.findByIDSchool(idSchool).getName());
+			mv.addObject("currentUserSchool", schoolRepository.findByIDSchool(idSchool).getName());
 
 
 
@@ -74,7 +74,7 @@ public class UserProfileController {
 		List<String> courseRealizationsName = new ArrayList<String>();
 		if(!userCourseRealization.isEmpty()){
 			for (UserCourseRealization ucr: userCourseRealization
-				 ) {
+			) {
 
 				CourseRealization cr= courseRealizationRepository.findByIdcourserealization(ucr.getIdcourse());
 				Course c=courseRepository.findByIDCourse(cr.getIdcourse());
@@ -94,18 +94,38 @@ public class UserProfileController {
 		return mv;
 
 	}
-
-/*
-	@GetMapping(value="/userProfileView")
-	public ModelAndView userProfileView (Principal principal) {
-
-		ModelAndView mv = new ModelAndView("profile");
-		mv.addObject("currentUserName",  principal.getName());
-		mv.addObject("currentUserId", usersRepository.findByLogin(principal.getName()).getiduser());
-
-		return mv;
-
-	}*/
-
+	
+//	@RequestMapping(value="/profileLink")
+//	public ModelAndView userProfileView (Principal principal) {
+//
+//		ModelAndView mv = new ModelAndView("profile");
+//
+//		Users currentUser = usersRepository.findByLogin(principal.getName());
+//
+//		int currentUserId = currentUser.getIduser();
+//
+//		UserProfile currentUserProfile = userProfileRepository.findAllByIduser(currentUserId).get(0);
+//
+//		mv.addObject("currentUser", currentUser);
+//		mv.addObject("currentUserProfile", currentUserProfile);
+//
+//		List<UserCourse> userCourses = userCourseRepository.findAllByIduser(currentUserId);
+//
+//		Map<Course, CourseRealization> courses = new HashMap<>();
+//
+//		CourseRealization temp = null;
+//
+//		for(UserCourse userCourse : userCourses) {
+//
+//			temp = courseRealizationRepository.findById(userCourse.getIdcourserealization()).get();
+//
+//			courses.put(courseRepository.findById(temp.getIdcourse()).get(), temp);
+//		}
+//
+//		mv.addObject("courses", courses);
+//
+//		return mv;
+//
+//	}
 
 }
