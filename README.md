@@ -156,6 +156,13 @@ Zwraca infromację o błędnym/pomyślnym zalogowaniu.
 ```
 Dodaje prowadzącego.
 
+```
+@RequestMapping(value="/addcourseevaluation")
+	public ModelAndView addCourseEvaluation(int courseEvaluation, int idCourseRealization, Principal principal) {
+	}
+```
+
+Dodawanie oceny do kursu.
 ___
 
 ## Frontend
