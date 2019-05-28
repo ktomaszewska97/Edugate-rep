@@ -24,13 +24,18 @@
         
             <span>${message}</span>
             
+            
             <div class="divForInput">
+            <div class="form-group">
             <input name="username" type="text" class="form-control" placeholder="Username"
-                   autofocus="true"/>
+                   autofocus="true" minlength=10/>
+            </div>
             </div>
             
             <div class="divForInput">
-            <input name="password" type="password" class="form-control" placeholder="Password"/>
+            <div class="form-group">
+            <input name="password" type="password" class="form-control" placeholder="Password" minlength=10/>
+            </div>
             </div>
             
             <span>${error}</span>
