@@ -52,7 +52,6 @@ if(confirmation != null){ %>
                         <td><%= courseRealization.getNote() %></td>
                         <td><%= courseRealization.getAbout() %></td>
                         <td> <form method="post" action="signupforacourse">
-                                    <input name="IDUser" type="number" value="1" hidden>
                                     <input name="IDCourseRealization" type="number" value="<%= courseRealization.getIdcourserealization() %>" hidden>
                                     <input type="submit" class="btn btn-primary btn-outline" value="Select">
                                 </form> </td>

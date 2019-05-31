@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class UserProfile {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IDuserprofile")
     Integer IDUserProfile;
     @Column
@@ -16,6 +17,20 @@ public class UserProfile {
     String lastName;
     @Column
     String gender;
+    @Column
+    String about;
+    
+    public UserProfile() {
+    }
+    
+    public UserProfile(int idUser, String firstName, String lastName, String gender, String about) {
+    	
+    	this.iduser = idUser;
+    	this.firstName = firstName;
+    	this.lastName = lastName;
+    	this.gender = gender;
+    	this.about = about;
+    }
 
     public Integer getIDUserProfile() {
         return IDUserProfile;
@@ -65,7 +80,4 @@ public class UserProfile {
     public void setAbout(String about) {
         this.about = about;
     }
-
-    @Column
-    String about;
 }

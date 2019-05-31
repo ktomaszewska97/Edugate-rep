@@ -9,6 +9,7 @@ import edugate.demo.repositories.*;
 import edugate.demo.security.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -94,6 +95,14 @@ public class UserProfileController {
 		return mv;
 
 	}
+	
+    @PostMapping("/createuserprofile")
+    public String addUserProfile(Principal principal, String firstName, String lastName, String gender, String about) {
+        
+    	userProfileRepository.save(new UserProfile(usersRepository.findByLogin(principal.getName()).getIduser(), firstName, lastName, gender, about));
+    	
+        return "redirect:/home";
+    }
 	
 //	@RequestMapping(value="/profileLink")
 //	public ModelAndView userProfileView (Principal principal) {

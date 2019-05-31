@@ -44,43 +44,50 @@ public class HomeController {
 	public ModelAndView selectionBar (Principal principal) {
 
 		ModelAndView mv;
-		mv = new ModelAndView("home");
-		int idUser = usersRepository.findByLogin(principal.getName()).getIduser();
-
-		Integer idSchool =usersRepository.findByLogin(principal.getName()).getIDSchool();
-		if(idSchool==null)
-			mv.addObject("currentUserSchool",schoolRepository.findByIDSchool(1));
-		else
-			mv.addObject("currentUserSchool", schoolRepository.findByIDSchool(idSchool));
-
-		List<UserCourse> userCourseRealization= userCourseRealizationRepository.findByIduser(idUser);
-		List<Course> course = new ArrayList<Course>();
-		List<CourseRealization> courseRealizations = new ArrayList<CourseRealization>();
-		List<FieldOfStudy> fieldOfStudy = new ArrayList<FieldOfStudy>();
-		List<Department> departments = new ArrayList<Department>();
-		if(!userCourseRealization.isEmpty()){
-			for (UserCourse ucr: userCourseRealization
-			) {
-				CourseRealization cr= courseRealizationRepository.findByIdcourserealization(ucr.getIdcourserealization());
-				Course c =courseRepository.findByIDCourse(cr.getIdcourse());
-				FieldOfStudy fos=fieldOfStudyRepository.findByIDFieldOfStudy(c.getIDFieldOfStudy());
-				Department d = departmentRepository.findByIDDepartament(fos.getIDDepartment());
-
-				if(!course.contains(c))
-					course.add(c);
-				if(!courseRealizations.contains(cr))
-					courseRealizations.add(cr);
-				if(!fieldOfStudy.contains((fos)))
-					fieldOfStudy.add(fos);
-				if(!departments.contains(d))
-					departments.add(d);
-			}
+		
+		if(userProfileRepository.findByIduser(usersRepository.findByLogin(principal.getName()).getIduser()) == null) {
+			
+			mv = new ModelAndView("adduserprofile"); 
 		}
-		mv.addObject("currentUserCourseRealizations", courseRealizations);
-		mv.addObject("currentUserCourses", course);
-		mv.addObject("currentUserFieldOfStudy", fieldOfStudy);
-		mv.addObject("currentUserDepartment", departments);
-
+		else {
+		
+			mv = new ModelAndView("home");
+			int idUser = usersRepository.findByLogin(principal.getName()).getIduser();
+	
+			Integer idSchool = usersRepository.findByLogin(principal.getName()).getIDSchool();
+			if(idSchool==null)
+				mv.addObject("currentUserSchool",schoolRepository.findByIDSchool(1));
+			else
+				mv.addObject("currentUserSchool", schoolRepository.findByIDSchool(idSchool));
+	
+			List<UserCourse> userCourseRealization= userCourseRealizationRepository.findByIduser(idUser);
+			List<Course> course = new ArrayList<Course>();
+			List<CourseRealization> courseRealizations = new ArrayList<CourseRealization>();
+			List<FieldOfStudy> fieldOfStudy = new ArrayList<FieldOfStudy>();
+			List<Department> departments = new ArrayList<Department>();
+			if(!userCourseRealization.isEmpty()){
+				for (UserCourse ucr: userCourseRealization
+				) {
+					CourseRealization cr= courseRealizationRepository.findByIdcourserealization(ucr.getIdcourserealization());
+					Course c =courseRepository.findByIDCourse(cr.getIdcourse());
+					FieldOfStudy fos=fieldOfStudyRepository.findByIDFieldOfStudy(c.getIDFieldOfStudy());
+					Department d = departmentRepository.findByIDDepartament(fos.getIDDepartment());
+	
+					if(!course.contains(c))
+						course.add(c);
+					if(!courseRealizations.contains(cr))
+						courseRealizations.add(cr);
+					if(!fieldOfStudy.contains((fos)))
+						fieldOfStudy.add(fos);
+					if(!departments.contains(d))
+						departments.add(d);
+				}
+			}
+			mv.addObject("currentUserCourseRealizations", courseRealizations);
+			mv.addObject("currentUserCourses", course);
+			mv.addObject("currentUserFieldOfStudy", fieldOfStudy);
+			mv.addObject("currentUserDepartment", departments);
+		}
 
 		return mv;
 

@@ -26,49 +26,54 @@
         CourseRealization currentCourseRealization = (CourseRealization)request.getAttribute("currentCourseRealization");
        	Course currentCourse = (Course)request.getAttribute("currentCourse");
        	UserProfile lecturer = (UserProfile)request.getAttribute("lecturer");
+       	int courseRealizationId = currentCourseRealization.getIdcourserealization();
+       	double mean = (double)request.getAttribute("mean");
+		boolean hasEvaluated = (boolean)request.getAttribute("hasEvaluated");
+		
+		NumberFormat formatter = new DecimalFormat("#0.00");     
        	
         %>
-            <h3><%=currentCourse.getName()%></h3>
-                            <h5>O kursie</h5>
-                            
-							<div>
-							<%= currentCourseRealization.getAbout() %>
-							</div>
+            <h3><%=currentCourse.getName()%></h3><br>
+            				<h6>O kursie:</h6>
+                            <h5><%= currentCourseRealization.getNote() %></h5>
+
 							
-							<p>Prowadzący kursu:</p>
+							<p><h6>Prowadzący kursu:</h6></p>
 							
 							<% if(lecturer == null) {
 							%>
-							<p>Brak przypisanego prowadzącego</p>
+							<p><h5>Brak przypisanego prowadzącego</h5></p>
 							<%
 							}
 							else {
 							%>
-							<p><%= lecturer.getFirstName() + " " + lecturer.getLastName()%></p>
+							<p><h5><%= lecturer.getFirstName() + " " + lecturer.getLastName()%></h5></p>
 							<%
 							}
 							%>
-							
-        					<form action="addlecturerview">
-        					<button class="btn btn-outline-primary btn-md" type="submit">Dodaj</button>
+							<br>
+        					<form action="editcourseview">
+        						<input type="number" name="idCourseRealization" value="<%=courseRealizationId%>" hidden>
+        						<button class="btn btn-outline-primary btn-md" type="submit">Edytuj dane</button>
         					</form>
+        					<br>
         
         
         
         <div class="container">
         	<div class="paragraph">
         	
-        				<p>Średnia ocena tej realizacji kursu aktualnie wynosi: </p>
+        				<p>Średnia ocena tej realizacji kursu aktualnie wynosi: <b><%=formatter.format(mean)%></b></p>
 						<br>
-						
+						<%if(!hasEvaluated){%>
         				<p>Chcesz coś zmienić? Oceń kurs!</p>
-                        <form name="evaluationform" action="addCourseEvaluation" method="post">
+                        <form name="evaluationform" action="addcourseevaluation" method="post">
                         
                             <div class="form-group">
-                                <input class="formsize" type="number" name="courseevaluation" id= "courseevaluation" class="form-control" value="" hidden>
+                                <input class="formsize" type="number" name="courseEvaluation" id= "courseevaluation" class="form-control" value="" hidden>
                             </div>
                             <div>
-								<input type="text" name="idcourserealization" value="<%=currentCourseRealization.getIdcourserealization()%>" hidden>
+								<input type="number" name="idCourseRealization" value="<%=courseRealizationId%>" hidden>
 							</div>
                         </form>
         
@@ -84,7 +89,12 @@
 				<span id="1" class="star" onclick="setgoldOne()">☆</span>
 					
 				</div>
-
+				<% }
+					else{ %>
+					
+					<p>Dziękujemy za ocenę tego kursu!</p>
+					
+					<% } %>
 			<script>
 				function setgoldOne() {
 					document.getElementById(1).style.color = "gold";
@@ -144,7 +154,7 @@
         
         <div class="col-9">
  
-                <p>Aktualności
+                <p><h5>Aktualności</h5>
                     <div>
                     <p>W tym miejscu będą pojawiały się najnowsze informacje, opublikowane przez prowadzącego.</p>
                     </div>

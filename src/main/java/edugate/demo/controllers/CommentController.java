@@ -39,7 +39,6 @@ public class CommentController {
     	Comment comment = new Comment(usersRepository.findByLogin(principal.getName()).getIduser(), idCourseRealization, message, new java.util.Date());
     	
 		commentRepository.save(comment);
-		System.out.println(comment.getCreatedon());
 		ModelAndView mv = new ModelAndView();
 		
 		mv.addObject("currentCourseRealization", idCourseRealization);

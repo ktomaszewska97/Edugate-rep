@@ -65,7 +65,7 @@
                 
                 	<div class="paragraph">
           				<h2>Welcome to Edugate!</h2>
-	            		<img class="imgDiploma" src="https://iv.pl/images/07500790447772791585.png"/>
+	            		<img class="imgDiploma" src="https://iv.pl/images/56595203293597956665.png"/>
         			</div>
         			
         			<div class="wrapper">

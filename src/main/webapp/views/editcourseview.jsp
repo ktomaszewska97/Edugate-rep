@@ -25,47 +25,54 @@
         <%
         CourseRealization currentCourseRealization = (CourseRealization)request.getAttribute("currentCourseRealization");
        	Course currentCourse = (Course)request.getAttribute("currentCourse");
-       	UserProfile lecturer = (UserProfile)request.getAttribute("lecturer");
+       	Users currentLecturer = (Users)request.getAttribute("lecturer");
+       	
+       	Map<Users, UserProfile> lecturersProfiles = (Map<Users, UserProfile>)request.getAttribute("lecturers");
+       	List<Users> lecturers = new ArrayList<>(lecturersProfiles.keySet());
+       	
+       	UserProfile currentLecturerProfile = lecturersProfiles.get(currentLecturer);
+       	
+       	Map<Users, UserProfile> studentsProfiles = (Map<Users, UserProfile>)request.getAttribute("students");
        	
         %>
-            <h3><%=currentCourse.getName()%></h3>
-                            <h5>O kursie</h5>
+            <h3><%=currentCourse.getName()%></h3><br>
+                            <h6>O kursie:</h6>
 
-              <form method="post" action="addlecturer">
+              <form method="post" action="editcourse">
                <div class="form-group">
-                    <textarea type="text" name="name" 
-                        class="form-control" placeholder="" 
-                        value="<%= currentCourseRealization.getAbout() %>"/>
+                    <textarea type="text" name="note" 
+                        class="form-control" placeholder=""/>
+                        <%= currentCourseRealization.getNote() %>
+                    </textarea>
                 </div>
 							
-							<p>Prowadzący kursu:</p>
+							<p><h6>Aktualny prowadzący kursu:</h6></p>
 							
-							<% if(lecturer == null) {
+							<% if(currentLecturer == null) {
 							%>
 							<p>Brak przypisanego prowadzącego!</p>
 							<%
 							}
 							else {
 							%>
-							<p><%= lecturer.getFirstName() + " " + lecturer.getLastName()%></p>
+							<p><%= currentLecturerProfile.getFirstName() + " " + currentLecturerProfile.getLastName()%></p>
 							<%
 							}
 							%>
 
-              <input list="lecturers" name="idLecturer">
+              <input list="lecturers" name="lecturer" value="<%=currentLecturer.getIduser() + " " + currentLecturerProfile.getFirstName() + " " + currentLecturerProfile.getLastName()%>">
               <datalist id="lecturers">
               <%
+              UserProfile userProfile;
+              
               for (Users lecturer : lecturers){ 
                                      
-              UserProfile userProfile = usersAndProfiles.get(lecturer);
+              userProfile = lecturersProfiles.get(lecturer);
               %>
-              <option value="<%= lecturer.getIduser() %>" label="<%=userProfile.getFirstName() +" "+ userProfile.getLastName()%>">
+              <option value="<%= lecturer.getIduser() + " " + userProfile.getFirstName() +" "+ userProfile.getLastName()%>" label="<%=userProfile.getFirstName() +" "+ userProfile.getLastName()%>">
               <% } %>
               </datalist>
-              <input name="idCourseRealization" type="number" value="<%=courseRealization.getIdcourserealization() %>" hidden>
-              <input type="submit" class="btn btn-primary btn-outline" value="Sele">
-        
-        
+              <input name="idCourseRealization" type="number" value="<%=currentCourseRealization.getIdcourserealization() %>" hidden>        
        
     </div> <!--Signup Container-->
 
@@ -77,16 +84,18 @@
         
         <div class="col-9">
  
-                <p>Aktualności
+                <p><h5>Aktualności</h5>
                     <div>
                     <p>W tym miejscu będą pojawiały się najnowsze informacje, opublikowane przez prowadzącego.</p>
                     </div>
                     <div class="form-group">
-                    <textarea type="text" name="name" 
-                        class="form-control" placeholder="" 
-                        value="<%= currentCourseRealization.getAbout() %>"/>
+                    <textarea type="text" name="news" 
+                        class="form-control" placeholder="" />
+                    </textarea>
                     </div>
-                </p>
+                </p>			
+                	
+                    <input type="submit" class="btn btn-primary btn-outline" value="Zapisz">
 		</div>
 	</form>
   
@@ -105,17 +114,15 @@
 
 	                <tbody>
 
-	                <%
-	                Map<Users, UserProfile> usersAndProfiles = (Map<Users, UserProfile>)request.getAttribute("users");  
-					
-	                if(usersAndProfiles != null){
+	                <% 
+	               if(studentsProfiles != null){
 	                	
-	                	List<Users> students = new ArrayList<>(usersAndProfiles.keySet());
+	                	List<Users> students = new ArrayList<>(studentsProfiles.keySet());
 	                	UserProfile studentProfile= null;
 	                	
 	                    for (Users student : students){ 
               				
-	                    	studentProfile = usersAndProfiles.get(student);
+	                    	studentProfile = studentsProfiles.get(student);
 	                    %>
 
 	                     <tr>

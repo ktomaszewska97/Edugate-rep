@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +16,15 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edugate.demo.model.Comment;
+import edugate.demo.model.Course;
+import edugate.demo.model.CourseEvaluation;
 import edugate.demo.model.CourseRealization;
 import edugate.demo.model.UserCourse;
 import edugate.demo.model.UserProfile;
 import edugate.demo.model.Users;
 import edugate.demo.repositories.AssignFileToCourseRealizationRepository;
 import edugate.demo.repositories.CommentRepository;
+import edugate.demo.repositories.CourseEvaluationRepository;
 import edugate.demo.repositories.CourseRealizationRepository;
 import edugate.demo.repositories.CourseRepository;
 import edugate.demo.repositories.FileRepository;
@@ -46,6 +50,8 @@ public class CourseRealizationController {
 	@Autowired
 	UsersRepository usersRepository;
 	@Autowired
+	CourseEvaluationRepository courseEvaluationRepository;
+	@Autowired
 	AssignFileToCourseRealizationRepository assignFileToCourseRealizationfileRepository;
 
 	@RequestMapping(value="/signupforacourseLink")
@@ -69,9 +75,9 @@ public class CourseRealizationController {
 	}
 	
     @PostMapping(value="/signupforacourse")
-	public ModelAndView signUpForACourse(int IDUser, int IDCourseRealization) {
+	public ModelAndView signUpForACourse(Principal principal, int IDCourseRealization) {
     	
-    	userCourseRepository.save(new UserCourse(IDUser, IDCourseRealization));
+    	userCourseRepository.save(new UserCourse(usersRepository.findByLogin(principal.getName()).getIduser(), IDCourseRealization));
     	
     	ModelAndView mv = new ModelAndView("redirect:/signupforacourseLink");
     	mv.addObject("confirmation", "Dodano do grupy!");
@@ -80,29 +86,27 @@ public class CourseRealizationController {
 	}
     
 	@RequestMapping(value="/courseView")
-	public ModelAndView showCourseView(Integer IDCourseRealization, HttpServletRequest request) {
+	public ModelAndView showCourseView(Integer IDCourseRealization, HttpServletRequest request, Principal principal) {
 		
-		int currentCourseId;
+		int currentCourseRealizationId;
 		
 		if(IDCourseRealization == null) {
 			
-			currentCourseId = Integer.parseInt(request.getParameter("currentCourseRealization"));
+			currentCourseRealizationId = Integer.parseInt(request.getParameter("currentCourseRealization"));
 		}
 		else {
 			
-			currentCourseId = IDCourseRealization;
-		}
+			currentCourseRealizationId = IDCourseRealization;
+		}		
 		
 //		COMMENTS
-		List<Comment> listOfComments = commentRepository.findByIdcourserealization(currentCourseId);
+		List<Comment> listOfComments = commentRepository.findByIdcourserealization(currentCourseRealizationId);
 		
 		Map<Comment, UserProfile> commentsAndUsers = new HashMap<>();
 		
 		for(Comment comment : listOfComments) {
-			System.out.println(comment.getMessage());
-			System.out.println(comment.getIduser());
-			System.out.println(userProfileRepository.findAllByIduser(comment.getIduser()));
-			commentsAndUsers.put(comment, userProfileRepository.findAllByIduser(comment.getIduser()).get(0));
+			
+			commentsAndUsers.put(comment, userProfileRepository.findByIduser(comment.getIduser()));
 		}
 
 //		FILES
@@ -117,19 +121,39 @@ public class CourseRealizationController {
 //		}
 
 //		COURSEREALIZATION ID
-		CourseRealization currentCourseRealization = courseRealizationRepository.findById(currentCourseId).get();
+		CourseRealization currentCourseRealization = courseRealizationRepository.findById(currentCourseRealizationId).get();
 
 //		ASSIGNED STUDENTS
-		List<UserCourse> assignedUserCourseList = userCourseRepository.findByIdcourserealization(currentCourseId);
+		List<UserCourse> assignedUserCourseList = userCourseRepository.findByIdcourserealization(currentCourseRealizationId);
 
 		Map<Users, UserProfile> usersAndProfiles = new HashMap<>();
 
 		for(UserCourse userCourse : assignedUserCourseList) {
 
 			Users user = usersRepository.findById(userCourse.getIduser()).get();
-			usersAndProfiles.put(user, userProfileRepository.findAllByIduser(user.getIduser()).get(0));
+			usersAndProfiles.put(user, userProfileRepository.findByIduser(user.getIduser()));
 		}
-
+		
+//		SREDNIA
+		List <CourseEvaluation> evaluations = courseEvaluationRepository.findByIdcourse(currentCourseRealizationId);
+		int evaluationsListSize = evaluations.size();
+		boolean hasEvaluated = false;
+		double mean = 0;
+		
+		if(evaluationsListSize > 0) {
+	
+			hasEvaluated = courseEvaluationRepository.existsByIduserAndIdcourse(usersRepository.findByLogin(principal.getName()).getIduser(),
+					currentCourseRealizationId);
+		
+			for(CourseEvaluation evaluation : evaluations) {
+			
+				mean += evaluation.getRating();
+			}
+			
+			mean /= evaluationsListSize;
+		}
+		
+		
 //		MODELANDVIEW
 		ModelAndView mv = new ModelAndView("courseview");
 		mv.addObject("lecturer", userProfileRepository.findAllByIduser(currentCourseRealization.getIdlecturer()).get(0));
@@ -138,6 +162,8 @@ public class CourseRealizationController {
 //		mv.addObject("fileList", listOfFiles);
 		mv.addObject("currentCourseRealization", currentCourseRealization);
 		mv.addObject("currentCourse", courseRepository.findById(currentCourseRealization.getIdcourse()).get());
+		mv.addObject("mean", mean);
+		mv.addObject("hasEvaluated", hasEvaluated);
 
 		return mv;
 	}
@@ -190,6 +216,75 @@ public class CourseRealizationController {
     	ModelAndView mv = new ModelAndView("redirect:/addlecturerview");
     	mv.addObject("confirmation", "Przypisano prowadzącego!");
 	
+		return mv;
+	}
+	
+	@RequestMapping(value="/editcourseview")
+	public ModelAndView editCourseView(int idCourseRealization) {
+		
+		CourseRealization currentCourseRealization = courseRealizationRepository.findById(idCourseRealization).get();
+		Course currentCourse = courseRepository.findById(currentCourseRealization.getIdcourse()).get();
+		Users currentLecturer = usersRepository.findById(currentCourseRealization.getIdlecturer()).get();
+		
+//    	List<Users> lecturersList = usersRepository.findByAccounttype(1);
+    	List<Users> lecturersList = usersRepository.findAll();
+
+		Map<Users, UserProfile> lecturersProfiles = new HashMap<>();
+
+		for(Users lecturer : lecturersList) {
+
+			lecturersProfiles.put(lecturer, userProfileRepository.findByIduser(lecturer.getIduser()));
+		}
+		
+		List<UserCourse> assignedUserCourseList = userCourseRepository.findByIdcourserealization(idCourseRealization);
+
+		Map<Users, UserProfile>studentsProfiles = new HashMap<>();
+
+		for(UserCourse userCourse : assignedUserCourseList) {
+
+			Users user = usersRepository.findById(userCourse.getIduser()).get();
+			studentsProfiles.put(user, userProfileRepository.findAllByIduser(user.getIduser()).get(0));
+		}
+
+		
+		ModelAndView mv = new ModelAndView("editcourseview");
+		
+		mv.addObject("currentCourseRealization", currentCourseRealization);
+		mv.addObject("currentCourse", currentCourse);
+		mv.addObject("lecturer", currentLecturer);
+		mv.addObject("lecturers", lecturersProfiles);
+		mv.addObject("students", studentsProfiles);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/addcourseevaluation")
+	public ModelAndView addCourseEvaluation(int courseEvaluation, int idCourseRealization, Principal principal) {
+		
+		courseEvaluationRepository.save(new CourseEvaluation(usersRepository.findByLogin(principal.getName()).getIduser(), 
+				idCourseRealization, courseEvaluation));
+		
+		ModelAndView mv = new ModelAndView("redirect:/courseView");
+		mv.addObject("currentCourseRealization", idCourseRealization);
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="/editcourse")
+	public ModelAndView editCourse(int idCourseRealization, String lecturer, String note) {
+		
+		CourseRealization currentCourseRealization = courseRealizationRepository.findById(idCourseRealization).get(); 
+		
+		int idLecturer = Integer.parseInt(lecturer.replaceAll("[^0-9]+", ""));
+		
+		currentCourseRealization.setIdlecturer(idLecturer);
+		currentCourseRealization.setNote(note);
+		
+		courseRealizationRepository.save(currentCourseRealization);
+		
+		ModelAndView mv = new ModelAndView("redirect:/courseView");
+		mv.addObject("currentCourseRealization", idCourseRealization);
+		
 		return mv;
 	}
 }

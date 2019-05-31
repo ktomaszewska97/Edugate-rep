@@ -35,7 +35,7 @@
 
                 
 
-                <h2>Użytkownik <%=userId%></h2>
+                <h2>Użytkownik <%=username + " " + userLastname%></h2>
                 <br>
 
                 <div class="row">

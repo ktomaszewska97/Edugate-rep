@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class IndexController {
 	
 	@RequestMapping(value="/index")
-	public String kutas() {
+	public String index() {
 	
 		System.out.println("index");
 		return "index";

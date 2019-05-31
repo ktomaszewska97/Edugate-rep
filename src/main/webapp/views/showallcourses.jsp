@@ -29,21 +29,26 @@ List<CourseRealization> courseRealizationsList = (List<CourseRealization>)reques
 %>
 
 <div>                   
-<button class="collapsible"><%= course.getName() %></button>
+<button class="collapsible"><b><%= course.getName() %></b></button>
 <div class="content">
-  <p>Kurs odbywa się na semestrze: <%= course.getSemester() %></p>
-  <br>
-  <p>Opis kursu: </p>
-  <%= course.getAbout() %>
+  <i><p>Kurs odbywa się na semestrze: <%= course.getSemester() %></p>
+  <p>Opis kursu: 
+  <%= course.getAbout() %></p></i>
+  
+  
 
   <%
-   for (CourseRealization courseRealization : courseRealizationsList)
-      { 
+   int idCourseRealization;
+  
+   for (CourseRealization courseRealization : courseRealizationsList){ 
+	   
         if(courseRealization.getIdcourse()==idCourse) {
+        	
+        	idCourseRealization = courseRealization.getIdcourserealization();
       %>
-      <p><%=courseRealization.getIdcourserealization()%> <%= course.getName() %>
+      <p><%=idCourseRealization%> <%= course.getName() + ","%> <%=courseRealization.getNote()%> 
       <form method="post" action="courseView">
-      <input name="IDCourseRealization" type="number" value="<%= idCourse  %>" hidden>
+      <input name="IDCourseRealization" type="number" value="<%= idCourseRealization  %>" hidden>
       <input type="submit" class="btn btn-primary btn-outline" value="Select">
       </form>
       </p>

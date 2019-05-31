@@ -2,12 +2,15 @@ package edugate.demo.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.criteria.CriteriaBuilder;
 
 @Entity(name = "courseevaluation")
 public class CourseEvaluation {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idcourseevaluation;
     @Column
     Integer iduser;
@@ -17,6 +20,16 @@ public class CourseEvaluation {
     Integer rating;
     @Column
     String description;
+    
+    public CourseEvaluation() {
+    }
+    
+    public CourseEvaluation(int iduser, int idcourse, int rating) {
+    	
+    	this.iduser = iduser;
+    	this.idcourse = idcourse;
+    	this.rating = rating;
+    }
 
     public Integer getIdcourseevaluation() {
         return idcourseevaluation;
