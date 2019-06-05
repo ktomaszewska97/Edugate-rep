@@ -1,5 +1,6 @@
 package edugate.demo.controllers;
 
+import edugate.demo.model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,13 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import edugate.demo.model.Comment;
-import edugate.demo.model.Course;
-import edugate.demo.model.CourseEvaluation;
-import edugate.demo.model.CourseRealization;
-import edugate.demo.model.UserCourse;
-import edugate.demo.model.UserProfile;
-import edugate.demo.model.Users;
 import edugate.demo.repositories.AssignFileToCourseRealizationRepository;
 import edugate.demo.repositories.CommentRepository;
 import edugate.demo.repositories.CourseEvaluationRepository;
@@ -84,28 +79,28 @@ public class CourseRealizationController {
     	
     	return mv;
 	}
-    
+
 	@RequestMapping(value="/courseView")
 	public ModelAndView showCourseView(Integer IDCourseRealization, HttpServletRequest request, Principal principal) {
-		
+
 		int currentCourseRealizationId;
-		
+
 		if(IDCourseRealization == null) {
-			
+
 			currentCourseRealizationId = Integer.parseInt(request.getParameter("currentCourseRealization"));
 		}
 		else {
-			
+
 			currentCourseRealizationId = IDCourseRealization;
-		}		
-		
+		}
+
 //		COMMENTS
 		List<Comment> listOfComments = commentRepository.findByIdcourserealization(currentCourseRealizationId);
-		
+
 		Map<Comment, UserProfile> commentsAndUsers = new HashMap<>();
-		
+
 		for(Comment comment : listOfComments) {
-			
+
 			commentsAndUsers.put(comment, userProfileRepository.findByIduser(comment.getIduser()));
 		}
 
@@ -119,7 +114,17 @@ public class CourseRealizationController {
 //
 //			listOfFiles.add(fileRepository.findById(fileAssigned.getIdfile()).get());
 //		}
+		//FILES
+		List<AssignFileToCourseRealization> filesAssigned =
+				assignFileToCourseRealizationfileRepository.findByIdcourserealization(currentCourseRealizationId);
 
+		List<File> listOfFiles = new ArrayList<>();
+		System.out.println(filesAssigned.size() + " " + currentCourseRealizationId);
+		for(AssignFileToCourseRealization fileAssigned : filesAssigned) {
+
+			listOfFiles.add(fileRepository.findByIdfile(fileAssigned.getIdfile()));
+
+		}
 //		COURSEREALIZATION ID
 		CourseRealization currentCourseRealization = courseRealizationRepository.findById(currentCourseRealizationId).get();
 
@@ -133,33 +138,33 @@ public class CourseRealizationController {
 			Users user = usersRepository.findById(userCourse.getIduser()).get();
 			usersAndProfiles.put(user, userProfileRepository.findByIduser(user.getIduser()));
 		}
-		
+
 //		SREDNIA
 		List <CourseEvaluation> evaluations = courseEvaluationRepository.findByIdcourse(currentCourseRealizationId);
 		int evaluationsListSize = evaluations.size();
 		boolean hasEvaluated = false;
 		double mean = 0;
-		
+
 		if(evaluationsListSize > 0) {
-	
+
 			hasEvaluated = courseEvaluationRepository.existsByIduserAndIdcourse(usersRepository.findByLogin(principal.getName()).getIduser(),
 					currentCourseRealizationId);
-		
+
 			for(CourseEvaluation evaluation : evaluations) {
-			
+
 				mean += evaluation.getRating();
 			}
-			
+
 			mean /= evaluationsListSize;
 		}
-		
-		
+
+
 //		MODELANDVIEW
 		ModelAndView mv = new ModelAndView("courseview");
 		mv.addObject("lecturer", userProfileRepository.findAllByIduser(currentCourseRealization.getIdlecturer()).get(0));
 		mv.addObject("users", usersAndProfiles);
 		mv.addObject("comments", commentsAndUsers);
-//		mv.addObject("fileList", listOfFiles);
+		mv.addObject("fileList", listOfFiles);
 		mv.addObject("currentCourseRealization", currentCourseRealization);
 		mv.addObject("currentCourse", courseRepository.findById(currentCourseRealization.getIdcourse()).get());
 		mv.addObject("mean", mean);
