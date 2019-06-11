@@ -341,37 +341,32 @@
                     </div>
     </div> <!--DIV Col9-->
                                        
- 	<div class="col-3">   
-    		<p>Pliki</p>
-                <%
-                List<File> fileList = (List<File>)request.getAttribute("fileList");
-                if(fileList != null){
-                  for (File file : fileList)
-                  {
-					  if(readFiles==true){
-              %>
-                        <button type="button" class="list-group-item list-group-item-action"><%= file.getTitle()%>
-                        </button>
+ 	<div class="col-3">
+		<form method="POST" enctype="multipart/form-data" action="/uploadFile">
+			<table>
+				<tr><td>Wybierz plik:</td><td><input type="file" name="file" /></td></tr>
+				<input name="idCourseRealization" type="number" value="<%=currentCourseRealization.getIdcourserealization() %>" hidden>
+				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
+			</table>
+		</form><br>
 
-		<% }else{%>
-		<button type="button" class="list-group-item list-group-item-action" disabled><%= file.getTitle()%>
+		<p>Pliki</p>
+		<%
+			List<File> fileList = (List<File>)request.getAttribute("fileList");
+			if(fileList != null){
+				for (File file : fileList)
+				{
+		%>
+		<button type="button" onclick="window.location='<%=file.getLink()%>'" class="list-group-item list-group-item-action"><%= file.getTitle()%>
 		</button>
-		<%}}}%>
+
+		<% }} %>
+
+
 
 		<%if(readFiles==true){%>
-		<a href=#>Plik 1</a>
-		<br>
-		<a href=#>Plik 2</a>
-		<br>
-		<a href=#>Plik 3</a>
-
-
 		<% }else{%>
-		<a href=# onClick="return false;">Plik 1</a>
-		<br>
-		<a href=# onClick="return false;">Plik 2</a>
-		<br>
-		<a href=# onClick="return false;">Plik 3</a>
+
 
 		<%}
 			int currentUserId = (int)request.getAttribute("idUser");

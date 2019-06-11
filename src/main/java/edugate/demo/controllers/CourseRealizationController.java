@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -105,6 +106,17 @@ public class CourseRealizationController {
 //			listOfFiles.add(fileRepository.findById(fileAssigned.getIdfile()).get());
 //		}
 
+		List<AssignFileToCourseRealization> filesAssigned =
+				assignFileToCourseRealizationfileRepository.findByIdcourserealization(currentCourseRealizationId);
+
+		List<File> listOfFiles = new ArrayList<>();
+		System.out.println(filesAssigned.size() + " " + currentCourseRealizationId);
+		for(AssignFileToCourseRealization fileAssigned : filesAssigned) {
+
+			listOfFiles.add(fileRepository.findByIdfile(fileAssigned.getIdfile()));
+
+		}
+
 //		COURSEREALIZATION ID
 		CourseRealization currentCourseRealization = courseRealizationRepository.findById(currentCourseRealizationId).get();
 
@@ -165,7 +177,7 @@ public class CourseRealizationController {
 		mv.addObject("lecturer", userProfileRepository.findAllByIduser(currentCourseRealization.getIdlecturer()).get(0));
 		mv.addObject("users", usersAndProfiles);
 		mv.addObject("comments", commentsAndUsers);
-//		mv.addObject("fileList", listOfFiles);
+		mv.addObject("fileList", listOfFiles);
 		mv.addObject("currentCourseRealization", currentCourseRealization);
 		mv.addObject("currentCourse", courseRepository.findById(currentCourseRealization.getIdcourse()).get());
 		mv.addObject("mean", mean);
