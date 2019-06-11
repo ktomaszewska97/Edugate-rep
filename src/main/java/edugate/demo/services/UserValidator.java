@@ -1,4 +1,4 @@
-package edugate.demo.services;
+/*package edugate.demo.services;
 
 import edugate.demo.model.Users;
 import edugate.demo.services.UserService;
@@ -39,4 +39,4 @@ public class UserValidator implements Validator {
             errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
         }
     }
-}
+}*/
