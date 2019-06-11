@@ -1,12 +1,11 @@
 package edugate.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name="assigncourserealization")
 public class AssignCourseRealization {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer idassigncourserealization;
     @Column
     Integer idprivilege;

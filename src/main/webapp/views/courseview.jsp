@@ -12,6 +12,39 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/Signup.css" rel="stylesheet">
     <link href="/css/courseview.css" rel="stylesheet">
+
+
+	<script>
+		function savePrivilege(idCourserealization ){
+
+			var request = new XMLHttpRequest();
+			var users = document.getElementsByName("user");
+			var privileges = document.getElementsByName("privilege");
+			var idUser;
+			var idPrivilege;
+
+			for (var i = 0, length = users.length; i < length; i++)
+			{
+				if (users[i].checked)
+				{
+					idUser = users[i].value;
+					break;
+				}
+			}
+			for (var i = 0, length = privileges.length; i < length; i++)
+			{
+				if (privileges[i].checked)
+				{
+					idPrivilege= privileges[i].value;
+					break;
+				}
+			}
+			request.open("POST", "/saveprivilege/" + idUser + "/" + idPrivilege + "/" + idCourserealization);
+			request.send()
+
+
+		}
+	</script>
 </head>
 
 <body>
@@ -29,6 +62,10 @@
        	int courseRealizationId = currentCourseRealization.getIdcourserealization();
        	double mean = (double)request.getAttribute("mean");
 		boolean hasEvaluated = (boolean)request.getAttribute("hasEvaluated");
+
+			boolean readFiles = (boolean)request.getAttribute("readFiles");
+			boolean saveFiles = (boolean)request.getAttribute("saveFiles");
+			boolean modifyCourse = (boolean)request.getAttribute("modifyCourse");
 		
 		NumberFormat formatter = new DecimalFormat("#0.00");     
        	
@@ -48,14 +85,22 @@
 							else {
 							%>
 							<p><h5><%= lecturer.getFirstName() + " " + lecturer.getLastName()%></h5></p>
-							<%
-							}
-							%>
-							<br>
-        					<form action="editcourseview">
-        						<input type="number" name="idCourseRealization" value="<%=courseRealizationId%>" hidden>
-        						<button class="btn btn-outline-primary btn-md" type="submit">Edytuj dane</button>
-        					</form>
+			<%
+				}
+				if(modifyCourse==true){
+			%>
+			<br>
+			<form action="editcourseview">
+				<input type="number" name="idCourseRealization" value="<%=courseRealizationId%>" hidden>
+				<button class="btn btn-outline-primary btn-md" type="submit">Edytuj dane</button>
+			</form>
+			<%}else{%>
+			<form action="editcourseview">
+				<input type="number" name="idCourseRealization" value="<%=courseRealizationId%>" hidden>
+				<button class="btn btn-outline-primary btn-md" type="submit" disabled>Edytuj dane</button>
+			</form>
+
+			<%}%>
         					<br>
         
         
@@ -297,25 +342,72 @@
                     </div>
     </div> <!--DIV Col9-->
                                        
- 	<div class="col-3">   
-    		<p>Pliki</p>
-                <%
-                List<File> fileList = (List<File>)request.getAttribute("fileList");
-                if(fileList != null){
-                  for (File file : fileList)
-                  {
-              %>
-                        <button type="button" class="list-group-item list-group-item-action"><%= file.getTitle()%>
-                        </button>
+ 	<div class="col-3">
+		<% if(saveFiles==true||readFiles==true){%>
+    		<b>Pliki</b>
+		<br><br>
+                <%}
+					if (readFiles == true) {%>
+		<a href=# onClick="return false;">Plik 1</a>
+		<br>
+		<a href=# onClick="return false;">Plik 2</a>
+		<br>
+		<a href=# onClick="return false;">Plik 3</a>
+					<%}
+					if(saveFiles==true){%>
+		<br><br>
+		<button >zapisz pliki</button>
+		<%}
 
-                        <% }} %>
-            <a href=#>Plik 1</a>
-            <br>
-            <a href=#>Plik 2</a>
-            <br>
-            <a href=#>Plik 3</a>
 
- 	</div> <!--DIV Col3-->
+			int currentUserId = (int)request.getAttribute("idUser");
+			if(currentUserId==lecturer.getIduser()){ %>
+
+		<br><br>
+		<div class="wrapper">
+			<div class="divider div-transparent"></div>
+		</div>
+		<br>
+		<h5><b>Dodaj przywileje</b></h5>
+		<b>Lista studentów</b>
+
+
+
+
+
+		<%if(usersAndProfiles != null){
+
+			List<Users> students = new ArrayList<>(usersAndProfiles.keySet());
+			UserProfile studentProfile= null;
+
+
+		%><form name="students"><%
+		for (Users student : students){
+
+		studentProfile = usersAndProfiles.get(student);
+	%>
+		<%--                    if(student.getIduser()==currentCourseRealization.getIdcourserealization()){--%>
+
+		<input  type="radio" name="user" value="<%= student.getIduser() %>"> <%= student.getIduser() %>, <%= studentProfile.getFirstName()%>, <%= studentProfile.getLastName() %><br>
+
+
+
+		<% }} %>
+	</form>
+		<b>Lista przywilejów</b>
+		<form name="privilages">
+			<input type="radio" name="privilege" value="1">Zapis plików<br>
+			<input type="radio" name="privilege" value="2">Odczyt plików<br>
+			<input type="radio" name="privilege" value="3" >Modyfikowanie opisu kursu<br>
+		</form>
+		<button onclick="savePrivilege(<%=currentCourseRealization.getIdcourserealization()%>)">Zapisz</button>
+
+		<%}
+		%>
+
+
+
+	</div> <!--DIV Col3-->
 
 </div> <!--DIV ROW-->
 

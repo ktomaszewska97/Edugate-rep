@@ -1,9 +1,9 @@
 package edugate.demo.controllers;
 
+import edugate.demo.model.*;
+import edugate.demo.repositories.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
@@ -14,23 +14,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
-import edugate.demo.model.Comment;
-import edugate.demo.model.Course;
-import edugate.demo.model.CourseEvaluation;
-import edugate.demo.model.CourseRealization;
-import edugate.demo.model.UserCourse;
-import edugate.demo.model.UserProfile;
-import edugate.demo.model.Users;
-import edugate.demo.repositories.AssignFileToCourseRealizationRepository;
-import edugate.demo.repositories.CommentRepository;
-import edugate.demo.repositories.CourseEvaluationRepository;
-import edugate.demo.repositories.CourseRealizationRepository;
-import edugate.demo.repositories.CourseRepository;
-import edugate.demo.repositories.FileRepository;
-import edugate.demo.repositories.UserCourseRepository;
-import edugate.demo.repositories.UserProfileRepository;
-import edugate.demo.repositories.UsersRepository;
 
 @Controller
 public class CourseRealizationController {
@@ -53,6 +36,9 @@ public class CourseRealizationController {
 	CourseEvaluationRepository courseEvaluationRepository;
 	@Autowired
 	AssignFileToCourseRealizationRepository assignFileToCourseRealizationfileRepository;
+	@Autowired
+	AssignCourseRealizationRepository assignCourseRealizationRepository;
+
 
 	@RequestMapping(value="/signupforacourseLink")
 	public ModelAndView homeLink(HttpServletRequest request) {
@@ -152,6 +138,27 @@ public class CourseRealizationController {
 			
 			mean /= evaluationsListSize;
 		}
+
+		//PRIVILEGES
+		int idUser = usersRepository.findByLogin(principal.getName()).getIduser();
+		List<AssignCourseRealization> privilegesList = assignCourseRealizationRepository.findAllByIduserAndIdcourserealization(idUser,currentCourseRealization.getIdcourserealization());
+		boolean saveFiles = false;
+		boolean readFiles = false;
+		boolean modifyCourse = false;
+		if(!privilegesList.isEmpty()){
+			for (AssignCourseRealization acr: privilegesList)
+			{
+				if(acr.getIdprivilege()==1) saveFiles=true;
+				else{
+					if(acr.getIdprivilege()==2) readFiles=true;
+					else {
+						if (acr.getIdprivilege() == 3) modifyCourse = true;
+
+					}
+				}
+
+			}
+		}
 		
 		
 //		MODELANDVIEW
@@ -165,7 +172,27 @@ public class CourseRealizationController {
 		mv.addObject("mean", mean);
 		mv.addObject("hasEvaluated", hasEvaluated);
 
+		mv.addObject("saveFiles", saveFiles);
+		mv.addObject("readFiles", readFiles);
+		mv.addObject("modifyCourse", modifyCourse);
+		mv.addObject("idUser", idUser);
+
 		return mv;
+	}
+
+	@RequestMapping(value = "/saveprivilege/{idUser}/{idPrivilege}/{idCourserealization}", method = RequestMethod.POST)
+	@ResponseBody
+	public void addPrivilege(@PathVariable("idUser") Integer idUser, @PathVariable("idPrivilege") Integer idPrivilege, @PathVariable("idCourserealization") Integer idCourserealization) {
+
+//		AssignCourseRealization acr = new AssignCourseRealization(idUser, idPrivilege, idCourserealization);
+//		assignCourseRealizationRepository.save(acr);
+
+
+		AssignCourseRealization acr2= new AssignCourseRealization();
+		acr2.setIduser(idUser);
+		acr2.setIdprivilege(idPrivilege);
+		acr2.setIdcourserealization(idCourserealization);
+		assignCourseRealizationRepository.save(acr2);
 	}
 
     @GetMapping(value="/addlecturerview")
