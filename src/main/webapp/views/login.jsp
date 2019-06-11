@@ -25,12 +25,16 @@
             <span>${message}</span>
             
             <div class="divForInput">
+             <div class="form-group">
             <input name="username" type="text" class="form-control" placeholder="Username"
                    autofocus="true"/>
+                   </div>
             </div>
             
             <div class="divForInput">
+             <div class="form-group">
             <input name="password" type="password" class="form-control" placeholder="Password"/>
+            </div>
             </div>
             
             <span>${error}</span>

@@ -34,7 +34,6 @@
                 <p>Powiedz nam coś o sobie:</p>
                 <textarea type="text" name="about" 
                         class="form-control" placeholder="Powiedz nam coś o sobie!"
-                        valueabout=""
                         maxLength="255" required/>
                 </textarea>
                 </div>

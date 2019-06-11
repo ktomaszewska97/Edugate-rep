@@ -238,6 +238,8 @@ public class CourseRealizationController {
 		currentCourseRealization.setIdlecturer(idLecturer);
 		
 		courseRealizationRepository.save(currentCourseRealization);
+		
+		
     	
     	ModelAndView mv = new ModelAndView("redirect:/addlecturerview");
     	mv.addObject("confirmation", "Przypisano prowadzącego!");
@@ -322,6 +324,24 @@ ModelAndView mv;
 		currentCourseRealization.setNote(note);
 		
 		courseRealizationRepository.save(currentCourseRealization);
+		
+		AssignCourseRealization acr= new AssignCourseRealization();
+        acr.setIduser(idLecturer);
+        acr.setIdprivilege(1);
+        acr.setIdcourserealization(idCourseRealization);
+        assignCourseRealizationRepository.save(acr);
+
+        AssignCourseRealization acr1= new AssignCourseRealization();
+        acr1.setIduser(idLecturer);
+        acr1.setIdprivilege(2);
+        acr1.setIdcourserealization(idCourseRealization);
+        assignCourseRealizationRepository.save(acr1);
+
+        AssignCourseRealization acr2= new AssignCourseRealization();
+        acr2.setIduser(idLecturer);
+        acr2.setIdprivilege(3);
+        acr2.setIdcourserealization(idCourseRealization);
+        assignCourseRealizationRepository.save(acr2);
 		
 		ModelAndView mv = new ModelAndView("redirect:/courseView");
 		mv.addObject("currentCourseRealization", idCourseRealization);

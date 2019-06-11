@@ -8,6 +8,8 @@
 <head>
     <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link href="/css/Profile.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 
 
@@ -25,51 +27,22 @@
     <% if(username==null) username="brak";%>
     <% if(userLastname==null) userLastname="brak";%>
     <% if(userEmail==null) userEmail="brak";%>
-
-
-
-
-    <div class="profile-container">
-        <div class="container">
-            <div class="profile-info">
-
-                
-
-                <h2>Użytkownik <%=username + " " + userLastname%></h2>
-                <br>
-
-                <div class="row">
-                   <div class="col">
-                    <h5>Szczegóły użytkownika</h5>
-                    <b>Imię</b>
-                    <p><%=username%></p>
-                    <b>Nazwisko</b>
-                    <p><%=userLastname%></p>
-                    <b>Login</b>
-                    <p><%=userLogin%></p>
-                    <b>E-mail</b>
-                    <p><%=userEmail%></p>
-                       <b>Uczelnia</b>
-                       <p><%=userSchool%></p>
-                       <b>Wydział</b>
-
-                       <% if(!userCourses.isEmpty()){
-                           for (Department dep: departments) {
-
-                       %>
-                       <p><%=dep.getName()%></p>
-                       <%
-                               }
-
-                           }%>
-
-
-                    <b></b>
-
-                    <br>
-
-                </div>
-                       <div class="col">
+    
+<div class="container">
+  <div class="avatar-flip">
+    <img src="http://media.idownloadblog.com/wp-content/uploads/2012/04/Phil-Schiller-headshot-e1362692403868.jpg" height="150" width="150">
+    <img src="http://i1112.photobucket.com/albums/k497/animalsbeingdicks/abd-3-12-2015.gif~original" height="150" width="150">
+  </div>
+  <% String titleName=username + " " + userLastname; %>
+  <h2><%=titleName%> </h2>
+  <h4><%=userEmail%></h4>
+  <h4><%=userEmail%></h4>
+  <h5><%=userSchool%></h5>
+  
+  <p>Jestem wykładowcą od 15 lat. Jeżeli chcesz się ze mną skontaktować, proszę, napisz email.</p>
+  
+  
+   <div class="col">
                            <h5>Realizowane kursy</h5>
                            <% if(!userCourses.isEmpty()){
                                for (String ucr: userCourses) {
@@ -80,23 +53,10 @@
                                }
 
                                }%>
+	</div> 
+                       
+</div>
 
-                       </div> 
-                </div>
-                        
-                        
-
-                    </div>
-                   
-                </div>
-
-
-
-
-            </div>
-        </div>
-    </div>
-    </div>
 </body>
 
 </html>

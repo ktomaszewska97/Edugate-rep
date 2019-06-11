@@ -4,7 +4,7 @@ package edugate.demo.controllers;
 import edugate.demo.model.Users;
 import edugate.demo.security.SecurityService;
 import edugate.demo.services.UserService;
-//import edugate.demo.services.UserValidator;
+import edugate.demo.services.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -24,8 +24,8 @@ public class UserController {
     @Autowired
     private SecurityService securityService;
 
-    //@Autowired
-    //private UserValidator userValidator;
+    @Autowired
+    private UserValidator userValidator;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -36,7 +36,7 @@ public class UserController {
 
     @PostMapping("/registration")
     public String registration(@ModelAttribute("userForm") Users userForm, BindingResult bindingResult) {
-        //userValidator.validate(userForm, bindingResult);
+        userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "registration";

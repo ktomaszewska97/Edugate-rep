@@ -24,48 +24,21 @@
       <li class="nav-item active">
         <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
       </li>
-      
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Uczelnie
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Przeglądaj</a>
-          <a class="dropdown-item" href="schoolLink">Dodaj</a>
-        </div>
-      </li>
-            <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Wydziały
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="#">Przeglądaj</a>
-          <a class="dropdown-item" href="departmentLink">Dodaj</a>
-        </div>
-      </li>
         <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Kursy
+          Twoje Kursy
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="courseslistLink">Przeglądaj</a>
-          <a class="dropdown-item" href="courseLink">Dodaj</a>
-          <a class="dropdown-item" href="signupforacourseLink">Zapisz</a>
+          <a class="dropdown-item" href="courseslistLink">Przeglądaj kursy</a>
+          <a class="dropdown-item" href="signupforacourseLink">Zapisz się na kurs</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Obsługa studentów
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="coursesStudentsListLink">Przeglądaj studentów w kursach</a>
-        </div>
-      </li>
+
  	</ul>
  		<ul class="navbar-nav ml-auto">
  			<li class="nav-item">
         	<a class="nav-link" href="profileLink">Profil</a>
-      		</li>
+      </li>
  			<li class="nav-item">
             <a class="nav-link" href="/login?logout">Logout</a>
             </li>

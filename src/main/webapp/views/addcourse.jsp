@@ -6,7 +6,13 @@
 <link href="/css/Signup.css" rel="stylesheet">
 </head>
 <body>
+
+<%
+
 <%@include file="header.jsp" %>
+%>
+
+
  <div class="signup-container">
                 <div class="signup-content">
                     <h1 class="signup-title">Dodaj kurs</h1>
